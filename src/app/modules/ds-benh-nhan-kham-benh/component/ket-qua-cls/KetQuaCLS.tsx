@@ -5,8 +5,8 @@ import { DichVuDaChiDinh } from "../../models/DichVuDaChiDinhModel";
 import { DichVuDaChiDinhColumns } from "./DichVuDaChiDinhColumns";
 import { handlePagesChange, handleRowsPerPageChange, rowsForPage } from "../../../utils/PageUtils";
 import { DichVuDaChiDinhData } from "./FakeData";
-import { BangDanhSachKetQua } from "../../../phan-he-xet-nghiem/components/bang-danh-sach-ket-qua/BangDanhSachKetQua";
-import { DanhSachKetQua } from "../../../phan-he-xet-nghiem/components/bang-danh-sach-ket-qua/FakeData";
+import { BangDanhSachKetQua } from "./BangDanhSachKetQua";
+import { DanhSachKetQua } from "./FakeData";
 import { Button } from "react-bootstrap";
 
 const KetQuaCLS = () => {
@@ -37,13 +37,13 @@ const KetQuaCLS = () => {
         <BangDanhSachKetQua data={DanhSachKetQua}/>
       </div>
       <div className="d-flex gap-4 justify-content-center">
-        <Button className="min-w-80px btn-orange-brick">Bắt đầu</Button>
-        <Button className="min-w-80px btn-orange-brick">Khám bệnh</Button>
-        <Button className="min-w-80px btn-orange-brick">Chỉ định CLS</Button>
-        <Button className="min-w-80px btn-orange-brick">Thuốc</Button>
-        <Button className="min-w-80px btn-orange-brick">Bệnh án</Button>
-        <Button className="min-w-80px btn-orange-brick">Phiếu thu</Button>
-        <Button className="min-w-80px btn-orange-brick">Chuyển PK</Button>
+        <Button className="min-w-80px btn-navy">Bắt đầu</Button>
+        <Button className="min-w-80px btn-navy">Khám bệnh</Button>
+        <Button className="min-w-80px btn-navy">Chỉ định CLS</Button>
+        <Button className="min-w-80px btn-navy">Thuốc</Button>
+        <Button className="min-w-80px btn-navy">Bệnh án</Button>
+        <Button className="min-w-80px btn-navy">Phiếu thu</Button>
+        <Button className="min-w-80px btn-navy">Chuyển PK</Button>
       </div>
     </div>
   );
