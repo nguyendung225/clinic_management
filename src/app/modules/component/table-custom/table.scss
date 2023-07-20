@@ -1,0 +1,121 @@
+@import "../../styles/variable";
+.dropstart .dropdown-toggle::before {
+  display: none;
+}
+.dropdown-menu.show {
+  display: flex;
+  align-items: center;
+}
+.dropdown-menu {
+  //   height: 100%;
+  position: absolute;
+  inset: 0px auto auto 0px;
+  transform: translate3d(-18.6px, 0px, 0px) !important;
+  padding: 10px 0;
+}
+.dropdown-item:hover {
+  background-color: white;
+}
+.team-name-cell {
+  cursor: pointer;
+}
+.team-name-td:hover {
+  background-color: #f1f3f5;
+}
+// .btn-action {
+//   background-color: #68a3ce !important;
+// }
+.actived {
+  color: #40c057 !important;
+}
+.check-box-row {
+  width: 16px;
+  height: 16px;
+  margin: 16px;
+}
+.table-toolbar {
+  background-color: #fff;
+  padding: 20px;
+  span {
+    font-size: 14px;
+    color: #707070;
+  }
+}
+.toolbar-icon {
+  padding: 6px;
+  border: 1px solid #68a3ce;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.delete-box {
+  display: flex;
+  border-left: 2px solid #cfcfcf;
+  align-items: center;
+  justify-content: center;
+}
+.pagination {
+  background: #fff;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.page-link {
+  font-size: 14px !important;
+}
+.pagination-info {
+  border: 1px solid #cfcfcf;
+  padding: 6px 14px;
+  border-radius: 3px;
+  font-weight: 600;
+  color: #707070;
+}
+.pagination-goto {
+  color: #68a3ce;
+  padding: 6px;
+  border-radius: 3px;
+  display: flex;
+  label {
+    border-right: 1px solid #cfcfcf;
+    padding: 0 8px;
+  }
+  input {
+    padding-left: 6px;
+    width: 32px;
+    border: none;
+    outline: none;
+  }
+  align-items: center;
+  border: 1px solid #68a3ce;
+}
+.header-filter-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.headerContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.table-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+th {
+  padding: 10px !important;
+}
+
+.selected-row {
+  background: #caefff;
+}
+.filter-open {
+  background-color: #68a3ce;
+  color: white !important;
+}
+.action-cell {
+  color: $color-teal-active-hover !important;
+  cursor: pointer;
+}

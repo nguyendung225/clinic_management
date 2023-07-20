@@ -1,0 +1,73 @@
+@import "../styles/variable";
+
+.reception-list {
+    background-color: white !important;
+
+    .reception__header {
+        position: relative;
+    }
+
+    .call-patient {
+        position: absolute;
+        top: 2px;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 15px;
+
+        .input {
+            width: 60px;
+            padding: 1px 5px !important;
+            border: 1px solid #3b3b3b;
+        }
+
+        .btn {
+            width: 60px;
+            padding: 1px 0 !important;
+            border: 1px solid $color-teal-navy-blue !important;
+            background-color: white;
+            color: var(--color-linear-navy);
+
+            &:hover, &.call {
+                background: var(--color-linear-navy) !important;
+                color: white;
+            }
+        }
+
+    }
+
+    .receive {
+        .custom-select {
+            width: calc(100% - 100px);
+        }
+
+        .custom-select__control {
+            width: calc(100% - 100px);
+            height: 30px;
+        }
+
+    }
+
+    .reception-list__container {
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+        padding: 16px;
+    }
+
+    .chiDinhCLS {
+        .tabXetNghiem {
+
+            .nav-link {
+                border-radius: 0 !important;
+            }
+        }
+    }
+}
+
+.cell-first-child {
+    padding-left: 10px;
+}
+
+.cell-last-child {
+    padding-right: 10px;
+}

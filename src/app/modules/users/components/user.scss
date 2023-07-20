@@ -1,0 +1,13 @@
+.icon-hover{
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 5px;
+  opacity: 0.8;
+  transform: scale(1.2);
+  &:hover{
+    opacity: 1;
+    background-color: rgb(238,238,238);
+    padding: 5px;
+  }
+}
+

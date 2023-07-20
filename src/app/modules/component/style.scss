@@ -1,0 +1,24 @@
+.bg-pri {
+  background-color: #68a3ce;
+  color: white;
+  &:hover {
+    background-color: #5ca5da;
+  }
+}
+.text-pri {
+  color: #68a3ce;
+}
+.page-link {
+  font-size: 18px !important;
+}
+.footer-select {
+  width: 72px;
+}
+.noWrap {
+  white-space: 'nowrap';
+}
+.text-system {
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: #333 !important;
+}

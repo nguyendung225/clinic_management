@@ -1,0 +1,25 @@
+:root {
+    --color-linear-green: linear-gradient(180deg, #0E9594 0%, #127475 100%),
+        linear-gradient(0deg, #FFFFFF, #FFFFFF);
+    --color-linear-teal: linear-gradient(180deg, #50c5b5 0%, #13a7a4 100%),
+        linear-gradient(0deg, #FFFFFF, #FFFFFF);
+    --color-linear-navy: linear-gradient(180deg, #1e7a9e 0%, #2789af 100%),
+        linear-gradient(0deg, #FFFFFF, #FFFFFF);
+}
+
+$color-teal: #57C5B6;
+$color-teal-active-hover: #B3E8E5;
+$color-green: #159895;
+$color-teal-navy-blue: #2789af;
+$color-navy-blue: #002B5B;
+$color-hover: #0788ba;
+$color-bg-hover: #f3f3f3;
+
+$color-blue: #57C5B6;
+$color-blue-blur: #519DD9;
+$color-dark: #111111;
+$color-dark-blur-1: #707070;
+$color-dark-blur-2: #CFCFCF;
+$color-white: #FFFFFF;
+$color-border-table: #d6dddd;
+$color-color-table-header: #68a3ce;
