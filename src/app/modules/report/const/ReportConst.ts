@@ -1,1 +1,0 @@
-export const MONTH_ACTIVE_BUTTON: number = 5
