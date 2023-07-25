@@ -6,16 +6,20 @@ import Textarea from "../components/Textarea";
 
 export const TYPE = {
     input: "input",
-    textarea: "TextArea",
+    textarea: "textarea",
     select: "select",
     checkbox: "checkbox",
     radio: "radio",
-    radioText: "Complex",
-    listInput: "ListInput"
+    radioText: "complex",
+    listInput: "listInput"
 }
 
-export const INPUT_TYPE = ["Number", "String"];
-export const SELECT_TYPE = ["List"];
+export enum INPUT_TYPE { 
+    NUMBER = 'number',
+    STRING = 'string'
+}
+
+export const SELECT_TYPE = ["list"];
 
 export const LAYOUT = {
     horizontal: "horizontal",

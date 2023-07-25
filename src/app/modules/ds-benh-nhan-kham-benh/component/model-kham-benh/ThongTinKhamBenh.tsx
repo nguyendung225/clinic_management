@@ -35,10 +35,10 @@ export const ThongTinKhamBenh = () => {
     const getDat = async () => {
         try {
             let { data } = await searchByPage()
-            let listData = listItemChild(data.data)
-            setFormData(listData)
+            let listData = listItemChild(data.data);
+            setFormData(listData);
         } catch (error) {
-            toast.error("Lỗi gọi api ")
+            toast.error("Lỗi gọi api")
         }
     }
 
@@ -47,13 +47,13 @@ export const ThongTinKhamBenh = () => {
     }, []);
 
     useEffect(() => {
-        setThongTinKhamBenh(formData?.[KEY_NAME?.thongTinKhamBenh])
-        setSinhHieu(formData?.[KEY_NAME?.sinhHieu])
+        setThongTinKhamBenh(formData?.thongTinKhamBenh)
+        setSinhHieu(formData?.sinhHieu)
     }, [formData]);
 
     const handleBMI = () => {
-        let chieuCao = sinhHieu?.[KEY_NAME.chieuCao]?.value;
-        let canNang = sinhHieu?.[KEY_NAME.canNang]?.value
+        let chieuCao = sinhHieu?.chieuCao?.value;
+        let canNang = sinhHieu?.canNang?.value
         let bmi: string | number = "";
         let phanLoai: string = "";
 
@@ -72,7 +72,7 @@ export const ThongTinKhamBenh = () => {
         setSinhHieu({
             ...sinhHieu,
             [KEY_NAME.BMI]: {
-                ...sinhHieu?.[KEY_NAME.BMI],
+                ...sinhHieu?.BMI,
                 value: bmi + " " + phanLoai
             }
         });
@@ -81,13 +81,13 @@ export const ThongTinKhamBenh = () => {
     useEffect(() => {
         handleBMI()
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [sinhHieu?.[KEY_NAME.chieuCao]?.value, sinhHieu?.[KEY_NAME.canNang]?.value]);
+    }, [sinhHieu?.chieuCao?.value, sinhHieu?.canNang?.value]);
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>, index: number, item: any) => {
         setSinhHieu({
             ...sinhHieu,
-            [item?.name]: {
-                ...sinhHieu?.[item?.name],
+            [item?.code]: {
+                ...sinhHieu?.[item?.code],
                 value: event.target.value
             }
         });
@@ -96,7 +96,6 @@ export const ThongTinKhamBenh = () => {
     const handleSubmit = () => {
         let concept = convertDto([thongTinKhamBenh, sinhHieu])
         console.log(concept)
-
     }
 
     return (

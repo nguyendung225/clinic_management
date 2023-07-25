@@ -1,6 +1,7 @@
 import { ChangeEvent } from "react";
 import { Col, Form, FormLabel, Row } from "react-bootstrap";
 import { checkLayout } from "../utils/constFunction";
+import { INPUT_TYPE } from "../utils/const";
 
 const Input = ({ ...props }) => {
     let { xl, lg, md, sm, sx, widthLable, layout } = props;
@@ -32,7 +33,9 @@ const Input = ({ ...props }) => {
                     >
                         <FormLabel className={`${checkLayout(layout) ? "mb-0" : ""}`}>
                             <span>{props?.itemData?.name ?? ""} </span>
-                            <span>({props?.itemData?.units}): </span>
+                            {
+                                props?.itemData?.dataType === INPUT_TYPE.NUMBER && <span> ({props?.itemData?.units}): </span>
+                            }
                         </FormLabel>
                     </Col>
                     <Col>
@@ -42,7 +45,7 @@ const Input = ({ ...props }) => {
                             className={`
                                 customs-input w-100  
                                 ${props?.itemData?.attribute?.outline ? "outline-none" : ""}
-                                ${props?.itemData?.dataType === "Number" ? "no-spinners" : ""}
+                                ${props?.itemData?.dataType === INPUT_TYPE.NUMBER ? "no-spinners" : ""}
                             `}
                             value={props?.itemData?.value ?? ""}
                             name={props?.itemData?.name ?? ""}

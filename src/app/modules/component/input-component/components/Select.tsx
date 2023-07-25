@@ -28,7 +28,7 @@ const Select = ({ ...props }) => {
                 >
                     <option hidden value={""}>Chọn...</option>
                     {props?.itemData?.children?.length > 0 && props?.itemData?.children?.map((item: iChildren, index: number) => {
-                        return <option className="py-2" key={index} value={item?.name}>{item?.name}</option>
+                        return <option className="py-2" key={index} value={item?.code || item?.id}>{item?.name}</option>
                     })}
                 </Form.Select>
             </Form.Group>
