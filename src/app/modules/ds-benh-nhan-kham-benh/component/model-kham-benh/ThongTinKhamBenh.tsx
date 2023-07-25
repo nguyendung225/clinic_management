@@ -10,6 +10,8 @@ import InputComponent from "../../../component/input-component";
 import { searchByPage } from "../../service/KhamBenhService";
 import { toast } from "react-toastify";
 import { convertDto, listItemChild } from "../../../component/input-component/utils/constFunction";
+import { PhanHeTiepDonContext } from "../../PhanHeTiepDonContext";
+import TextGroup from "../../../component/TextGroup";
 
 export type KhamBenh = {
     thongTinKhamBenh?: any;
@@ -21,6 +23,7 @@ export const ThongTinKhamBenh = () => {
     const [formData, setFormData] = useState<any>();
     const [sinhHieu, setSinhHieu] = useState<any>();
     const [thongTinKhamBenh, setThongTinKhamBenh] = useState<any>();
+    const { benhNhanInfo } = useContext(PhanHeTiepDonContext);
 
     const handleAddTab = (eventKey: string) => {
         let data = localStorageItem.get(KEY_DS_TAB_TIEP_DON) ? localStorageItem.get(KEY_DS_TAB_TIEP_DON) : [];
@@ -95,7 +98,6 @@ export const ThongTinKhamBenh = () => {
 
     const handleSubmit = () => {
         let concept = convertDto([thongTinKhamBenh, sinhHieu])
-        console.log(concept)
     }
 
     return (
@@ -114,36 +116,54 @@ export const ThongTinKhamBenh = () => {
                     <Col sm="3" className="spaces pl-0">
                         <div className="box_shadow-93 px-3 py-2">
                             <p className='text-center fw-bold mb-2'>Thông tin hành chính</p>
-                            <div className="d-flex align-items-center">
-                                <label className='col-sm-4 label-fw'>Mã BN:</label>
-                                <p className='col-sm-8 text-fw'>BN202300005</p>
-                            </div>
-                            <div className="d-flex align-items-center pt-3">
-                                <label className='col-sm-4 label-fw'>Họ tên:</label>
-                                <p className='col-sm-8 text-fw'>Nguyễn Văn A</p>
-                            </div>
-                            <div className="d-flex align-items-center pt-3">
-                                <label className='col-sm-4 label-fw'>Ngày sinh:</label>
-                                <p className='col-sm-3 text-fw'>16/02/1980</p>
-                                <label className='col-sm-3 label-fw spaces pl-5'>Giới tính:</label>
-                                <p className='col-sm-2 text-fw'>Nam</p>
-                            </div>
-                            <div className="d-flex align-items-center pt-3">
-                                <label className='col-sm-4 label-fw'>Đối tượng:</label>
-                                <p className='col-sm-8 text-fw'>BHYT</p>
-                            </div>
-                            <div className="d-flex align-items-center pt-3">
-                                <label className='col-sm-4 label-fw'>Địa chỉ:</label>
-                                <p className='col-sm-8 text-fw'>26 Láng Hạ, Đống Đa, Hà Nội</p>
-                            </div>
-                            <div className="d-flex align-items-center pt-3">
-                                <label className='col-sm-4 label-fw'>Nghề nghiệp:</label>
-                                <p className='col-sm-8 text-fw'>Công nhân</p>
-                            </div>
-                            <div className="d-flex align-items-center pt-3">
-                                <label className='col-sm-4 label-fw'>Số BHYT:</label>
-                                <p className='col-sm-8 text-fw'>DN9349545945</p>
-                            </div>
+                            <TextGroup
+                                label='Mã BN:'
+                                labelClass='col-sm-4 label-fw'
+                                value={benhNhanInfo?.maBenhNhan}
+                                valueClass='col-sm-8 text-fw'
+                            />
+                            <TextGroup
+                                label='Họ tên:'
+                                labelClass='col-sm-4 label-fw'
+                                value={benhNhanInfo?.hoTen}
+                                valueClass='col-sm-8 text-fw'
+                            />
+                            <TextGroup
+                                label='Ngày sinh:'
+                                labelClass='col-sm-4 label-fw'
+                                value={benhNhanInfo?.ngaySinh}
+                                valueClass='col-sm-8 text-fw'
+                            />
+                            <TextGroup
+                                label='Giới tính:'
+                                labelClass='col-sm-4 label-fw'
+                                value={benhNhanInfo?.gioiTinh}
+                                valueClass='col-sm-8 text-fw'
+                            />
+                            <TextGroup
+                                label='Đối tượng:'
+                                labelClass='col-sm-4 label-fw'
+                                value={benhNhanInfo?.doiTuong}
+                                valueClass='col-sm-8 text-fw'
+                            />
+                            <TextGroup
+                                label='Địa chỉ:'
+                                labelClass='col-sm-4 label-fw'
+                                value={benhNhanInfo?.diaChi}
+                                valueClass='col-sm-8 text-fw'
+                            />
+                            <TextGroup
+                                label='Nghề nghiệp:'
+                                labelClass='col-sm-4 label-fw'
+                                value={benhNhanInfo?.ngheNghiep}
+                                valueClass='col-sm-8 text-fw'
+                            />
+                            <TextGroup
+                                label='Số BHYT:'
+                                labelClass='col-sm-4 label-fw'
+                                value={benhNhanInfo?.soBHYT}
+                                valueClass='col-sm-8 text-fw'
+                            />
                         </div>
                         <div className="box_shadow-93 p-2">
                             <p className='text-center fw-bold mb-0'>Sinh hiệu</p>

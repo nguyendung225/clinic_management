@@ -59,3 +59,8 @@ export const danhSachTabTiepDon = [
         component: <ThongTinKhamBenh />
     }
 ]
+
+export const trangThaiKham = {
+    dangKham: 'Đang khám',
+    choKham: 'Chờ khám'
+}
