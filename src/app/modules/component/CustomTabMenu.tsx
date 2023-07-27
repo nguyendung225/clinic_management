@@ -103,6 +103,7 @@ export const CustomTabMenu: FC<TabMenuProps> = (props) => {
                 return (
                     <Tab className="tab"
                         eventKey={item?.eventKey}
+                        key={index}
                         title={
                             <div className="lable">
                                 <span>{item?.title}</span>

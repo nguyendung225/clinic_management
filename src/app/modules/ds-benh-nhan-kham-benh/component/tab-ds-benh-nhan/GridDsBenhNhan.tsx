@@ -1,18 +1,26 @@
-import React from 'react'
-import { TableCustom } from '../../../component/table-custom/TableCustom';
-import { BenhNhanKhamBenhInfo, fakeData } from '../../models/DSBenhNhanKhamBenhModels';
-import DsBenhNhanColumn from './DsBenhNhanColumn';
+import { useContext } from 'react';
 import { TableCustomV2 } from '../../../component/table-custom-v2/TableCustomV2';
+import { PhanHeTiepDonContext } from '../../PhanHeTiepDonContext';
+import {
+  BenhNhanKhamBenhInfo
+} from '../../models/DSBenhNhanKhamBenhModels';
+import DsBenhNhanColumn from './DsBenhNhanColumn';
 
-type Props = {}
+const GridDsBenhNhan = () => {
+  const { setBenhNhanInfo, benhNhanList } = useContext(PhanHeTiepDonContext);
 
-const GridDsBenhNhan = (props: Props) => {
-    return (
-        <TableCustomV2<BenhNhanKhamBenhInfo>
-            data={fakeData}
-            columns={DsBenhNhanColumn}
-        />
-    )
-}
+  const handleSelectedBenhNhan = (benhNhanInfo: BenhNhanKhamBenhInfo[]) => {
+    setBenhNhanInfo(benhNhanInfo[0]);
+  };
+
+  return (
+    <TableCustomV2<BenhNhanKhamBenhInfo>
+      data={benhNhanList}
+      columns={DsBenhNhanColumn}
+      selectionMode='single'
+      getSelectedRowsData={handleSelectedBenhNhan}
+    />
+  );
+};
 
 export default GridDsBenhNhan;
