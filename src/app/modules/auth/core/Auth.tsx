@@ -13,7 +13,7 @@ import { AuthModel, UserModel, UserModelLogin } from './_models'
 import * as authHelper from './AuthHelpers'
 import { getUserByToken, sendTokenRequest } from './_requests'
 import { WithChildren } from '../../../../_metronic/helpers'
-import jwt_decode, { JwtPayload }  from "jwt-decode";
+import jwt_decode, { JwtPayload } from "jwt-decode";
 import { localStorageItem } from '../../utils/LocalStorage'
 import { AUTHORIZE_REQUEST, KEY_LOCALSTORAGE } from './_consts'
 
@@ -52,8 +52,14 @@ const AuthProvider: FC<WithChildren> = ({ children }) => {
   }
 
   const logout = () => {
-    saveAuth(undefined)
-    setCurrentUser(undefined)
+    if (auth) {
+      localStorageItem.remove(KEY_LOCALSTORAGE.AUTH)
+      localStorageItem.remove(KEY_LOCALSTORAGE.ACCESS_TOKEN_DECODE)
+      localStorageItem.remove(KEY_LOCALSTORAGE.TOKEN_EXPIRATION)
+      window.location.href = `${process.env.REACT_APP_SSO_LOGOUT_URL}?id_token_hint=${auth?.id_token}&post_logout_redirect_uri=${process.env.REACT_APP_SSO_REDIRECT_URI_CLINICAL}`;
+    } else {
+      window.location.href = AUTHORIZE_REQUEST
+    }
   }
 
   return (
@@ -64,7 +70,7 @@ const AuthProvider: FC<WithChildren> = ({ children }) => {
 }
 
 const AuthInit: FC<WithChildren> = ({ children }) => {
-  const { auth, logout, setCurrentUser, saveAuth } = useAuth()
+  const { auth, saveAuth } = useAuth()
   const didRequest = useRef(false)
   const [showSplashScreen, setShowSplashScreen] = useState(true)
   const code = new URL(window.location.href).searchParams.get("code")
@@ -75,14 +81,14 @@ const AuthInit: FC<WithChildren> = ({ children }) => {
       try {
         if (!didRequest.current) {
           const tokenDecode = jwt_decode(id_token)
-          if(tokenDecode){
-            localStorageItem.set(KEY_LOCALSTORAGE.ACCESS_TOKEN_DECODE,tokenDecode)
+          if (tokenDecode) {
+            localStorageItem.set(KEY_LOCALSTORAGE.ACCESS_TOKEN_DECODE, tokenDecode)
           }
         }
       } catch (error) {
         console.error(error)
         if (!didRequest.current) {
-        window.location.href = AUTHORIZE_REQUEST
+          window.location.href = AUTHORIZE_REQUEST
         }
       } finally {
         setShowSplashScreen(false)
@@ -97,9 +103,9 @@ const AuthInit: FC<WithChildren> = ({ children }) => {
           saveAuth(resAuth);
           requestUser(resAuth.id_token);
         })
-        .catch(()=>{
-          window.location.href = AUTHORIZE_REQUEST
-        })
+          .catch(() => {
+            window.location.href = AUTHORIZE_REQUEST
+          })
       } else if (!auth) {
         window.location.href = AUTHORIZE_REQUEST
       } else {

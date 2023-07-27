@@ -17,11 +17,10 @@ const PrivateRoutes = () => {
   return (
     <Routes>
       <Route index element={<Navigate to="/home" />} />
-      <Route path="/*" element={<HomePage />} />
+      {/* <Route path="/*" element={<HomePage />} /> */}
       <Route element={<MasterLayout />}>
         {/* Redirect to Dashboard after success login/registartion */}
-        <Route path="auth/*" element={<Navigate to="/home" />} />
-        {/* Pages */}
+        <Route path="/*" element={<Navigate to="/ds-tiep-don" />} />
         <Route path="dashboard" element={<DashboardWrapper />} />
         <Route path="menu-test" element={<MenuTestPage />} />
         <Route path="fee-and-insurance" element={<PhanHeVienPhiBaoHiem />} />
