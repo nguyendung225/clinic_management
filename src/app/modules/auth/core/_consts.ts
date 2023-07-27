@@ -13,9 +13,9 @@ const RESPONSE_STATUS_CODE = {
 }
 
 const KEY_LOCALSTORAGE = {
-  AUTH: "auth-patient",
-  ACCESS_TOKEN_DECODE: "access-token-decode-patient",
-  TOKEN_EXPIRATION: "token-expiration-patient"
+  AUTH: "auth-clinical",
+  ACCESS_TOKEN_DECODE: "access-token-decode-clinical",
+  TOKEN_EXPIRATION: "token-expiration-clinical"
 }
 
 const AUTHORIZE_REQUEST = `${process.env.REACT_APP_SSO_AUTHORIZE_ENDPOINT}?response_type=${process.env.REACT_APP_SSO_RESPONSE_TYPE}&scope=${process.env.REACT_APP_SSO_SCOPE}&redirect_uri=${process.env.REACT_APP_SSO_REDIRECT_URI_CLINICAL}&client_id=${process.env.REACT_APP_SSO_CLIENT_ID_CLINICAL}`;
