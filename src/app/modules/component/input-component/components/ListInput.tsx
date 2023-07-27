@@ -1,7 +1,8 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { Col, Form, FormLabel, Row } from "react-bootstrap";
 import { checkLayout } from "../utils/constFunction";
 import { iChildren } from "../models/inputModel";
+import { INPUT_TYPE } from "../utils/const";
 
 const ListInput = ({ ...props }) => {
     let { xl, lg, md, sm, sx, widthLable, layout } = props;
@@ -10,11 +11,11 @@ const ListInput = ({ ...props }) => {
     const handleChangeInput = (event: ChangeEvent<HTMLInputElement>, index: number) => {
         let value = event.target.value;
         if (
-            listInput[index]?.concept &&
-            listInput[index].concept.value !== undefined
+            listInput[index] &&
+            listInput[index].value !== undefined
         ) {
-            let tempValue: any = listInput[index].concept.value;
-            listInput[index].concept.value = (value === null ? tempValue : value)
+            let tempValue: any = listInput[index].value;
+            listInput[index].value = (value === null ? tempValue : value)
             setListInput(listInput);
             props?.onChange(event, props.index, listInput);
         }
@@ -42,7 +43,6 @@ const ListInput = ({ ...props }) => {
                     >
                         <FormLabel className={`${checkLayout(layout) ? "mb-0" : ""}`}>
                             <span>{props?.itemData?.name} </span>
-                            <span>({props?.itemData?.units}): </span>
                         </FormLabel>
                     </Col>
                     <Col className="d-flex align-items-center">
@@ -54,7 +54,7 @@ const ListInput = ({ ...props }) => {
                                         type={item?.dataType}
                                         className={`
                                             customs-input w-100 
-                                            ${item?.dataType === "Number" ? "no-spinners" : ""}
+                                            ${item?.dataType === INPUT_TYPE.NUMBER ? "no-spinners" : ""}
                                         `}
                                         name={item?.name ?? ""}
                                         value={item?.value ?? ""}
