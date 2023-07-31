@@ -1,20 +1,25 @@
-import React, { FC, useState } from "react";
+import React, { ChangeEvent, FC, useState } from "react";
 import clsx from "clsx";
 import { columnNamesType } from "./TableCollapseCustom";
+import { Form } from "react-bootstrap";
 
 
 export interface TableRowProps {
   row: any;
+  index?: number | undefined;
   columnNameList: columnNamesType[];
   isCollapsed?: boolean;
+  nameChildren:string;
+  sorting?: boolean;
   isParent?: boolean;
   toggleCollapse?: () => void;
+  handleCheckBox: (event: ChangeEvent<HTMLInputElement>, data: any) => void;
 }
 
 export const TableRow: FC<TableRowProps> = (props) => {
-  const { row, columnNameList } = props;
-  const [isCollapsed, setIsCollapsed] = useState(false);
-  const isParent = row.children && row.children?.length > 0;
+  const { row, columnNameList, index, nameChildren } = props;
+  const [isCollapsed, setIsCollapsed] = useState<boolean>(index === 0);
+  const isParent = row?.[nameChildren] && row?.[nameChildren]?.length > 0;
 
   const toggleCollapse = () => {
     setIsCollapsed(!isCollapsed);
@@ -22,100 +27,77 @@ export const TableRow: FC<TableRowProps> = (props) => {
 
   return (
     <>
-      {row.title && <tr
-        className={clsx("bg-secondary row-title position-sticky start-0", isParent ? "cursor-pointer" : "")}
+      {/* Row name */}
+      {row.name && isParent && <tr
+        className={clsx("bg-secondary row-name position-sticky start-0", isParent ? "cursor-pointer" : "")}
         onClick={toggleCollapse}
       >
         <td
           colSpan={1}
           className={clsx(
-            "cell-action position-sticky start-0",
+            "cell-action position-sticky start-0 border-end-0",
             isCollapsed && "chevron-rotate-down"
-          )} onClick={toggleCollapse}
-          // style={{ position: "sticky", left: 0 }}
+          )}
+          onClick={toggleCollapse}
         >
           <span className="">
-            {(isParent) &&  <i className="fs-5 bi bi-chevron-compact-right"/>}
+            {(isParent) && <i className="fs-5 bi bi-chevron-compact-right" />}
           </span>
         </td>
         <td colSpan={columnNameList?.length}>
           <span className="position-sticky spaces left-38px">
-            {row.title}
+            {row.name}
           </span>
         </td>
       </tr>}
 
-      {!row.title && <tr
+      {/* Row content */}
+      {!row.name && <tr
         className={clsx(
-          "custom-children",
+          "custom-[nameChildren]",
           isParent && "cursor-pointer bg-hover-light-secondary border-light",
           (isParent && isCollapsed) && "row-parent bg-light-secondary",
         )}
-        onClick={toggleCollapse}
       >
         <td className={clsx(
           "cell-action",
-          isCollapsed && "chevron-rotate-down"
-        )} onClick={toggleCollapse}>
-          {(isParent) &&  <i className="fs-5 bi bi-chevron-compact-right"/>}
+          isCollapsed && "chevron-rotate-down",
+        )}
+        >
+          <div className="flex">
+            {isParent &&
+              <i className="fs-5 bi bi-chevron-compact-right me-3" onClick={toggleCollapse} />
+            }
+            <Form.Check
+              className="customs-form-check__table"
+              // name={`row-${index}`}
+              checked={row.isChecked}
+              onChange={(event: ChangeEvent<HTMLInputElement>) => props?.handleCheckBox(event, row)}
+            />
+          </div>
         </td>
         {columnNameList?.map((column, index) =>
-          <td key={index} style={column?.bodyCellProps}>{row[column?.field]}</td>
+          <td
+            key={index}
+            style={column?.bodyCellProps}
+            onClick={toggleCollapse}
+          >
+            {row[column?.field]}
+          </td>
         )}
       </tr>}
-      {isCollapsed && row.children &&
-        row.children.map((child: any) => (
-          <TableRowChildren
+
+      {/* Nếu có [nameChildren] thì tiếp tục map [nameChildren] */}
+      {(isCollapsed && row?.[nameChildren] && row?.[nameChildren]?.length > 0) &&
+        row?.[nameChildren].map((child: any, i: number) => (
+          <TableRow
+            nameChildren={nameChildren}
             columnNameList={columnNameList}
-            key={child.maDV}
             row={child}
+            index={index ? (index + i) : i}
+            handleCheckBox={props?.handleCheckBox}
           />
         ))}
     </>
   );
 };
-
-const TableRowChildren: FC<TableRowProps> = (props) => {
-  const { row, columnNameList, } = props;
-  const [isCollapsed, setIsCollapsed] = useState(false);
-  const isParent = row.children && row.children?.length > 0;
-
-  const toggleCollapse = () => {
-    setIsCollapsed(!isCollapsed);
-  };
-
-  return(
-    <>
-      {!row.title && <tr
-        className={clsx(
-          "custom-children",
-          isParent && "cursor-pointer bg-hover-light-secondary border-light",
-          (isParent && isCollapsed) && "row-parent bg-light-secondary",
-        )}
-        onClick={toggleCollapse}
-      >
-
-        <td
-          className={clsx(
-            "cell-action",
-            isCollapsed && "chevron-rotate-down"
-          )}
-          onClick={toggleCollapse}
-        >
-          {(isParent) &&  <i className="fs-5 bi bi-chevron-compact-right"/>}
-        </td>
-        {columnNameList?.map((column, index) =>
-          <td key={index} style={column?.bodyCellProps}>{row[column.field]}</td>
-        )}
-      </tr>}
-      {isCollapsed && row.children &&
-        row.children.map((child: any) => (
-          <TableRow
-            key={child.maDV}
-            row={child}
-            columnNameList={columnNameList}
-          />
-        ))}
-    </>
-  )
-}

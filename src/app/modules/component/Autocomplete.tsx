@@ -6,7 +6,7 @@ import { KEY } from "../utils/Constant";
 const customStyles = {
   control: (provided: any, state: any) => ({
     ...provided,
-    background: state.isDisabled ? '#eff2f5' :'#fff',
+    background: state.isDisabled ? '#eff2f5' : '#fff',
     borderColor: '#E4E6EF',
     minHeight: '30px',
     height: '30px',
@@ -65,19 +65,27 @@ export const Autocomplete: FC<AutoCompleteProps> = (props: AutoCompleteProps) =>
     }
   };
 
+  const convertNameUrl = (value: string, item: any) => {
+    const array = value.split(".")
+    for (let i = 0; i < array.length; i++) {
+      item = item?.[array[i]];
+    }
+    return item
+  }
 
   useEffect(() => {
     let active = true;
     const fetchData = async () => {
       if (options?.length > 0 && !props.searchFunction) {
         setOptionList(options);
-      } else if(!isLoading){
+      } else if (!isLoading) {
         setIsLoading(true);
         try {
           if (props.searchObject !== undefined) {
             const res = await props.searchFunction?.(props.searchObject);
-            if (active && res) {
-              setOptionList(res?.data?.data?.content);
+            let data = props?.urlData ? convertNameUrl(props?.urlData, res) : res?.data?.data?.content;
+            if (active && data) {
+              setOptionList(data);
               setIsLoading(false);
             }
           }
@@ -121,10 +129,16 @@ export const Autocomplete: FC<AutoCompleteProps> = (props: AutoCompleteProps) =>
 
   return (
     <Select
+      menuPortalTarget={props?.menuPortalTarget}
       isClearable={props?.isClearable !== undefined ? props?.isClearable : true}
-      getOptionLabel={(option: GetOptionLabel<any>) => {
-        return props.getOptionLabel ? props.getOptionLabel(option) : option.name
-      }}
+      getOptionLabel={(option) =>
+        option
+          ? ((props?.displayLable)
+            ? (props?.showCode
+              ? option?.code + ' - ' + option[props.displayLable]
+              : option[props.displayLable])
+            : option?.code)
+          : option?.name}
       onKeyDown={(event) => handleKeyDown(event)}
       backspaceRemovesValue={props?.backspaceRemovesValue}
       isSearchable={props?.isSearchable !== undefined ? props?.isSearchable : true}
@@ -144,6 +158,7 @@ export const Autocomplete: FC<AutoCompleteProps> = (props: AutoCompleteProps) =>
       maxMenuHeight={props?.maxMenuHeight}
       placeholder={<p className="custom-placeholder spaces m-0">{props?.placeholder || "Chọn..."}</p>}
       onChange={handleChange}
+      menuPlacement="auto"
     />
   );
 };

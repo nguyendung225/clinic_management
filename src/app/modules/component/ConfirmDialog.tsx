@@ -1,5 +1,5 @@
-import {FC} from 'react'
-import {Button, Modal} from 'react-bootstrap'
+import { FC } from 'react'
+import { Button, Modal } from 'react-bootstrap'
 
 interface Props {
   show: boolean
@@ -14,32 +14,26 @@ interface Props {
 }
 
 const ConfirmDialog: FC<Props> = (props) => {
-  const {show, onCloseClick, onYesClick, onCancelClick, title, message, yes, cancel, close} = props
+  const { show, onCloseClick, onYesClick, onCancelClick, title, message, yes, cancel, close } = props
 
   return (
     <Modal
-      size='sm'
       show={show}
       onHide={onCloseClick}
       centered
       animation
       className='background__modal'
     >
-      <Modal.Header className='bg-danger'>
+      <Modal.Header className='bg-pri p-4'>
         <Modal.Title className='text-white text-uppercase'>{title}</Modal.Title>
       </Modal.Header>
-      <Modal.Body>
-        <h5>{message}</h5>
+      <Modal.Body className='p-4'>
+        <h5 className='m-0'>{message}</h5>
       </Modal.Body>
-      <Modal.Footer className='d-flex justify-content-end'>
-        {yes && (
-          <Button variant='secondary' onClick={onYesClick}>
-            {yes}
-          </Button>
-        )}
+      <Modal.Footer className='d-flex justify-content-end p-4 pt-0  border-top-0'>
         {cancel && (
           <Button
-            variant='secondary'
+            className="spaces btn-secondary px-16"
             onClick={onCancelClick}
           >
             {cancel}
@@ -47,10 +41,15 @@ const ConfirmDialog: FC<Props> = (props) => {
         )}
         {close && (
           <Button
-            variant='secondary'
+            className="btn-secondary"
             onClick={onCloseClick}
           >
             {close}
+          </Button>
+        )}
+        {yes && (
+          <Button className="btn-navy" onClick={onYesClick}>
+            {yes}
           </Button>
         )}
       </Modal.Footer>
@@ -58,4 +57,4 @@ const ConfirmDialog: FC<Props> = (props) => {
   )
 }
 
-export {ConfirmDialog}
+export { ConfirmDialog }

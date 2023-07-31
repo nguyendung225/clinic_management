@@ -11,7 +11,7 @@ type Props = {
 const TableCustomCell: FC<Props> = ({ className, data, action }) => {
   return (
     <div
-      className={clsx(className, "text-center text-system ", {
+      className={clsx(className, "text-system ", {
         "action-cell": action,
       })}
     >

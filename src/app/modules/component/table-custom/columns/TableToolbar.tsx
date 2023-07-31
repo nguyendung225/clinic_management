@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useIntl } from "react-intl";
 import clsx from "clsx";
 import React from "react";
-import { ReceptionContext } from "../../../phan-he-tiep-nhan/components/DSTiepNhan/DSTiepNhan";
 import { ConfirmDialog } from "../../ConfirmDialog";
 interface TableCustomToolbarProps {
   selectedRows: any;
@@ -16,9 +15,6 @@ interface TableCustomToolbarProps {
   isReceptionList?: boolean | false;
 }
 const TableCustomToolbar = (props: TableCustomToolbarProps) => {
-  const handleSearchByPage: any = React.useContext(
-    props.isReceptionList ? ReceptionContext : ReceptionContext
-  )
   const intl = useIntl();
   const {
     selectedRows,

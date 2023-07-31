@@ -10,7 +10,7 @@ const TableCustomHeader = <T extends object>({ className, title, tableProps }: P
   return (
     <th
       {...tableProps.column.getHeaderProps()}
-      className={clsx(className, "text-light cursor-pointer spaces p-0")}
+      className={clsx(className, "text-light cursor-pointer py-3")}
     >
       {title}
     </th>
