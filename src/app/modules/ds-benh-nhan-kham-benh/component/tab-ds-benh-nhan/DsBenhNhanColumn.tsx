@@ -1,13 +1,14 @@
 import React from 'react';
 import { Column } from 'react-table';
-import { BenhNhanKhamBenhInfo } from '../../models/DSBenhNhanKhamBenhModels';
+import { GIOI_TINH, IBenhNhan } from '../../models/DSBenhNhanKhamBenhModels';
 import { TableCustomHeader } from '../../../component/table-custom-v2/columns/TableCustomHeader';
 import { TableCustomCell } from '../../../component/table-custom-v2/columns/TableCustomCell';
+import moment from 'moment';
 
-const DsBenhNhanColumn: ReadonlyArray<Column<BenhNhanKhamBenhInfo>> = [
+const DsBenhNhanColumn: ReadonlyArray<Column<IBenhNhan>> = [
     {
         Header: (props) => (
-            <TableCustomHeader<BenhNhanKhamBenhInfo>
+            <TableCustomHeader<IBenhNhan>
                 tableProps={props}
                 title={"STT"}
                 className="text-center text-light min-w-20px "
@@ -18,98 +19,119 @@ const DsBenhNhanColumn: ReadonlyArray<Column<BenhNhanKhamBenhInfo>> = [
     },
     {
         Header: (props) => (
-            <TableCustomHeader<BenhNhanKhamBenhInfo>
+            <TableCustomHeader<IBenhNhan>
                 tableProps={props}
                 title={"Số khám"}
-                className="text-center text-light min-w-40px "
+                className="text-center text-light min-w-100px"
             />
         ),
         id: "SOKHAM",
-        Cell: ({ ...props }) => <TableCustomCell className="text-center" data={props.data[props.row.index].soKham} />,
+        Cell: ({ ...props }) => <TableCustomCell className="text-center" data={''} />,
     },
     {
         Header: (props) => (
-            <TableCustomHeader<BenhNhanKhamBenhInfo>
+            <TableCustomHeader<IBenhNhan>
                 tableProps={props}
                 title={"Họ tên"}
                 className="text-center text-light min-w-125px "
             />
         ),
         id: "HOTEN",
-        Cell: ({ ...props }) => <TableCustomCell data={props.data[props.row.index].hoTen} />,
+        Cell: ({ ...props }) => <TableCustomCell data={props?.data[props.row.index]?.hoTen} />,
     },
     {
         Header: (props) => (
-            <TableCustomHeader<BenhNhanKhamBenhInfo>
+            <TableCustomHeader<IBenhNhan>
                 tableProps={props}
                 title={"Giới tính"}
-                className="text-center text-light min-w-50px "
+                className="text-center text-light min-w-100px "
             />
         ),
         id: "GIOITINH",
-        Cell: ({ ...props }) => <TableCustomCell className="text-center" data={props.data[props.row.index].gioiTinh} />,
+        Cell: ({ ...props }) => {
+            let gioiTinh = props?.data[props.row.index]?.gioiTinh;
+            return (
+                <TableCustomCell className="text-center" data={GIOI_TINH[gioiTinh as keyof typeof GIOI_TINH]} />
+            )
+        }   
     },
     {
         Header: (props) => (
-            <TableCustomHeader<BenhNhanKhamBenhInfo>
+            <TableCustomHeader<IBenhNhan>
                 tableProps={props}
                 title={"Tuổi"}
-                className="text-center text-light min-w-30px "
+                className="text-center text-light min-w-100px "
             />
         ),
         id: "TUOI",
-        Cell: ({ ...props }) => <TableCustomCell className="text-center" data={props.data[props.row.index].tuoi} />,
+        Cell: ({ ...props }) => {
+            let ngaySinh = props?.data[props.row.index]?.ngaySinh;
+            let tuoi = '';
+            let namTuoi = moment(new Date()).diff(moment(new Date(ngaySinh)), 'years')?.toString();
+            let thangTuoi = `${moment(new Date()).diff(moment(new Date(ngaySinh)), 'months')?.toString()}`;
+            let ngayTuoi = `${moment(new Date()).diff(moment(new Date(ngaySinh)), 'days')?.toString()}`;
+            if(Number(namTuoi) < 1 && Number(thangTuoi) > 0){
+                tuoi = `${thangTuoi} tháng`;
+            }else if(Number(thangTuoi) < 1){
+                tuoi = `${ngayTuoi} ngày`;
+            }else if(Number(namTuoi) > 0){
+                tuoi = namTuoi;
+            }
+            return (
+                <TableCustomCell className="text-center" data={tuoi} />
+            )
+        } 
     },
     {
         Header: (props) => (
-            <TableCustomHeader<BenhNhanKhamBenhInfo>
+            <TableCustomHeader<IBenhNhan>
                 tableProps={props}
-                title={"Mã bệnh án"}
-                className="text-center text-light min-w-50px "
+                title={"Mã bệnh nhân"}
+                className="text-center text-light min-w-125px "
             />
         ),
         id: "MABENHNHAN",
-        Cell: ({ ...props }) => <TableCustomCell className="text-center" data={props.data[props.row.index].maBenhNhan} />,
+        Cell: ({ ...props }) => <TableCustomCell className="text-center" data={props?.data[props.row.index]?.pin} />,
     },
     {
         Header: (props) => (
-            <TableCustomHeader<BenhNhanKhamBenhInfo>
+            <TableCustomHeader<IBenhNhan>
                 tableProps={props}
-                title={"Số khám"}
-                className="text-center text-light min-w-50px "
+                title={"Mã bệnh án"}
+                className="text-center text-light min-w-125px "
             />
         ),
         id: "MABENHAN",
-        Cell: ({ ...props }) => <TableCustomCell className="text-center" data={props.data[props.row.index].maBenhAn} />,
+        Cell: ({ ...props }) => <TableCustomCell className="text-center" data={''} />,
     },
     {
         Header: (props) => (
-            <TableCustomHeader<BenhNhanKhamBenhInfo>
+            <TableCustomHeader<IBenhNhan>
                 tableProps={props}
                 title={"Số BHYT"}
-                className="text-center text-light min-w-30px "
+                className="text-center text-light min-w-100px "
             />
         ),
         id: "SOBHYT",
-        Cell: ({ ...props }) => <TableCustomCell className="text-center" data={props.data[props.row.index].soBHYT} />,
+        Cell: ({ ...props }) => <TableCustomCell className="text-center" data={props?.data[props.row.index]?.benhNhanBhyt?.soBhyt?.toString()} />,
     },
     {
         Header: (props) => (
-            <TableCustomHeader<BenhNhanKhamBenhInfo>
+            <TableCustomHeader<IBenhNhan>
                 tableProps={props}
                 title={"Số lần gọi"}
-                className="text-center text-light min-w-50px "
+                className="text-center text-light min-w-100px"
             />
         ),
         id: "SOLANGOI",
-        Cell: ({ ...props }) => <TableCustomCell className="text-center" data={props.data[props.row.index].soLanGoi} />,
+        Cell: ({ ...props }) => <TableCustomCell className="text-center" data={''} />,
     },
     {
         Header: (props) => (
-            <TableCustomHeader<BenhNhanKhamBenhInfo>
+            <TableCustomHeader<IBenhNhan>
                 tableProps={props}
                 title={"Ưu tiên"}
-                className="text-center text-light"
+                className="text-center text-light min-w-75px"
             />
         ),
         id: "UUTIEN",
@@ -119,20 +141,20 @@ const DsBenhNhanColumn: ReadonlyArray<Column<BenhNhanKhamBenhInfo>> = [
                 className="form-check-input customs-input-check"
                 type="checkbox"
                 value=""
-                checked={props.data[props.row.index].uuTien}
+                checked={props?.data[props.row.index]?.benhNhanCase?.isUuTien}
             />
         </div>,
     },
     {
         Header: (props) => (
-            <TableCustomHeader<BenhNhanKhamBenhInfo>
+            <TableCustomHeader<IBenhNhan>
                 tableProps={props}
                 title={"Trạng thái"}
-                className="text-center text-light min-w-50px "
+                className="text-center text-light min-w-100px "
             />
         ),
         id: "TRANGTHAI",
-        Cell: ({ ...props }) => <TableCustomCell className="text-center" data={props.data[props.row.index].trangThai} />,
+        Cell: ({ ...props }) => <TableCustomCell className="text-center" data={props?.data[props.row.index]?.status} />,
     },
 ]
 

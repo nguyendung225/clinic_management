@@ -46,6 +46,7 @@ function TableCustomV2<T extends object>(props: tableProps<T>) {
   const [selectedRows, setSelectedRows] = useState<Row<T>[]>([]);
   const [shouldOpenFilterSearch, setShouldOpenFilterSearch] = useState<boolean>(false);
   const [styles, setStyles] = useState<object>({});
+  const [dataTable, setDataTable] = useState<readonly T[]>([]);
   const intl = useIntl();
 
   useEffect(() => {
@@ -62,6 +63,14 @@ function TableCustomV2<T extends object>(props: tableProps<T>) {
     }
   }, [selectedRows]);
 
+  useEffect(() => {
+    if(data && data.length > 0){
+      setDataTable(data);
+    }else{
+      setDataTable([]);
+    }
+  },[data])
+
   const {
     getTableProps,
     getTableBodyProps,
@@ -72,7 +81,7 @@ function TableCustomV2<T extends object>(props: tableProps<T>) {
   } = useTable(
     {
       columns,
-      data: data,
+      data: dataTable,
     },
     useRowSelect,
     (hooks) => {

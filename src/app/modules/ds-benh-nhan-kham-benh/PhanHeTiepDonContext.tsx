@@ -1,18 +1,26 @@
 import { createContext } from 'react';
-import { BenhNhanKhamBenhInfo } from './models/DSBenhNhanKhamBenhModels';
+import { IBenhNhan } from './models/DSBenhNhanKhamBenhModels';
 
 type ContextType = {
-  benhNhanInfo: BenhNhanKhamBenhInfo
-  setBenhNhanInfo: React.Dispatch<React.SetStateAction<BenhNhanKhamBenhInfo>>;
-  benhNhanList: BenhNhanKhamBenhInfo[];
-  setBenhNhanList: React.Dispatch<React.SetStateAction<BenhNhanKhamBenhInfo[]>>;
+  benhNhanInfo: IBenhNhan | undefined
+  setBenhNhanInfo: React.Dispatch<React.SetStateAction<IBenhNhan | undefined>>;
+  benhNhanList: IBenhNhan[];
+  setBenhNhanList: React.Dispatch<React.SetStateAction<IBenhNhan[]>>;
+  totalPages: number;
+  setTotalPages: React.Dispatch<React.SetStateAction<number>>;
+  totalElements: number;
+  setTotalElements: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const initValue: ContextType = {
-  benhNhanInfo: {},
+  benhNhanInfo: undefined,
   setBenhNhanInfo: () => {},
   benhNhanList: [],
-  setBenhNhanList: () => {}
+  setBenhNhanList: () => {},
+  totalPages: 1,
+  setTotalPages: () => {},
+  totalElements: 1,
+  setTotalElements: () => {}
 }
 
 export const PhanHeTiepDonContext = createContext<ContextType>(initValue)

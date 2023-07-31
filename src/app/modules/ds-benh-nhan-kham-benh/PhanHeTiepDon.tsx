@@ -6,12 +6,18 @@ import '../phan-he-tiep-nhan/PhanHeTiepNhan.scss';
 import { KEY_DS_TAB_TIEP_DON } from "../utils/Constant";
 import { PhanHeTiepDonContext } from "./PhanHeTiepDonContext";
 import { danhSachMenu, danhSachTabTiepDon } from "./const/PhanHeTiepDonConst";
-import { BenhNhanKhamBenhInfo, fakeData } from "./models/DSBenhNhanKhamBenhModels";
+import { IBenhNhan } from "./models/DSBenhNhanKhamBenhModels";
+import { encountersApi } from "./service/KhamBenhService";
 
 export const PhanHeTiepDon: FC = () => {
     const { setBreakCrumb, setDSMenu } = useContext(AppContext);
     const intl = useIntl();
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     let [isDataTab, setIsDataTab] = useState(false);
+    const [benhNhanInfo, setBenhNhanInfo] = useState<IBenhNhan>();
+    const [benhNhanList, setBenhNhanList] = useState<IBenhNhan[]>([]);
+    const [totalPages, setTotalPages] = useState<number>(1);
+    const [totalElements, setTotalElements] = useState<number>(1);
 
     useEffect(() => {
         let breakCrumb = [
@@ -25,11 +31,20 @@ export const PhanHeTiepDon: FC = () => {
         };
     }, [setBreakCrumb, setDSMenu, intl]);
 
-    const [benhNhanInfo, setBenhNhanInfo] = useState<BenhNhanKhamBenhInfo>({});
-    const [benhNhanList, setBenhNhanList] = useState<BenhNhanKhamBenhInfo[]>(fakeData);
+    useEffect(() => {
+        const params = {
+            pageSize: 10,
+            pageIndex: 1
+        }
+        encountersApi.searchPatient(params).then(data => {
+            setBenhNhanList(data.data.data.content || []);
+            setTotalPages(data.data.data.totalPages || 1);
+            setTotalElements(data.data.data.totalElements || 1);
+        });
+    },[setBenhNhanList]);
 
     return (
-        <PhanHeTiepDonContext.Provider value={{setBenhNhanInfo, benhNhanInfo, benhNhanList, setBenhNhanList}}>
+        <PhanHeTiepDonContext.Provider value={{setBenhNhanInfo, benhNhanInfo, benhNhanList, setBenhNhanList, totalPages, setTotalPages, totalElements, setTotalElements}}>
             <div className="reception-list">
                 <div className="reception__header">
                     <CustomTabMenu

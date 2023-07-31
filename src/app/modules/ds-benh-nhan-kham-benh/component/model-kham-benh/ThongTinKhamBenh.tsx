@@ -97,29 +97,30 @@ export const ThongTinKhamBenh = () => {
     };
 
     const handleSubmit = () => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         let concept = convertDto([thongTinKhamBenh, sinhHieu])
     }
 
     return (
         <div>
             <Form>
-                <Row>
-                    <Col sm="9" className="spaces pr-0">
-                        <div className=" box_shadow-93">
+                <Row className="full-width m-0">
+                    <Col sm="9" className="spaces p-0 box_shadow-93">
+                        <div className="box_shadow-93">
                             <p className='text-center fw-bold mb-2 pt-2'>Lịch sử khám</p>
                             <GridLichSuKham />
                         </div>
-                        <div className=" box_shadow-93" style={{ height: 'calc(100vh - 170px)', overflowY: 'auto' }}>
+                        <div style={{ height: 'calc(100vh - 170px)', overflowY: 'auto' }}>
                             <DienBienBenh thongTinKhamBenh={thongTinKhamBenh} setThongTinKhamBenh={setThongTinKhamBenh} />
                         </div>
                     </Col>
-                    <Col sm="3" className="spaces pl-0">
-                        <div className="box_shadow-93 px-3 py-2">
+                    <Col sm="3" className="spaces pl-0 box_shadow-93">
+                        <div className="px-3 py-2">
                             <p className='text-center fw-bold mb-2'>Thông tin hành chính</p>
                             <TextGroup
                                 label='Mã BN:'
                                 labelClass='col-sm-4 label-fw'
-                                value={benhNhanInfo?.maBenhNhan}
+                                value={benhNhanInfo?.pin}
                                 valueClass='col-sm-8 text-fw'
                             />
                             <TextGroup
@@ -143,29 +144,29 @@ export const ThongTinKhamBenh = () => {
                             <TextGroup
                                 label='Đối tượng:'
                                 labelClass='col-sm-4 label-fw'
-                                value={benhNhanInfo?.doiTuong}
+                                value={''}
                                 valueClass='col-sm-8 text-fw'
                             />
                             <TextGroup
                                 label='Địa chỉ:'
                                 labelClass='col-sm-4 label-fw'
-                                value={benhNhanInfo?.diaChi}
+                                value={benhNhanInfo?.person?.fullAddress}
                                 valueClass='col-sm-8 text-fw'
                             />
                             <TextGroup
                                 label='Nghề nghiệp:'
                                 labelClass='col-sm-4 label-fw'
-                                value={benhNhanInfo?.ngheNghiep}
+                                value={benhNhanInfo?.person?.jobName}
                                 valueClass='col-sm-8 text-fw'
                             />
                             <TextGroup
                                 label='Số BHYT:'
                                 labelClass='col-sm-4 label-fw'
-                                value={benhNhanInfo?.soBHYT}
+                                value={benhNhanInfo?.benhNhanBhyt?.soBhyt}
                                 valueClass='col-sm-8 text-fw'
                             />
                         </div>
-                        <div className="box_shadow-93 p-2">
+                        <div className="p-2">
                             <p className='text-center fw-bold mb-0'>Sinh hiệu</p>
                             <Row>
                                 <InputComponent
@@ -180,7 +181,7 @@ export const ThongTinKhamBenh = () => {
                     </Col>
                 </Row>
             </Form>
-            <div className="flex flex-center pt-6 pb-3">
+            <div className="flex flex-center pt-6 pb-3 box_shadow-93">
                 <Button className="btn-navy mr-5 w-50px" onClick={handleSubmit}>Lưu</Button>
                 <Button className="btn-navy mr-5 w-110px">Chỉ định CLS</Button>
                 <Button className="btn-navy mr-5 w-100px">Thuốc</Button>

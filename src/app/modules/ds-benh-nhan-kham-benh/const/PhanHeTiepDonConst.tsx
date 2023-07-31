@@ -60,7 +60,8 @@ export const danhSachTabTiepDon = [
     }
 ]
 
-export const trangThaiKham = {
-    dangKham: 'Đang khám',
-    choKham: 'Chờ khám'
-}
+export const trangThaiKhamOptions = [
+  { value: '', name: 'Chọn trạng thái' },
+  { value: 2, name: 'Đang khám' },
+  { value: 1, name: 'Chờ khám' }
+];
