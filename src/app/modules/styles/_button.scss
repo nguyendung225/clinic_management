@@ -63,7 +63,8 @@ border: 1px solid #CFCFCF !important;
 .btn-navy {
   background: var(--color-linear-navy) !important;
   color: $color-white !important;
-  padding: 8px 10px !important;
+  padding: 8px !important;
+  border: 1px solid $color-teal-navy-blue !important;
 
   &:hover,
   &:active,
@@ -90,7 +91,6 @@ border: 1px solid #CFCFCF !important;
     &:hover {
       background: var(--color-linear-navy) !important;
       color: $color-white !important;
-      padding: 6px 10px !important;
     }
   }
 }

@@ -4,25 +4,32 @@ import { AppContext } from '../../../appContext/AppContext'
 import SearchAdvanced from '../../../component/SearchAdvanced'
 import { KEY_DS_TAB_TIEP_DON } from '../../../utils/Constant'
 import { localStorageItem } from '../../../utils/LocalStorage'
-import { danhSachTabTiepDon, trangThaiKham } from '../../const/PhanHeTiepDonConst'
+import { PhanHeTiepDonContext } from '../../PhanHeTiepDonContext'
+import { danhSachTabTiepDon } from '../../const/PhanHeTiepDonConst'
 import BenhAnNgoaiTru from '../benh-an-ngoai-tru/BenhAnNgoaiTru'
 import ChiDinhThuocModal from '../modal-thuoc/ChiDinhThuocModal'
 import ChuyenPhongKhamModal from './ChuyenPhongKhamModal'
 import GridDsBenhNhan from './GridDsBenhNhan'
 import ThongTinBenhNhan from './ThongTinBenhNhan'
-import { PhanHeTiepDonContext } from '../../PhanHeTiepDonContext'
-import { toast } from "react-toastify";
+import { encountersApi } from '../../service/KhamBenhService'
+import { TablePagination } from '../../../component/TablePagination'
+import { handlePagesChange, handleRowsPerPageChange, rowsForPage } from '../../../utils/PageUtils'
+import { searchPatientParams } from '../../models/IParams'
+import { toast } from 'react-toastify'
 
-type Props = {}
-
-export const DSBenhNhanKhamBenh = (props: Props) => {
+export const DSBenhNhanKhamBenh = () => {
     const [shouldOpenThuocModal, setShouldOpenThuocModal] = useState<boolean>(false);
     const [shouldOpenChuyenPKModal, setShouldOpenChuyenModalPK] = useState<boolean>(false);
     const [shouldOpenBenhAnNgoaiTruDialog, setShouldOpenBenhAnNgoaiTruDialog] = useState<boolean>(false);
-    const [isPaid, setIsPaid] = useState<boolean>(false);
-    const [isStart, setIsStart] = useState<boolean>(false);
+    const [page, setPage] = useState<number>(1);
+    const [rowsPerPage, setRowsPerPage] = useState<number>(10);
+    const [searchPatientParams, setSearchPatientParams] = useState<searchPatientParams>({
+        pageIndex: page,
+        pageSize: rowsPerPage
+    });
+
     const { setEventKey } = useContext(AppContext);
-    const { benhNhanInfo, setBenhNhanInfo, setBenhNhanList, benhNhanList } = useContext(PhanHeTiepDonContext);
+    const { benhNhanInfo, setBenhNhanList, totalPages, totalElements, setTotalPages } = useContext(PhanHeTiepDonContext);
 
     const removeTabInfo = useCallback(() => {
         let keyTabList = localStorageItem.get(KEY_DS_TAB_TIEP_DON) ? localStorageItem.get(KEY_DS_TAB_TIEP_DON) : [];
@@ -34,38 +41,9 @@ export const DSBenhNhanKhamBenh = (props: Props) => {
     
     useEffect(() => {
         if(!benhNhanInfo){
-            setIsPaid(false);
-            setIsStart(false);
-            removeTabInfo();
-            return
-        }
-        let tongChiPhi = benhNhanInfo.tongChiPhi;
-        let daNop = benhNhanInfo.daNop;
-        if(tongChiPhi && daNop && tongChiPhi === daNop){
-            setIsPaid(true);
-        }else{
-            setIsPaid(false);
             removeTabInfo();
         }
-    },[benhNhanInfo, setEventKey, removeTabInfo])
-
-    const handleStart = () => {
-        if(!isPaid && benhNhanInfo){
-            toast.warning("Chưa thanh toán");
-        }else if(!benhNhanInfo){
-            toast.warning("Vui lòng chọn bệnh nhân");
-        }else{
-            setIsStart(true);
-            const newInfo = {
-                ...benhNhanInfo,
-                trangThai: isPaid ? trangThaiKham.dangKham : trangThaiKham.choKham
-            }
-            const index = benhNhanList.findIndex(item => item.maBenhNhan === newInfo.maBenhNhan);
-            benhNhanList[index] = newInfo;
-            setBenhNhanInfo(newInfo)
-            setBenhNhanList(benhNhanList);
-        }
-    }
+    },[benhNhanInfo, removeTabInfo])
 
     const handleOpenThuocModal = () => {
         setShouldOpenThuocModal(true);
@@ -90,6 +68,37 @@ export const DSBenhNhanKhamBenh = (props: Props) => {
         setEventKey(eventKey)
     }
 
+    useEffect(() => {
+        const params = {
+            ...searchPatientParams,
+            pageSize: rowsPerPage,
+            pageIndex: page
+        }
+        try {
+            encountersApi.searchPatient(params)
+            .then(data => {
+                setBenhNhanList(data?.data?.data?.content);
+                setTotalPages(data?.data?.data?.totalPages);
+            })
+            .catch(err => toast.error(`Lỗi gọi API ${err}`));
+        } catch (error) {
+            toast.error(`Đã có lỗi xảy ra ${error}`);
+        }
+        
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[setBenhNhanList, page, rowsPerPage])
+
+    const handleSearchPatient = (objSearch: any) => {
+        setSearchPatientParams({...searchPatientParams, ...objSearch});
+        try {
+            encountersApi.searchPatient({pageSize: rowsPerPage, pageIndex: page,...objSearch})
+            .then(data => setBenhNhanList(data?.data?.data?.content))
+            .catch(err => toast.error(`Lỗi gọi API ${err}`));
+        } catch (error) {
+            toast.error(`Đã có lỗi xảy ra ${error}`);
+        }
+    }
+
     const handleOpenBANgoaiTruDialog = () => {
         setShouldOpenBenhAnNgoaiTruDialog(true);
     }
@@ -99,50 +108,58 @@ export const DSBenhNhanKhamBenh = (props: Props) => {
     }
 
     return (
-        <div className="p-5">
-            <Row>
-                <Col sm="9">
-                    <SearchAdvanced />
-                    <div className='pt-3'>
-                        <GridDsBenhNhan />
+        <>
+            <Row className='full-width m-0'>
+                <Col sm="9" className='box_shadow-93'>
+                    <div className='ds-benh-nhan p-4'>
+                        <SearchAdvanced handleSearch={handleSearchPatient}/>
+                        <div className='pt-3'>
+                            <GridDsBenhNhan />
+                            <TablePagination
+                                page={page}
+                                setPage={setPage}
+                                handlePagesChange={handlePagesChange}
+                                handleRowsPerPageChange={handleRowsPerPageChange}
+                                rowsForPage={rowsForPage}
+                                rowsPerPage={rowsPerPage}
+                                setRowsPerPage={setRowsPerPage}
+                                totalPages={totalPages}
+                                totalElements={totalElements}
+                            />
+                        </div>
                     </div>
                 </Col>
-                <Col sm="3">
+                <Col sm="3" className='box_shadow-93 px-4 py-2'>
                     <ThongTinBenhNhan/>
                 </Col>
             </Row>
-            <div className="flex flex-center pt-8 pb-0">
+            <div className="flex flex-center py-4 box_shadow-93">
                 <Button 
                     className="btn-navy mr-5 w-80px"
-                    onClick={handleStart}
                 >
                     Bắt đầu
                 </Button>
                 <Button
-                    disabled={!(isPaid && isStart)}
                     className="btn-navy mr-5 "
                     onClick={() => handleAddTab(danhSachTabTiepDon[4].eventKey)}
                 >
                     Khám bệnh
                 </Button>
-                <Button disabled={!(isPaid && isStart)} className="btn-navy mr-5 ">Chỉ định CLS</Button>
+                <Button className="btn-navy mr-5 ">Chỉ định CLS</Button>
                 <Button
-                    disabled={!(isPaid && isStart)}
                     className="btn-navy mr-5 "
                     onClick={handleOpenThuocModal}
                 >
                     Thuốc
                 </Button>
                 <Button
-                    disabled={!(isPaid && isStart)}
                     className="btn-navy mr-5 "
                     onClick={handleOpenBANgoaiTruDialog}
                 >
                     Bệnh án
                 </Button>
-                <Button disabled={!(isPaid && isStart)} className="btn-navy mr-5 ">Phiếu thu</Button>
+                <Button className="btn-navy mr-5 ">Phiếu thu</Button>
                 <Button
-                    disabled={!(isPaid && isStart)}
                     className="btn-navy mr-5 "
                     onClick={handleChuyenPhongKham}
                 >
@@ -169,7 +186,7 @@ export const DSBenhNhanKhamBenh = (props: Props) => {
                     handleCloseModal={handleCloseModal}
                 />
             )}
-        </div>
+        </>
     )
 }
 
