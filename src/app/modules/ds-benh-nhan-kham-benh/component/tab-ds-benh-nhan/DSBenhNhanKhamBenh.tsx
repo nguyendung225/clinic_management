@@ -16,11 +16,13 @@ import { TablePagination } from '../../../component/TablePagination'
 import { handlePagesChange, handleRowsPerPageChange, rowsForPage } from '../../../utils/PageUtils'
 import { searchPatientParams } from '../../models/IParams'
 import { toast } from 'react-toastify'
+import BienBanHoiChanModal from '../modal-hoi-chan/BienBanHoiChanModal';
 
 export const DSBenhNhanKhamBenh = () => {
     const [shouldOpenThuocModal, setShouldOpenThuocModal] = useState<boolean>(false);
     const [shouldOpenChuyenPKModal, setShouldOpenChuyenModalPK] = useState<boolean>(false);
     const [shouldOpenBenhAnNgoaiTruDialog, setShouldOpenBenhAnNgoaiTruDialog] = useState<boolean>(false);
+    const [shouldOpenHoiChanDialog, setShouldOpenHoiChanDialog] = useState<boolean>(false)
     const [page, setPage] = useState<number>(1);
     const [rowsPerPage, setRowsPerPage] = useState<number>(10);
     const [searchPatientParams, setSearchPatientParams] = useState<searchPatientParams>({
@@ -38,7 +40,7 @@ export const DSBenhNhanKhamBenh = () => {
         localStorageItem.set(KEY_DS_TAB_TIEP_DON, newKeyTablist);
         setEventKey('');
     },[setEventKey])
-    
+
     useEffect(() => {
         if(!benhNhanInfo){
             removeTabInfo();
@@ -58,6 +60,12 @@ export const DSBenhNhanKhamBenh = () => {
         setShouldOpenChuyenModalPK(true);
     }
 
+    const handleOpenHoiChan = () => {
+        setShouldOpenHoiChanDialog(true)
+    }
+    const handleCloseHoiChan = () => {
+        setShouldOpenHoiChanDialog(false)
+    }
     const handleAddTab = (eventKey: string) => {
         let data = localStorageItem.get(KEY_DS_TAB_TIEP_DON) ? localStorageItem.get(KEY_DS_TAB_TIEP_DON) : [];
         if (!data.includes(eventKey)) {
@@ -84,7 +92,7 @@ export const DSBenhNhanKhamBenh = () => {
         } catch (error) {
             toast.error(`Đã có lỗi xảy ra ${error}`);
         }
-        
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[setBenhNhanList, page, rowsPerPage])
 
@@ -134,7 +142,7 @@ export const DSBenhNhanKhamBenh = () => {
                 </Col>
             </Row>
             <div className="flex flex-center py-4 box_shadow-93">
-                <Button 
+                <Button
                     className="btn-navy mr-5 w-80px"
                 >
                     Bắt đầu
@@ -165,6 +173,12 @@ export const DSBenhNhanKhamBenh = () => {
                 >
                     Chuyển PK
                 </Button>
+                <Button
+                    className="btn-navy mr-5 "
+                    onClick={handleOpenHoiChan}
+                >
+                    Hội chuẩn
+                </Button>
             </div>
 
             {shouldOpenThuocModal && (
@@ -186,6 +200,10 @@ export const DSBenhNhanKhamBenh = () => {
                     handleCloseModal={handleCloseModal}
                 />
             )}
+            {shouldOpenHoiChanDialog && <BienBanHoiChanModal
+                shouldOpenHoiChanDialog={shouldOpenHoiChanDialog}
+                handleCloseHoiChan={handleCloseHoiChan}
+            />}
         </>
     )
 }
