@@ -145,7 +145,7 @@ export const DSBenhNhanKhamBenh = () => {
                 >
                     Khám bệnh
                 </Button>
-                <Button className="btn-navy mr-5 ">Chỉ định CLS</Button>
+                <Button className="btn-navy mr-5 ">Chỉ định dịch vụ</Button>
                 <Button
                     className="btn-navy mr-5 "
                     onClick={handleOpenThuocModal}
