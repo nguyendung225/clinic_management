@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Button, Col, Form, Modal, Row } from 'react-bootstrap'
 import { Autocomplete } from '../../../component/Autocomplete';
 import GridThuoc from './GridThuoc';
+import { PhanHeTiepDonContext } from '../../PhanHeTiepDonContext';
+import moment from 'moment';
 
 interface modalProps {
     handleCloseModal?: () => void;
@@ -10,6 +12,7 @@ interface modalProps {
 
 export const ChiDinhThuocModal = (props: modalProps) => {
     const { handleCloseModal, shouldOpenThuocModal } = props;
+    const { benhNhanInfo } = useContext(PhanHeTiepDonContext);
 
     return (
         <Modal
@@ -24,47 +27,47 @@ export const ChiDinhThuocModal = (props: modalProps) => {
             </Modal.Header>
             <Modal.Body>
                 <Form>
-                    <Row className='form-border p-0'>
-                        <Form.Group as={Row} className='align-items-center'>
-                            <Form.Label column sm="1">Mã BN:</Form.Label>
-                            <Col sm="1">
-                                <Form.Text >BN202300009</Form.Text>
-                            </Col>
-                            <Form.Label column sm="1">Tên BN:</Form.Label>
+                    <Row className='form-border p-0 border-bottom-0'>
+                        <Form.Group as={Row} className='align-items-center py-2'>
                             <Col sm="2">
-                                <Form.Text>Nguyễn Văn A</Form.Text>
+                                <Form.Label className='min-w-50px'>Mã BN:</Form.Label>
+                                <Form.Text >{benhNhanInfo?.pin}</Form.Text>
                             </Col>
-                            <Form.Label column sm="1">Năm sinh:</Form.Label>
-                            <Col sm="1">
-                                <Form.Text>1990</Form.Text>
+                            <Col sm="3">
+                                <Form.Label className='min-w-60px'>Tên BN:</Form.Label>
+                                <Form.Text>{benhNhanInfo?.hoTen}</Form.Text>
                             </Col>
-                            <Form.Label column sm="1">Giới tính:</Form.Label>
-                            <Col sm="1">
-                                <Form.Text>Nam</Form.Text>
+                            <Col sm="2">
+                                <Form.Label className='min-w-75px'>Năm sinh:</Form.Label>
+                                <Form.Text>{benhNhanInfo?.ngaySinh.split('-')[0]}</Form.Text>
                             </Col>
-                            <Form.Label column sm="2">Đối tượng/Tỷ lệ:</Form.Label>
-                            <Col sm="1">
-                                <Form.Text>BHYT/85%</Form.Text>
+                            <Col sm="2">
+                                <Form.Label className='min-w-70px'>Giới tính:</Form.Label>
+                                <Form.Text>{benhNhanInfo?.gioiTinh}</Form.Text>
+                            </Col>
+                            <Col sm="3">
+                                <Form.Label className='min-w-125px'>Đối tượng/Tỷ lệ:</Form.Label>
+                                <Form.Text></Form.Text>
                             </Col>
                         </Form.Group>
-                        <Form.Group as={Row} className='align-items-center'>
-                            <Form.Label column sm="1">Địa chỉ:</Form.Label>
+                        <Form.Group as={Row} className='align-items-center py-2'>
+                            <Col sm="5">
+                                <Form.Label className='min-w-50px'>Địa chỉ:</Form.Label>
+                                <Form.Text>{benhNhanInfo?.person?.fullAddress}</Form.Text>
+                            </Col>
                             <Col sm="4">
-                                <Form.Text>26 Láng Hạ, Đống Đa, Hà Nội</Form.Text>
+                                <Form.Label className='min-w-75px'>Số BHYT:</Form.Label>
+                                <Form.Text>{benhNhanInfo?.benhNhanBhyt?.soBhyt}</Form.Text>
                             </Col>
-                            <Form.Label column sm="1">Số BHYT:</Form.Label>
                             <Col sm="3">
-                                <Form.Text>DN9439540409</Form.Text>
-                            </Col>
-                            <Form.Label column sm="2">Ngày BHYT còn:</Form.Label>
-                            <Col sm="1">
-                                <Form.Text>56</Form.Text>
+                                <Form.Label className='min-w-125px'>Ngày BHYT còn:</Form.Label>
+                                <Form.Text>{`${moment(new Date()).diff(moment(benhNhanInfo?.benhNhanBhyt?.denNngay), 'days') || 0} ngày`}</Form.Text>
                             </Col>
                         </Form.Group>
                     </Row>
 
                     <Row className="m-0 pb-3">
-                        <Col sm="8" className='form-border pt-3'>
+                        <Col sm="8" className='form-border pt-3 border-right-0'>
                             <Form.Group as={Row} className='align-items-center'>
                                 <Form.Label column sm="2">Bệnh chính:</Form.Label>
                                 <Col sm="5">
@@ -150,10 +153,10 @@ export const ChiDinhThuocModal = (props: modalProps) => {
                             </Form.Group>
                         </Col>
                     </Row>
-                    <GridThuoc />
                 </Form>
+                <GridThuoc />
             </Modal.Body>
-            <Modal.Footer className="flex flex-center pt-3 pb-3">
+            <Modal.Footer className="flex flex-center pt-3 pb-3 form-border">
                 <Button className="btn-navy mr-5 w-50px">Lưu</Button>
                 <Button className="btn-navy mr-5 w-125px">In phiếu thuốc</Button>
                 <Button className="btn-navy mr-5 w-110px">Kết quả CLS</Button>

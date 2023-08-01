@@ -24,7 +24,7 @@ export const ThuocColumns: ReadonlyArray<Column<ThuocInfo>> = [
             />
         ),
         id: "DUOC",
-        Cell: ({ ...props }) => <TableCustomCell className="text-center" data={props.data[props.row.index].tenDuoc} />,
+        Cell: ({ ...props }) => <TableCustomCell className="text-center" data={props?.data[props.row.index]?.tenDuoc} />,
     },
     {
         Header: (props) => (
@@ -35,7 +35,7 @@ export const ThuocColumns: ReadonlyArray<Column<ThuocInfo>> = [
             />
         ),
         id: "SANG",
-        Cell: ({ ...props }) => <TableCustomCell className="text-center" data={props.data[props.row.index].sang} />,
+        Cell: ({ ...props }) => <TableCustomCell className="text-center" data={props?.data[props.row.index]?.sang} />,
     },
     {
         Header: (props) => (
@@ -46,7 +46,7 @@ export const ThuocColumns: ReadonlyArray<Column<ThuocInfo>> = [
             />
         ),
         id: "TRUA",
-        Cell: ({ ...props }) => <TableCustomCell className="text-center" data={props.data[props.row.index].trua} />,
+        Cell: ({ ...props }) => <TableCustomCell className="text-center" data={props?.data[props.row.index]?.trua} />,
     },
     {
         Header: (props) => (
@@ -57,7 +57,7 @@ export const ThuocColumns: ReadonlyArray<Column<ThuocInfo>> = [
             />
         ),
         id: "CHIEU",
-        Cell: ({ ...props }) => <TableCustomCell className="text-center" data={props.data[props.row.index].chieu} />,
+        Cell: ({ ...props }) => <TableCustomCell className="text-center" data={props?.data[props.row.index]?.chieu} />,
     },
     {
         Header: (props) => (
@@ -68,7 +68,7 @@ export const ThuocColumns: ReadonlyArray<Column<ThuocInfo>> = [
             />
         ),
         id: "TOI",
-        Cell: ({ ...props }) => <TableCustomCell className="text-center" data={props.data[props.row.index].toi} />,
+        Cell: ({ ...props }) => <TableCustomCell className="text-center" data={props?.data[props.row.index]?.toi} />,
     },
     {
         Header: (props) => (
@@ -79,7 +79,7 @@ export const ThuocColumns: ReadonlyArray<Column<ThuocInfo>> = [
             />
         ),
         id: "SONGAY",
-        Cell: ({ ...props }) => <TableCustomCell className="text-center" data={props.data[props.row.index].soNgay} />,
+        Cell: ({ ...props }) => <TableCustomCell className="text-center" data={props?.data[props.row.index]?.soNgay} />,
     },
     {
         Header: (props) => (
@@ -90,7 +90,7 @@ export const ThuocColumns: ReadonlyArray<Column<ThuocInfo>> = [
             />
         ),
         id: "SOLUONG",
-        Cell: ({ ...props }) => <TableCustomCell className="text-center" data={props.data[props.row.index].soLuong} />,
+        Cell: ({ ...props }) => <TableCustomCell className="text-center" data={props?.data[props.row.index]?.soLuong} />,
     },
     {
         Header: (props) => (
@@ -101,7 +101,7 @@ export const ThuocColumns: ReadonlyArray<Column<ThuocInfo>> = [
             />
         ),
         id: "DONGIA",
-        Cell: ({ ...props }) => <TableCustomCell className="text-center" data={props.data[props.row.index].donGia} />,
+        Cell: ({ ...props }) => <TableCustomCell className="text-center" data={props?.data[props.row.index]?.donGia} />,
     },
     {
         Header: (props) => (
@@ -112,7 +112,7 @@ export const ThuocColumns: ReadonlyArray<Column<ThuocInfo>> = [
             />
         ),
         id: "THANHTIEN",
-        Cell: ({ ...props }) => <TableCustomCell className="text-center" data={props.data[props.row.index].thanhTien} />,
+        Cell: ({ ...props }) => <TableCustomCell className="text-center" data={props?.data[props.row.index]?.thanhTien} />,
     },
     {
         Header: (props) => (
@@ -123,7 +123,7 @@ export const ThuocColumns: ReadonlyArray<Column<ThuocInfo>> = [
             />
         ),
         id: "DUONGDUNG",
-        Cell: ({ ...props }) => <TableCustomCell className="text-center" data={props.data[props.row.index].duongDung} />,
+        Cell: ({ ...props }) => <TableCustomCell className="text-center" data={props?.data[props.row.index]?.duongDung} />,
     },
     {
         Header: (props) => (
@@ -134,7 +134,7 @@ export const ThuocColumns: ReadonlyArray<Column<ThuocInfo>> = [
             />
         ),
         id: "LOAITHUOC",
-        Cell: ({ ...props }) => <TableCustomCell className="text-center" data={props.data[props.row.index].loaiThuoc} />,
+        Cell: ({ ...props }) => <TableCustomCell className="text-center" data={props?.data[props.row.index]?.loaiThuoc} />,
     },
     {
         Header: (props) => (
@@ -145,7 +145,7 @@ export const ThuocColumns: ReadonlyArray<Column<ThuocInfo>> = [
             />
         ),
         id: "CACHDUNG",
-        Cell: ({ ...props }) => <TableCustomCell className="text-center" data={props.data[props.row.index].cachDung} />,
+        Cell: ({ ...props }) => <TableCustomCell className="text-center" data={props?.data[props.row.index]?.cachDung} />,
     },
     {
         Header: (props) => (
@@ -156,6 +156,6 @@ export const ThuocColumns: ReadonlyArray<Column<ThuocInfo>> = [
             />
         ),
         id: "GHICHU",
-        Cell: ({ ...props }) => <TableCustomCell className="text-center" data={props.data[props.row.index].ghiChu} />,
+        Cell: ({ ...props }) => <TableCustomCell className="text-center" data={props?.data[props.row.index]?.ghiChu} />,
     },
 ]

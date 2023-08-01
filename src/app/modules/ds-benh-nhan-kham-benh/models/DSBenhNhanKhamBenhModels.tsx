@@ -114,19 +114,20 @@ export interface IUpdateStatusResponse extends Omit<IResponse<null>, 'data'> {
 }
 
 export interface ThuocInfo {
-  tenDuoc: string;
-  sang: string;
-  trua: string;
-  chieu: string;
-  toi: string;
-  soNgay: string;
-  soLuong: string;
-  donGia: string;
-  thanhTien: string;
-  duongDung: string;
-  loaiThuoc: string;
-  cachDung: string;
-  ghiChu: string;
+  id?: number;
+  tenDuoc?: string;
+  sang?: string;
+  trua?: string;
+  chieu?: string;
+  toi?: string;
+  soNgay?: string;
+  soLuong?: number;
+  donGia?: number;
+  thanhTien?: number;
+  duongDung?: string;
+  loaiThuoc?: string;
+  cachDung?: string;
+  ghiChu?: string;
 }
 
 export interface LichSuKhamInfo {
