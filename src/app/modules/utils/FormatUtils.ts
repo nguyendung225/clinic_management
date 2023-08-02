@@ -18,3 +18,11 @@ export const handleAgeCalculate = (DOB: string) => {
     return `${Math.abs(ageDate.getUTCFullYear() - 1970).toString()} tuổi`;
   }
 };
+
+export const formatDate = (value: string | undefined) => {
+    if(value){
+        return value.split('-').reverse().join('/').toString();
+    }else{
+        return value;
+    }
+}

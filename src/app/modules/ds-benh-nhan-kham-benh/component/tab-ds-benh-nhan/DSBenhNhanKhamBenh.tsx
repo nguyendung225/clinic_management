@@ -119,11 +119,12 @@ export const DSBenhNhanKhamBenh = () => {
         <>
             <Row className='full-width m-0'>
                 <Col sm="9" className='box_shadow-93'>
-                    <div className='ds-benh-nhan p-4'>
+                    <div className='ds-benh-nhan py-2 d-flex flex-column h-100'>
                         <SearchAdvanced handleSearch={handleSearchPatient}/>
-                        <div className='pt-3'>
+                        <div className='pt-3 flex-1 d-flex flex-column justify-content-between'>
                             <GridDsBenhNhan />
                             <TablePagination
+                                className='border-0'
                                 page={page}
                                 setPage={setPage}
                                 handlePagesChange={handlePagesChange}

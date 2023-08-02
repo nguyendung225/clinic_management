@@ -66,6 +66,11 @@ border: 1px solid #CFCFCF !important;
   padding: 8px !important;
   border: 1px solid $color-teal-navy-blue !important;
 
+  &.btn-small{
+    padding: 4px !important;
+    height: 30px;
+  }
+
   &:hover,
   &:active,
   &:focus {

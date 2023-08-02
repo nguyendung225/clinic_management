@@ -4,6 +4,7 @@ import { Autocomplete } from '../../../component/Autocomplete';
 import GridThuoc from './GridThuoc';
 import { PhanHeTiepDonContext } from '../../PhanHeTiepDonContext';
 import moment from 'moment';
+import { GIOI_TINH } from '../../models/DSBenhNhanKhamBenhModels';
 
 interface modalProps {
     handleCloseModal?: () => void;
@@ -43,7 +44,7 @@ export const ChiDinhThuocModal = (props: modalProps) => {
                             </Col>
                             <Col sm="2">
                                 <Form.Label className='min-w-70px'>Giới tính:</Form.Label>
-                                <Form.Text>{benhNhanInfo?.gioiTinh}</Form.Text>
+                                <Form.Text>{GIOI_TINH[benhNhanInfo?.gioiTinh as keyof typeof GIOI_TINH]}</Form.Text>
                             </Col>
                             <Col sm="3">
                                 <Form.Label className='min-w-125px'>Đối tượng/Tỷ lệ:</Form.Label>
