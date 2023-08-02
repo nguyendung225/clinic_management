@@ -138,6 +138,11 @@ export interface LichSuKhamInfo {
   ghiChu: string;
 }
 
+export interface LichSuHoiChanInterface {
+  index: number,
+  ngayTao:string
+}
+
 export enum GIOI_TINH {
   MALE = 'Nam',
   FEMALE = 'Nữ'

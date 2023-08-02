@@ -4,6 +4,7 @@ import { GIOI_TINH, IBenhNhan } from '../../models/DSBenhNhanKhamBenhModels';
 import { TableCustomHeader } from '../../../component/table-custom-v2/columns/TableCustomHeader';
 import { TableCustomCell } from '../../../component/table-custom-v2/columns/TableCustomCell';
 import moment from 'moment';
+import { handleAgeCalculate } from '../../../utils/FormatUtils';
 
 const DsBenhNhanColumn: ReadonlyArray<Column<IBenhNhan>> = [
     {
@@ -52,8 +53,8 @@ const DsBenhNhanColumn: ReadonlyArray<Column<IBenhNhan>> = [
             let gioiTinh = props?.data[props.row.index]?.gioiTinh;
             return (
                 <TableCustomCell className="text-center" data={GIOI_TINH[gioiTinh as keyof typeof GIOI_TINH]} />
-            )
-        }   
+            );
+        }
     },
     {
         Header: (props) => (
@@ -66,21 +67,10 @@ const DsBenhNhanColumn: ReadonlyArray<Column<IBenhNhan>> = [
         id: "TUOI",
         Cell: ({ ...props }) => {
             let ngaySinh = props?.data[props.row.index]?.ngaySinh;
-            let tuoi = '';
-            let namTuoi = moment(new Date()).diff(moment(new Date(ngaySinh)), 'years')?.toString();
-            let thangTuoi = `${moment(new Date()).diff(moment(new Date(ngaySinh)), 'months')?.toString()}`;
-            let ngayTuoi = `${moment(new Date()).diff(moment(new Date(ngaySinh)), 'days')?.toString()}`;
-            if(Number(namTuoi) < 1 && Number(thangTuoi) > 0){
-                tuoi = `${thangTuoi} tháng`;
-            }else if(Number(thangTuoi) < 1){
-                tuoi = `${ngayTuoi} ngày`;
-            }else if(Number(namTuoi) > 0){
-                tuoi = namTuoi;
-            }
             return (
-                <TableCustomCell className="text-center" data={tuoi} />
-            )
-        } 
+                <TableCustomCell className="text-center" data={ngaySinh && handleAgeCalculate(ngaySinh)} />
+            );
+        }
     },
     {
         Header: (props) => (
@@ -156,6 +146,6 @@ const DsBenhNhanColumn: ReadonlyArray<Column<IBenhNhan>> = [
         id: "TRANGTHAI",
         Cell: ({ ...props }) => <TableCustomCell className="text-center" data={props?.data[props.row.index]?.status} />,
     },
-]
+];
 
 export default DsBenhNhanColumn;

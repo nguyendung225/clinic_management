@@ -37,7 +37,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
     input {
         width: 16px;
         height: 16px;
@@ -302,4 +302,10 @@
             --bs-border-opacity: 0.55;
         }
     }
+}
+.btn-w5{
+    width: 75px;
+}
+.border-top-none{
+    border-top: none;
 }
