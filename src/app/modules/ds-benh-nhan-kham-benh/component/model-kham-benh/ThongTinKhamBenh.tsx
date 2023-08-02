@@ -12,6 +12,8 @@ import { toast } from "react-toastify";
 import { convertDto, listItemChild } from "../../../component/input-component/utils/constFunction";
 import { PhanHeTiepDonContext } from "../../PhanHeTiepDonContext";
 import TextGroup from "../../../component/TextGroup";
+import { GIOI_TINH } from "../../models/DSBenhNhanKhamBenhModels";
+import { formatDate } from "../../../utils/FormatUtils";
 
 export type KhamBenh = {
     thongTinKhamBenh?: any;
@@ -132,13 +134,13 @@ export const ThongTinKhamBenh = () => {
                             <TextGroup
                                 label='Ngày sinh:'
                                 labelClass='col-sm-4 label-fw'
-                                value={benhNhanInfo?.ngaySinh}
+                                value={formatDate(benhNhanInfo?.ngaySinh)}
                                 valueClass='col-sm-8 text-fw'
                             />
                             <TextGroup
                                 label='Giới tính:'
                                 labelClass='col-sm-4 label-fw'
-                                value={benhNhanInfo?.gioiTinh}
+                                value={GIOI_TINH[benhNhanInfo?.gioiTinh as keyof typeof GIOI_TINH]}
                                 valueClass='col-sm-8 text-fw'
                             />
                             <TextGroup

@@ -2,6 +2,8 @@ import React, { useContext } from 'react'
 import { PhanHeTiepDonContext } from '../../PhanHeTiepDonContext'
 import TextGroup from '../../../component/TextGroup';
 import Divider from '../../../component/Divider';
+import { GIOI_TINH } from '../../models/DSBenhNhanKhamBenhModels';
+import { formatDate } from '../../../utils/FormatUtils';
 
 type Props = {}
 
@@ -57,13 +59,13 @@ const ThongTinBenhNhan: React.FunctionComponent<Props> = () => {
         <TextGroup
           label='Ngày sinh: '
           labelClass='label-fw col-sm-5'
-          value={benhNhanInfo?.ngaySinh}
+          value={formatDate(benhNhanInfo?.ngaySinh)}
           valueClass='col-sm-7 text-fw'
         />
         <TextGroup
           label='Giới tính: '
           labelClass='label-fw col-sm-5'
-          value={benhNhanInfo?.gioiTinh}
+          value={GIOI_TINH[benhNhanInfo?.gioiTinh as keyof typeof GIOI_TINH]}
           valueClass='col-sm-7 text-fw'
         />
         <TextGroup

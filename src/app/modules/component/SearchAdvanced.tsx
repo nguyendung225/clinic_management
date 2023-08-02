@@ -53,7 +53,7 @@ export const SearchAdvanced:React.FC<Props> = ({handleSearch}) => {
             className='d-flex flex-column justify-content-end w-100px'
           >
             <Button
-              className='btn-navy min-w-100px'
+              className='btn-navy btn-small min-w-100px'
               onClick={() => handleSearch(searchParams)}
             >
               Tìm kiếm
@@ -87,7 +87,7 @@ export const SearchAdvanced:React.FC<Props> = ({handleSearch}) => {
             sm='3'
             className='d-flex flex-column justify-content-end w-100px'
           >
-            <Button className='btn-navy white mb-1px min-w-100px text-dark'>
+            <Button className='btn-navy btn-small white mb-1px min-w-100px text-dark'>
               Xuất excel
             </Button>
           </Col>
