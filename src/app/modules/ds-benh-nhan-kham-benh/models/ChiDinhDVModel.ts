@@ -1,10 +1,12 @@
+import { ChangeEvent } from "react";
+
 export interface BangXetNghiemModel {
     maDV: string;
     tenDV: string;
     giaDV: number,
 }
 
-export interface iDichVuDaChiDinh {
+export interface iDichVuChiDinh {
     id?: number | string;
     conceptAnswerName: string;
     conceptId?: number | string | undefined;
@@ -17,20 +19,30 @@ export interface iDichVuDaChiDinh {
     quantity: number | string | undefined;
     roomId?: number | string;
     roomName?: string;
+    loaiMBP?: string | undefined;
+    hasServiceGroup?: boolean | null | undefined;
+    insurancePrice?: number | string
+    parentCode?: string;
+    serviceCode?: string;
+    servicePrice?: string;
+    isChecked?: boolean | undefined;
+    parent?: iGroupDichVu[];
 }
 
 export interface ChiDinhDVContextProps {
     dataMap: any,
-    dataDichVu: any;
-    DVDaChiDinh: iDichVuDaChiDinh[];
+    benhNhan: any,
+    dataDichVu: iDichVuChiDinh[];
+    DVDaChiDinh: iDichVuChiDinh[];
     dataXetNghiem: iBangDichVu[];
     dataCDHA: iBangDichVu[];
     dataTDCN: iBangDichVu[];
     dataPT: iBangDichVu[];
     dataTT: iBangDichVu[];
     setDataMap: (dataMap: any) => void,
-    setDataDichVu: (dataDichVu: any) => void;
-    setDVDaChiDinh: (DVDaChiDinh: iDichVuDaChiDinh[]) => void;
+    setBenhNhan: (benhNhan: any) => void,
+    setDataDichVu: (dataDichVu: iDichVuChiDinh[]) => void;
+    setDVDaChiDinh: (DVDaChiDinh: iDichVuChiDinh[]) => void;
     setDataXetNghiem: (dataXetNghiem: iBangDichVu[]) => void;
     setDataCDHA: (dataCDHA: iBangDichVu[]) => void;
     setDataTDCN: (dataTDCN: iBangDichVu[]) => void;
@@ -39,14 +51,17 @@ export interface ChiDinhDVContextProps {
 }
 
 export interface iDichVu {
-    id?: number | string;
+    id?: number | string | undefined;
     conceptAnswerName: string;
     conceptId?: number | string | undefined;
     hasServiceGroup?: boolean | null | undefined;
     insurancePrice?: number | string
     parentId?: number | string;
+    parentCode?: string;
     serviceCode?: string;
     servicePrice?: string;
+    isChecked?: boolean | undefined;
+    parent?: iGroupDichVu[];
 }
 
 export interface iBangDichVu {
@@ -68,4 +83,13 @@ export interface iGroupDichVu {
     id?: number | string | undefined;
     code: string;
     name: string;
+    hasGroupService?: boolean | undefined;
+}
+
+export interface iDSDVChiDinhProps {
+    data?: any;
+    benhNhanInfo?: any;
+    active?: boolean;
+    columns: any;
+    handleSum: (data: any) => string | number | undefined;
 }

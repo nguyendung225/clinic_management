@@ -1,9 +1,10 @@
 import React, { FC, createContext, useState } from "react";
-import { ChiDinhDVContextProps, iBangDichVu, iDichVuDaChiDinh } from "../../../models/ChiDinhDVModel";
+import { ChiDinhDVContextProps, iBangDichVu, iDichVuChiDinh } from "../../../models/ChiDinhDVModel";
 import { WithChildren } from "../../../../../../_metronic/helpers";
 
 const initChiDinhDVContextPropsState = {
     dataMap: {},
+    benhNhan: {},
     dataDichVu: [],
     DVDaChiDinh: [],
     dataXetNghiem: [],
@@ -12,6 +13,7 @@ const initChiDinhDVContextPropsState = {
     dataPT: [],
     dataTT: [],
     setDataMap: () => { },
+    setBenhNhan: () => { },
     setDataDichVu: () => { },
     setDVDaChiDinh: () => { },
     setDataXetNghiem: () => { },
@@ -25,8 +27,9 @@ export const ChiDinhDVContext = createContext<ChiDinhDVContextProps>(initChiDinh
 
 const ContextChiDinhDVProvider: FC<WithChildren> = ({ children }) => {
     const [dataMap, setDataMap] = useState<any>({})
+    const [benhNhan, setBenhNhan] = useState<any>({})
     const [dataDichVu, setDataDichVu] = useState<any[]>([])
-    const [DVDaChiDinh, setDVDaChiDinh] = useState<iDichVuDaChiDinh[]>([])
+    const [DVDaChiDinh, setDVDaChiDinh] = useState<iDichVuChiDinh[]>([])
     const [dataXetNghiem, setDataXetNghiem] = useState<iBangDichVu[]>([])
     const [dataCDHA, setDataCDHA] = useState<iBangDichVu[]>([])
     const [dataTDCN, setDataTDCN] = useState<iBangDichVu[]>([])
@@ -37,6 +40,7 @@ const ContextChiDinhDVProvider: FC<WithChildren> = ({ children }) => {
         <ChiDinhDVContext.Provider
             value={{
                 dataMap, setDataMap,
+                benhNhan, setBenhNhan,
                 dataDichVu, setDataDichVu,
                 DVDaChiDinh, setDVDaChiDinh,
                 dataXetNghiem, setDataXetNghiem,

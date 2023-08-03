@@ -15,7 +15,7 @@ const XetNghiem: FC = () => {
     const { benhNhanInfo } = useContext(PhanHeTiepDonContext);
     const [activeTab, setActiveTab] = useState<string>("0");
     const [concept, setConcept] = useState<iGroupDichVu>()
-    const [item, setItem] = useState<iDSTabDichVu>()
+    const [item, setItem] = useState<iDSTabDichVu | undefined>()
     const { setIsLoading } = useContext(AppContext)
     let {
         dataMap,
@@ -49,7 +49,7 @@ const XetNghiem: FC = () => {
         })
     }
 
-    const callAPi = async (item: any) => {
+    const callAPi = async (item: iDSTabDichVu | undefined) => {
         let searchObject = {
             pageIndex: 1,
             pageSize: 100,
@@ -59,9 +59,9 @@ const XetNghiem: FC = () => {
         setIsLoading(true);
         let { data } = await searchByPage(searchObject)
 
-        if (RESPONSE_STATUS_CODE.SUCCESS === data.code) {
+        if (RESPONSE_STATUS_CODE.SUCCESS === data?.code) {
             setIsLoading(false);
-            item.setData(data.data);
+            item?.setData(data?.data);
         } else {
             setIsLoading(false);
         }
@@ -86,11 +86,17 @@ const XetNghiem: FC = () => {
 
     const selectData = (listData: any, keyValue: string) => {
         let arr: any = []
+        let dichVu: any = []
+
         listData.forEach((data: any) => {
-            data.parentCode = keyValue
-            data.quantity = data.quantity ? data.quantity : 1
+            let itemDichVu = {
+                ...data,
+                parentCode: keyValue,
+                quantity: data.quantity ? data.quantity : 1,
+            }
+            dichVu.push(itemDichVu)
         });
-        dataMap[keyValue] = listData;
+        dataMap[keyValue] = dichVu;
 
         for (const index in dataMap) {
             if (dataMap.hasOwnProperty(index)) {

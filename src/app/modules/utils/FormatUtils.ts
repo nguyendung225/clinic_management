@@ -38,3 +38,7 @@ export const formatDateToString = (date: string | undefined) => {
     let newDate =date ?  new Date(date) : null;
     return newDate ? moment(newDate).format("DD/MM/YYYY") : "";
 }
+
+export const handleSum = (array: any, name:string) => {
+  return array?.length > 0 ? array.reduce((accumulator: number, dichVu: any) => accumulator + Number(dichVu?.[name]), 0) : 0;
+}

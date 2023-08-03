@@ -45,8 +45,8 @@ const CustomTable: FC<TableProps> = (props) => {
 
   const handleCheckBox = (event: ChangeEvent<HTMLInputElement>, item: any) => {
     const { checked } = event.target;
-    const updatedData = updateCheckedStatus(data, item, checked);
-    const updatedItem = updateCheckedStatus(itemList, item, checked);
+    const updatedData = updateCheckedStatus(data, item, checked) || [];
+    const updatedItem = updateCheckedStatus(itemList, item, checked) || [];
 
     setData(updatedData);
     setItemList(updatedItem);
