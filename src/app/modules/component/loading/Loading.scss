@@ -5,21 +5,24 @@
   z-index: 1000000000;
   height: 100vh;
   width: 100vw;
-  background-color: rgba(255, 255, 255, 0.75);
+  background-color: rgba(255, 255, 255, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 
   #container {
     width: 60px;
     height: 60px;
   }
+
   #shadow {
-    background: $color-navy-blue;
+    background: $color-teal;
   }
+
   #spinner {
     fill: transparent;
-    stroke: $color-navy-blue;
+    stroke: $color-teal;
     stroke-width: 8px;
     stroke-linecap: round;
     filter: url(#shadow);
@@ -30,15 +33,23 @@
     animation-iteration-count: infinite;
   }
 
+  .name-loading {
+    padding-top: 10px;
+    color: #000000 ;
+    font-size: 1rem;
+  }
+
   @keyframes animation {
     0% {
       stroke-dasharray: 1 98;
       stroke-dashoffset: -105;
     }
+
     50% {
       stroke-dasharray: 80 10;
       stroke-dashoffset: -160;
     }
+
     100% {
       stroke-dasharray: 1 98;
       stroke-dashoffset: -300;
@@ -69,48 +80,49 @@
     stroke-dashoffset: 48;
     animation: dash 1s linear infinite;
   }
+
   @-moz-keyframes dash {
     62.5% {
       opacity: 0;
     }
+
     to {
       stroke-dashoffset: 0;
     }
   }
+
   @-webkit-keyframes dash {
     62.5% {
       opacity: 0;
     }
+
     to {
       stroke-dashoffset: 0;
     }
   }
+
   @-o-keyframes dash {
     62.5% {
       opacity: 0;
     }
+
     to {
       stroke-dashoffset: 0;
     }
   }
+
   @keyframes dash {
-    0%{
+    0% {
       opacity: 0.5;
     }
+
     62.5% {
       opacity: 1;
     }
+
     to {
       opacity: 0.5;
       stroke-dashoffset: 0;
     }
   }
 }
-
-
-
-
-
-
-
-

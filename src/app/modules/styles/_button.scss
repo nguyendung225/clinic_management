@@ -100,6 +100,41 @@ border: 1px solid #CFCFCF !important;
   }
 }
 
+.btn-secondary {
+  background: $color-dark-blur-1 !important;
+  color: $color-white !important;
+  padding: 8px 10px !important;
+
+  &:hover,
+  &:active,
+  &:focus {
+    --kt-primary-active: $color-dark-blur-1;
+    color: var(--kt-primary-inverse);
+    border-color: var(--kt-primary-active);
+    background-color: var(--kt-primary-active);
+    opacity: 0.8;
+  }
+
+  &.white {
+    background: white !important;
+    color: $color-teal-navy-blue !important;
+    border: 1px solid $color-teal-navy-blue !important;
+
+    &:hover {
+      background: var(--color-linear-navy) !important;
+      color: $color-white !important;
+      padding: 6px 10px !important;
+    }
+  }
+  
+  &:disabled {
+    background: $color-disabled-bg !important;
+    color: $color-disabled-text !important;
+    border: 1px solid $color-disabled-text !important;
+    pointer-events: none !important;
+  }
+}
+
 .btn-navy-outlined {
   background: $color-white !important;
   color: #2789af !important;

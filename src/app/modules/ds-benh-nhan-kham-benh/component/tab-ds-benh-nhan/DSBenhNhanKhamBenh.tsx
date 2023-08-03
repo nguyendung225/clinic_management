@@ -35,17 +35,19 @@ export const DSBenhNhanKhamBenh = () => {
 
     const removeTabInfo = useCallback(() => {
         let keyTabList = localStorageItem.get(KEY_DS_TAB_TIEP_DON) ? localStorageItem.get(KEY_DS_TAB_TIEP_DON) : [];
-        let eventKey = danhSachTabTiepDon[4].eventKey;
-        let newKeyTablist = keyTabList.filter((item: string) => item !== eventKey);
+        let listEventKey = [danhSachTabTiepDon[4].eventKey, danhSachTabTiepDon[5].eventKey];
+        let newKeyTablist = keyTabList.filter((item: string) => {
+            return listEventKey.every((eventKey: string) => item !== eventKey)
+        });
         localStorageItem.set(KEY_DS_TAB_TIEP_DON, newKeyTablist);
-        setEventKey('');
-    },[setEventKey])
+        setEventKey('0');
+    }, [setEventKey])
 
     useEffect(() => {
-        if(!benhNhanInfo){
+        if (!benhNhanInfo) {
             removeTabInfo();
         }
-    },[benhNhanInfo, removeTabInfo])
+    }, [benhNhanInfo, removeTabInfo])
 
     const handleOpenThuocModal = () => {
         setShouldOpenThuocModal(true);
@@ -84,24 +86,24 @@ export const DSBenhNhanKhamBenh = () => {
         }
         try {
             encountersApi.searchPatient(params)
-            .then(data => {
-                setBenhNhanList(data?.data?.data?.content);
-                setTotalPages(data?.data?.data?.totalPages);
-            })
-            .catch(err => toast.error(`Lỗi gọi API ${err}`));
+                .then(data => {
+                    setBenhNhanList(data?.data?.data?.content);
+                    setTotalPages(data?.data?.data?.totalPages);
+                })
+                .catch(err => toast.error(`Lỗi gọi API ${err}`));
         } catch (error) {
             toast.error(`Đã có lỗi xảy ra ${error}`);
         }
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[setBenhNhanList, page, rowsPerPage])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [setBenhNhanList, page, rowsPerPage])
 
     const handleSearchPatient = (objSearch: any) => {
-        setSearchPatientParams({...searchPatientParams, ...objSearch});
+        setSearchPatientParams({ ...searchPatientParams, ...objSearch });
         try {
-            encountersApi.searchPatient({pageSize: rowsPerPage, pageIndex: page,...objSearch})
-            .then(data => setBenhNhanList(data?.data?.data?.content))
-            .catch(err => toast.error(`Lỗi gọi API ${err}`));
+            encountersApi.searchPatient({ pageSize: rowsPerPage, pageIndex: page, ...objSearch })
+                .then(data => setBenhNhanList(data?.data?.data?.content))
+                .catch(err => toast.error(`Lỗi gọi API ${err}`));
         } catch (error) {
             toast.error(`Đã có lỗi xảy ra ${error}`);
         }
@@ -139,38 +141,53 @@ export const DSBenhNhanKhamBenh = () => {
                     </div>
                 </Col>
                 <Col sm="3" className='box_shadow-93 px-4 py-2'>
-                    <ThongTinBenhNhan/>
+                    <ThongTinBenhNhan />
                 </Col>
             </Row>
             <div className="flex flex-center py-4 box_shadow-93">
-                <Button
+                {/* <Button
                     className="btn-navy mr-5 w-80px"
                 >
                     Bắt đầu
-                </Button>
+                </Button> */}
                 <Button
                     className="btn-navy mr-5 "
                     onClick={() => handleAddTab(danhSachTabTiepDon[4].eventKey)}
+                    disabled={!benhNhanInfo}
                 >
                     Khám bệnh
                 </Button>
-                <Button className="btn-navy mr-5 ">Chỉ định dịch vụ</Button>
+                <Button
+                    className="btn-navy mr-5 "
+                    onClick={() => handleAddTab(danhSachTabTiepDon[5].eventKey)}
+                    disabled={!benhNhanInfo}
+                >
+                    Chỉ định dich vụ
+                </Button>
                 <Button
                     className="btn-navy mr-5 "
                     onClick={handleOpenThuocModal}
+                    disabled={!benhNhanInfo}
                 >
                     Thuốc
                 </Button>
                 <Button
                     className="btn-navy mr-5 "
                     onClick={handleOpenBANgoaiTruDialog}
+                    disabled={!benhNhanInfo}
                 >
                     Bệnh án
                 </Button>
-                <Button className="btn-navy mr-5 ">Phiếu thu</Button>
+                <Button
+                    className="btn-navy mr-5 "
+                    disabled={!benhNhanInfo}
+                >
+                    Phiếu thu
+                </Button>
                 <Button
                     className="btn-navy mr-5 "
                     onClick={handleChuyenPhongKham}
+                    disabled={!benhNhanInfo}
                 >
                     Chuyển PK
                 </Button>

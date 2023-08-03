@@ -26,4 +26,8 @@ export interface AutoCompleteProps {
   setSelectedVal?: any
   value?: any;
   valueField?: string;
+  urlData?: string;
+  showCode?: boolean;
+  displayLable?: string;
+  menuPortalTarget?: any;
 }

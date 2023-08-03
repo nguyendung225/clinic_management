@@ -5,7 +5,6 @@ import { getCSSVariableValue } from "../../_metronic/assets/ts/_utils";
 import { WithChildren } from "../../_metronic/helpers";
 import { MasterLayout } from "../../_metronic/layout/MasterLayout";
 import PhanHeTiepDon from "../modules/ds-benh-nhan-kham-benh/PhanHeTiepDon";
-import { PhanHeVienPhiBaoHiem } from "../modules/phan-he-vien-phi-bao-hiem/PhanHeVienPhiBaoHiem";
 import { HomePage } from "../pages/Homepage/HomePage";
 import { MenuTestPage } from "../pages/MenuTestPage";
 import { DashboardWrapper } from "../pages/dashboard/DashboardWrapper";
@@ -23,7 +22,6 @@ const PrivateRoutes = () => {
         <Route path="/*" element={<Navigate to="/ds-tiep-don" />} />
         <Route path="dashboard" element={<DashboardWrapper />} />
         <Route path="menu-test" element={<MenuTestPage />} />
-        <Route path="fee-and-insurance" element={<PhanHeVienPhiBaoHiem />} />
         <Route path="/ds-tiep-don" element={<PhanHeTiepDon />} />
         {/* Lazy Modules */}
         <Route path="crafted/pages/profile/*" element={<SuspensedView></SuspensedView>} />

@@ -16,9 +16,10 @@ const ScreenLoader: FC = () => {
               />
             </filter>
           </defs>
-          <circle id="spinner" cx="50" cy="50" r="45"/>
+          <circle id="spinner" cx="50" cy="50" r="45" />
         </svg>
       </div>
+        <p className="name-loading">Đang tải...</p>
     </div>
   )
 }

@@ -14,6 +14,7 @@ import { PhanHeTiepDonContext } from "../../PhanHeTiepDonContext";
 import TextGroup from "../../../component/TextGroup";
 import { GIOI_TINH } from "../../models/DSBenhNhanKhamBenhModels";
 import { formatDate } from "../../../utils/FormatUtils";
+import { danhSachTabTiepDon } from "../../const/PhanHeTiepDonConst";
 
 export type KhamBenh = {
     thongTinKhamBenh?: any;
@@ -185,7 +186,7 @@ export const ThongTinKhamBenh = () => {
             </Form>
             <div className="flex flex-center pt-6 pb-3 box_shadow-93">
                 <Button className="btn-navy mr-5 w-50px" onClick={handleSubmit}>Lưu</Button>
-                <Button className="btn-navy mr-5 w-110px">Chỉ định CLS</Button>
+                <Button className="btn-navy mr-5 " onClick={() => handleAddTab(danhSachTabTiepDon[5].eventKey)}>Chỉ định dịch vụ</Button>
                 <Button className="btn-navy mr-5 w-100px">Thuốc</Button>
                 <Button className="btn-navy mr-5 w-90px">Bệnh án</Button>
                 <Button className="btn-navy mr-5 w-90px">Phiếu thu</Button>

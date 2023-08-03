@@ -1,4 +1,5 @@
 import { KEY_DS_TAB_TIEP_DON } from "../../utils/Constant";
+import ChiDinhDichVu from "../component/chi-dinh-cls/ChiDinhDV";
 import DsKhamTraiNgay from "../component/ds-kham-trai-ngay/DsKhamTraiNgay";
 import { KetQuaCLS } from "../component/ket-qua-cls/KetQuaCLS";
 import ThongTinKhamBenh from "../component/model-kham-benh/ThongTinKhamBenh";
@@ -57,6 +58,11 @@ export const danhSachTabTiepDon = [
         eventKey: "4",
         title: "Thông tin khám bệnh",
         component: <ThongTinKhamBenh />
+    },
+    {
+        eventKey: "5",
+        title: "Chỉ định dịch vụ",
+        component: <ChiDinhDichVu />
     }
 ]
 
