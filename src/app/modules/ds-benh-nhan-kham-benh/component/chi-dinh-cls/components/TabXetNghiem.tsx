@@ -5,7 +5,7 @@ import TableCollapseCustom from "../../../../component/table-collapse-custom/Tab
 import { getDSNhomDichVu } from "../../../service/ChiDinhDVService";
 import { iDSTabDichVu, iGroupDichVu } from "../../../models/ChiDinhDVModel";
 interface XetNghiem {
-  item: any;
+  item: iDSTabDichVu;
   selectData: (data: any) => void;
   handleChangeSelect: (data: iGroupDichVu, item: iDSTabDichVu) => void;
 }
@@ -36,7 +36,6 @@ const TabXetNghiem: FC<XetNghiem> = ({ ...props }) => {
         minWidth: 100,
       }
     },
-    
   ]
 
   const handleSearchObject = (data: any) => {

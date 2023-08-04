@@ -1,12 +1,12 @@
 import React, { FC, memo } from 'react';
 import { Row } from 'react-bootstrap';
 import TableCustom from '../../../../component/table-custom-v3/TableCustom';
-import TextGroup from '../../../../component/TextGroup';
 import { handleSum } from '../../../../utils/FormatUtils';
+import TextGroup from '../../../../component/TextGroup';
 import { iDSDVChiDinhProps } from '../../../models/ChiDinhDVModel';
 
-const DanhSachDichVuChiDinh: FC<iDSDVChiDinhProps> = ({ ...props }) => {
-    let { columns, data ,handleSum} = props;
+const DanhSachDichDaVuChiDinh: FC<iDSDVChiDinhProps> = ({ ...props }) => {
+    let { columns, data, handleSum } = props;
 
     return (
         <div>
@@ -30,4 +30,4 @@ const DanhSachDichVuChiDinh: FC<iDSDVChiDinhProps> = ({ ...props }) => {
     )
 };
 
-export default memo(DanhSachDichVuChiDinh);
+export default memo(DanhSachDichDaVuChiDinh);

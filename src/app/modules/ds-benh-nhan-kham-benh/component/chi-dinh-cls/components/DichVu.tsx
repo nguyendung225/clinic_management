@@ -1,125 +1,181 @@
-import React, { ChangeEvent, FC, useCallback, useContext, useEffect, useState } from "react";
-import { Row, Tab, Tabs } from "react-bootstrap";
+import React, { ChangeEvent, FC, useCallback, useContext, useState } from "react";
+import { ButtonToolbar, OverlayTrigger, Row, Tab, Tabs, Tooltip } from "react-bootstrap";
 import DanhSachDichVuChiDinh from "./DSDichVuChiDinh";
+import DanhSachDichDaVuChiDinh from "./DSDichVuDaChiDinh";
 import { ConfirmDialog } from "../../../../component/ConfirmDialog";
-import { CODE } from "../../../const/ChiDinhDVConst";
 import { ChiDinhDVContext } from "./ContextChiDinhDV";
 import { PhanHeTiepDonContext } from "../../../PhanHeTiepDonContext";
 import TextGroup from "../../../../component/TextGroup";
 import { formatDateToString } from "../../../../utils/FormatUtils";
+import { Autocomplete } from "../../../../component/Autocomplete";
+import { getPhongThucHien, updateDSChiDinhDV } from "../../../service/ChiDinhDVService";
+import { iDichVuChiDinh } from "../../../models/ChiDinhDVModel";
+import { KEY_TAB_DICH_VU } from "../../../const/ChiDinhDVConst";
 
-const DichVu: FC = () => {
+interface DichVu {
+    checkGroup: (dichVu: iDichVuChiDinh | null) => void;
+    getDataBenhNhan: () => void;
+}
+
+const DichVu: FC<DichVu> = ({ checkGroup, getDataBenhNhan }) => {
+    let { dataDichVu, setDataDichVu, benhNhan } = useContext(ChiDinhDVContext);
     const { benhNhanInfo } = useContext(PhanHeTiepDonContext);
     const [activeTab, setActiveTab] = useState<string>("0");
+    const [isTabDaChiDinh, setIsTabDaChiDinh] = useState<boolean | undefined>(false);
     const [shouldOpenConfirmDialog, setShouldOpenConfirmDialog] = useState<boolean>(false)
-    const [dichVu, setDichVu] = useState<any>()
-    const [tongChiPhi, setTongChiPhi] = useState<any>()
-
-    let {
-        dataDichVu,
-        setDataDichVu,
-        dataXetNghiem,
-        dataCDHA,
-        dataTDCN,
-        dataPT,
-        dataTT,
-        setDataXetNghiem,
-        setDataCDHA,
-        setDataTDCN,
-        setDataPT,
-        setDataTT
-    } = useContext(ChiDinhDVContext);
+    const [dichVu, setDichVu] = useState<iDichVuChiDinh | null>(null);
 
     const handleTabSelect: (eventKey: string | null) => void = (eventKey) => {
         if (eventKey) {
             setActiveTab(eventKey);
+            setIsTabDaChiDinh(eventKey === KEY_TAB_DICH_VU.DA_CHI_DINH_DV)
         }
     };
-    const handleConfirmDialog = () => {
-        if (dataDichVu?.length > 0) {
-            let updateDataDichVu = dataDichVu.filter((item: any) => item?.id !== dichVu?.id)
+    const handleConfirmDialog = async () => {
+        if (benhNhan?.id && isTabDaChiDinh) {
+            let dichVus = benhNhan?.dichVus.filter((dv: iDichVuChiDinh) => dv?.id !== dichVu?.id)
+            benhNhan.dichVus = dichVus
+            await updateDSChiDinhDV(benhNhan, benhNhan?.id)
+            getDataBenhNhan();
+        } else {
+            let updateDataDichVu = dataDichVu.filter((item: iDichVuChiDinh) => item?.id !== dichVu?.id)
             checkGroup(dichVu);
             setDataDichVu(updateDataDichVu)
-            handleClose();
         }
+        handleClose();
     }
-
-    const checkGroup = (dichVu: any) => {
-        const isChecked = false;
-        switch (dichVu?.parentCode) {
-            case CODE.XET_NGHIEM:
-                let updateDataXetNghiem = updateCheckedStatus(dataXetNghiem, dichVu?.id, isChecked)
-                setDataXetNghiem(updateDataXetNghiem)
-                break;
-            case CODE.CDHA:
-                let updateDataCDHA = updateCheckedStatus(dataCDHA, dichVu?.id, isChecked)
-                setDataCDHA(updateDataCDHA)
-                break;
-            case CODE.TDCN:
-                let updateDataTDCN = updateCheckedStatus(dataTDCN, dichVu?.id, isChecked)
-                setDataTDCN(updateDataTDCN)
-                break;
-            case CODE.PT:
-                let updateDataPT = updateCheckedStatus(dataPT, dichVu?.id, isChecked)
-                setDataPT(updateDataPT)
-                break;
-            case CODE.TT:
-                let updateDataTT = updateCheckedStatus(dataTT, dichVu?.id, isChecked)
-                setDataTT(updateDataTT)
-                break;
-        }
-    }
-
-    const updateCheckedStatus = (
-        data: any[],
-        id: number | undefined,
-        isChecked: boolean
-    ): any[] => {
-        let updateData:any = (data?.length > 0) && data.map((item) => {
-            if (item?.id === id) {
-                return { ...item, isChecked };
-            } else if (item.services && item.services.length > 0) {
-                return {
-                    ...item,
-                    services: updateCheckedStatus(item.services, id, isChecked),
-                };
-            }
-            return item;
-        });
-
-        return updateData;
-    };
 
     const handleClose = () => {
         setShouldOpenConfirmDialog(false)
         setDichVu(null)
     }
 
-    const handleDelete = (data: any) => {
+    const handleDelete = (data: iDichVuChiDinh) => {
         setShouldOpenConfirmDialog(true)
         setDichVu(data)
     }
 
     const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>, index: number) => {
-        const newData = [...dataDichVu];
+        const newData: any = [...dataDichVu];
         newData[index][e.target.name] = e.target.value;
         setDataDichVu(newData);
     }, [dataDichVu]);
 
     const handleChangeSelect = (option: any, index: number) => {
-        dataDichVu[index].departmentName = option?.name
-        dataDichVu[index].departmentId = option?.id
-        setDataDichVu(dataDichVu)
+        const newData: any = [...dataDichVu];
+        newData[index].departmentName = option?.name
+        newData[index].departmentId = option?.id
+        setDataDichVu(newData)
     }
 
-    useEffect(() => {
-        handleTotalPrice()
-    }, [dataDichVu.length])
-
-    const handleTotalPrice = () => {
-        const sum = dataDichVu.reduce((accumulator: number, dichVu: any) => accumulator + Number(dichVu?.servicePrice), 0)
-        setTongChiPhi(sum)
+    const handleSum = (array: any) => {
+        return array?.length > 0 ? array.reduce((accumulator: number, dichVu: any) => accumulator + (Number(dichVu?.servicePrice) * Number(dichVu?.quantity)), 0) : 0;
     }
+
+    const columns = [
+        {
+            name: 'STT',
+            field: '',
+            headerStyle: {
+                width: 50,
+            },
+            cellStyle: {
+                textAlign: "center"
+            },
+            render: (rowData: iDichVuChiDinh, index: number) => (index + 1),
+        },
+        {
+            name: 'Thao tác',
+            field: '',
+            headerStyle: {
+                width: 100,
+            },
+            cellStyle: {
+                textAlign: "center"
+            },
+            render: (rowData: iDichVuChiDinh, index: number) => (
+                <ButtonToolbar className='flex-center' >
+                    <OverlayTrigger
+                        placement="top"
+                        delay={150}
+                        overlay={
+                            <Tooltip id="tooltip" className="in">
+                                <b className="fs-7">Xóa</b>
+                            </Tooltip>
+                        }
+                    >
+                        <div onClick={() => handleDelete(rowData)}>
+                            <i className="fa-solid fa-trash text-danger fs-4 cursor-pointer" />
+                        </div>
+                    </OverlayTrigger>
+                </ButtonToolbar >
+            ),
+        },
+        {
+            name: 'Tên dịch vụ',
+            field: 'conceptAnswerName',
+            sorting: true,
+            headerStyle: {
+                minWidth: 80,
+            }
+        },
+        {
+            name: 'SL',
+            field: 'quantity',
+            headerStyle: {
+                width: 60,
+            },
+            cellStyle: {
+                textAlign: "center"
+            },
+            render: (rowData: iDichVuChiDinh, index: number) => (
+                <input
+                    className={"form-control customs-input w-100 px-1 text-center no-spinners"}
+                    value={rowData?.quantity || ""}
+                    type='number'
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e, index)}
+                    name="quantity"
+                    disabled={isTabDaChiDinh}
+                />
+            ),
+        },
+        {
+            name: 'Loại MBP',
+            field: 'loaiMBP',
+            headerStyle: {
+                width: 100,
+            },
+            render: (rowData: iDichVuChiDinh, index: number) => (
+                <input
+                    className={"form-control customs-input w-100 px-2 text-center no-spinners"}
+                    value={rowData?.loaiMBP || ""}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e, index)}
+                    name="loaiMBP"
+                    disabled={isTabDaChiDinh}
+                />
+            ),
+        },
+        {
+            name: 'Phòng thực hiện',
+            field: 'departmentName',
+            headerStyle: {
+                width: 200,
+            },
+            render: (rowData: iDichVuChiDinh, index: number) => (
+                <Autocomplete
+                    options={[]}
+                    onChange={(option) => handleChangeSelect(option, index)}
+                    value={rowData?.departmentName || ""}
+                    searchFunction={getPhongThucHien}
+                    searchObject={{}}
+                    urlData="data.data.content"
+                    displayLable="name"
+                    menuPortalTarget={document.body}
+                    isDisabled={isTabDaChiDinh}
+                />
+            ),
+        },
+    ]
 
     return (
         <div>
@@ -185,33 +241,30 @@ const DichVu: FC = () => {
             </div>
             <div>
                 <Tabs className="customs-tabs tabXetNghiem" fill justify activeKey={activeTab} onSelect={handleTabSelect}>
-                    <Tab eventKey={"0"} title="Danh sách dich vụ chỉ định">
-                        <div className="mt-4 z-index-2">
+                    <Tab eventKey={KEY_TAB_DICH_VU.CHI_DINH_DV} title="Danh sách dich vụ chỉ định">
+                        <div className="mt-4">
                             <DanhSachDichVuChiDinh
                                 data={dataDichVu}
-                                handleDelete={handleDelete}
-                                handleChange={handleChange}
-                                handleChangeSelect={handleChangeSelect}
+                                benhNhanInfo={benhNhanInfo}
+                                columns={columns}
+                                handleSum={handleSum}
                             />
                         </div>
                     </Tab>
-                    <Tab eventKey={"1"} title="Danh sách dịch  vụ đã chỉ định">
-
+                    <Tab eventKey={KEY_TAB_DICH_VU.DA_CHI_DINH_DV} title="Danh sách dịch  vụ đã chỉ định">
+                        <div className="mt-4">
+                            <DanhSachDichDaVuChiDinh
+                                data={benhNhan?.dichVus}
+                                benhNhanInfo={benhNhanInfo}
+                                columns={columns}
+                                active={isTabDaChiDinh}
+                                handleSum={handleSum}
+                            />
+                        </div>
                     </Tab>
                 </Tabs>
             </div>
 
-            <div className="spaces p-16">
-                <Row className="spaces py-5">
-                    <TextGroup
-                        className='spaces pr-0 py-4'
-                        sx={12}
-                        sm={4}
-                        label="Tổng chi phí"
-                        value={tongChiPhi}
-                    />
-                </Row>
-            </div>
             {
                 shouldOpenConfirmDialog &&
                 <ConfirmDialog
