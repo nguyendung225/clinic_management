@@ -1,0 +1,54 @@
+.he-thong-tab {
+    // margin-top: 46px;
+    height: calc(100vh - 116px);
+}
+.cau-hinh-dat-hen {
+    padding: 24px 12px 18px 12px;
+    height: calc(100vh - 150px);
+}
+.h-calc-150px {
+    height: calc(100% - 150px);
+}
+.h-calc-416px {
+    height: calc(100% - 416px);
+}
+.min-h-180px {
+    min-height: 180px;
+}
+.cau-hinh-container-bottom {
+    display: flex;
+    gap: 24px;
+    margin:24px 0;
+    .card-body {
+        height: 100%;
+    }
+}
+.h-table-dat-hen {
+    height: calc(100% - 30px);
+}
+.min-w-75 {
+    min-width: 75px;
+}
+.pb-18px {
+    padding-bottom: 18px;
+}
+.flex-between {
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+}
+.cell-padding{
+    padding: 8px 24px;
+}
+.modal-sku {
+    margin: auto;
+}
+.max-h-320px{
+    max-height: 320px;
+}
+.max-h-120px{
+    max-height: 120px;
+}
+.tableHenKham {
+
+}

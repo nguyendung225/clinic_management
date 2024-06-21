@@ -1,0 +1,10 @@
+.bg-pri {
+  background-color: #68a3ce !important;
+  color: white;
+  &:hover {
+    background-color: #5ca5da;
+  }
+}
+.text-pri {
+  color: #68a3ce !important;
+}

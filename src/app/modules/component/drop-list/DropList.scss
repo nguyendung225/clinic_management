@@ -1,0 +1,36 @@
+.drop-list-container {
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    // max-height: 426px;
+    // overflow: auto;
+
+    .drop-list-item {
+        &::before{
+            content: "";
+            height: 28px;
+            width: 20px;
+            position: absolute;
+            left: -8px;
+        }
+        color: #000;
+        .show-children {
+            display: none;
+        }
+
+        &:hover {
+            background-color: #17a2b8;
+            color: #fff;
+            cursor: pointer;
+            &>.show-children {
+                display: block;
+            }
+        }
+    }
+
+    .child-drop-list {
+        position: absolute;
+        width: 100%;
+        right: calc(-100% - 1px);
+    }
+
+}

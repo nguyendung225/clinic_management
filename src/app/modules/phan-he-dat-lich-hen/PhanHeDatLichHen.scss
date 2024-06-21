@@ -1,0 +1,103 @@
+.flex {
+  &-1 {
+    flex: 1;
+  }
+  &-2 {
+    flex: 2;
+  }
+}
+.gio {
+  top: 3px;
+  right: 6px;
+}
+
+.tabHenKham {
+  background-color: white !important;
+  height: 100%;
+  padding: 0 8px 8px 8px;
+
+  .tab-content {
+    height: calc(100% - 46px);
+
+    .tab {
+      height: 100%;
+    }
+  }
+  .receive {
+    .tab-content {
+      height: calc(100% - 46px);
+
+      .tab {
+        height: 100%;
+      }
+      .tab-pane {
+        height: 100%;
+      }
+      .tableHenKham {
+        height: 100%;
+        margin-top: 10px;
+        .card-body {
+          height: 100%;
+        }
+      }
+    }
+  }
+}
+.h-dich-vu {
+  height: calc(100% - 410px);
+}
+
+.h-ds-hen-kham {
+  height: calc(100vh - 245px);
+}
+
+.text-yellow {
+  color: yellowgreen !important;
+}
+.text-pink {
+  color: rgb(202, 10, 87) !important;
+}
+.top-6px {
+  top: 6px !important;
+}
+.top-5px {
+  top: 5px !important;
+}
+.top-30px {
+  top: 30px !important;
+}
+.top-n6 {
+  top: -6px !important;
+}
+.h-hen-kham {
+  height: calc(100vh - 110px);
+}
+
+.timKiemBenhNhanHenKham {
+  .table-scroll {
+    max-height: calc(100vh - 285px);
+  }
+}
+hr {
+ color: rgb(207, 213, 222);
+}
+
+.end-n7 {
+  right: -7px;
+}
+.min-width {
+  &-150{
+    min-width: 150px;
+  }
+}
+.min-height-62px {
+  min-height: 62px !important;
+}
+
+.min-height-100px {
+  min-height: 100px !important;
+}
+
+.min-height-118px {
+  min-height: 118px !important;
+}

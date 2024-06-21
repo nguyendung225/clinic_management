@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Col, Row } from 'react-bootstrap'
 import { Autocomplete } from './Autocomplete';
-import { trangThaiKhamOptions } from '../ds-benh-nhan-kham-benh/const/PhanHeTiepDonConst';
 
 type ISearch = {
     pin?: string;
@@ -9,10 +8,11 @@ type ISearch = {
 }
 
 type Props = {
-    handleSearch: (objSearch: any) => void
+    handleSearch: (objSearch: any) => void;
+    statusOption?: any[];
 }
 
-export const SearchAdvanced:React.FC<Props> = ({handleSearch}) => {
+export const SearchAdvanced:React.FC<Props> = ({handleSearch, statusOption}) => {
     const [searchParams, setSearchParams] = useState<ISearch>({})
 
     const handleChange = (e: any) => {
@@ -79,7 +79,7 @@ export const SearchAdvanced:React.FC<Props> = ({handleSearch}) => {
                 name='status'
                 onChange={handleChangeStatus}
                 className='customs-input'
-                options={trangThaiKhamOptions}
+                options={statusOption || []}
               />
             </div>
           </Col>

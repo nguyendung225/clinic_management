@@ -58,21 +58,45 @@ export function getUserByToken(token: string) {
   }
 }
 
+// export const sendTokenRequest = async (code: string) => {
+//   const body = [];
+//   body.push(`client_id=${process.env.REACT_APP_SSO_CLIENT_ID_SHELL}`);
+//   body.push(`client_secret=${process.env.REACT_APP_SSO_CLIENT_SECRET_SHELL}`);
+//   body.push(`code=${code}`);
+//   body.push(`grant_type=${process.env.REACT_APP_SSO_GRANT_TYPE}`);
+//   body.push(`redirect_uri=${process.env.REACT_APP_SSO_REDIRECT_URI_SHELL}`);
+
+//   const { data: auth } = await axios.post<AuthModel>(`${process.env.REACT_APP_SSO_TOKEN_ENDPOINT}`, body.join("&"), getTokenRequestHeaders())
+//   return auth;
+// };
+
+// const getTokenRequestHeaders = () => {
+//   return {
+//     headers: {
+//       "Accept": "application/json",
+//       "Access-Control-Allow-Origin": `${process.env.REACT_APP_SSO_CLIENT_URL}`,
+//       "Content-Type": "application/x-www-form-urlencoded"
+//     }
+//   };
+// };
+
 export const sendTokenRequest = async (code: string) => {
   const body = [];
-  body.push(`client_id=${process.env.REACT_APP_SSO_CLIENT_ID_CLINICAL}`);
-  body.push(`client_secret=${process.env.REACT_APP_SSO_CLIENT_SECRET_CLINICAL}`);
   body.push(`code=${code}`);
   body.push(`grant_type=${process.env.REACT_APP_SSO_GRANT_TYPE}`);
-  body.push(`redirect_uri=${process.env.REACT_APP_SSO_REDIRECT_URI_CLINICAL}`);
+  body.push(`redirect_uri=${process.env.REACT_APP_SSO_REDIRECT_URI_SHELL}`);
 
   const { data: auth } = await axios.post<AuthModel>(`${process.env.REACT_APP_SSO_TOKEN_ENDPOINT}`, body.join("&"), getTokenRequestHeaders())
   return auth;
 };
 
 const getTokenRequestHeaders = () => {
+  let client_id = `${process.env.REACT_APP_SSO_CLIENT_ID_SHELL}`;
+  let secret = `${process.env.REACT_APP_SSO_CLIENT_SECRET_SHELL}`;
+  let base64Token = 'Basic ' + btoa(client_id + ':' + secret);
   return {
     headers: {
+      "Authorization": base64Token,
       "Accept": "application/json",
       "Access-Control-Allow-Origin": `${process.env.REACT_APP_SSO_CLIENT_URL}`,
       "Content-Type": "application/x-www-form-urlencoded"

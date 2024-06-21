@@ -1,0 +1,55 @@
+.disable-option {
+    display: none;
+}
+
+.tab__dmnv {
+    position: relative;
+
+    &>button {
+        position: absolute;
+        top: 24px;
+        z-index: 1;
+    }
+
+}
+
+.input__password {
+    position: relative;
+    color: red !important;
+
+    input {
+        padding-right: 35px;
+    }
+
+    div {
+        &:hover {
+            cursor: pointer;
+        }
+
+        i {
+            font-size: 1.4rem;
+            padding: 8px;
+            right: 2px;
+            top: 23px;
+            position: absolute;
+        }
+    }
+}
+
+.form-check-user__dmvn {
+    .form-check {
+        display: flex;
+        align-items: center;
+        
+        input,
+        label {
+            font-size: 1.05rem;
+            font-weight: bold;
+            padding: 8px;
+            
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}

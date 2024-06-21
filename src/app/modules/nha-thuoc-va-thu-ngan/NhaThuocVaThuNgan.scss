@@ -1,0 +1,94 @@
+.nha-thuoc-thu-ngan-container {
+
+    .nha-thuoc-thu-ngan-menu {
+        background: white;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 10px;
+    }
+
+    .nha-thuoc-thu-ngan-content {
+        display: flex;
+        margin-top: 3px;
+        height: calc(100vh - 105px);
+
+        .form-phieu {
+            padding: 10px;
+
+            .form-field {
+                display: flex;
+                align-items: center;
+            }
+        }
+
+        .thong-tin-thu-ngan {
+            display: flex;
+            padding: 10px;
+            background-color: white;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .ds-lich-su-phieu {
+            margin-top: 6px;
+            padding: 10px;
+            padding-bottom: 4px;
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 10px;
+            overflow-x: scroll;
+
+            .phieu-item {
+                cursor: pointer;
+                user-select: none;
+                border: 1px #1A5E83 solid;
+                border-radius: 4px;
+                padding: 4px 8px;
+                color: #1A5E83;
+
+                &.refund {
+                    border: 1px solid #f1416c;
+                    color: #f1416c;
+                }
+
+                &.active {
+                    background-color: #17A2B8;
+                    color: white !important;
+                    border: none;
+                }
+
+                &.active-refund {
+                    background-color: #f1416c;
+                    color: white !important;
+                    border: none;
+                }
+
+
+                .item-date {
+                    font-weight: 600;
+                    text-align: center;
+                }
+
+                .item-type {
+                    font-weight: 400;
+                    white-space: nowrap;
+                }
+            }
+        }
+
+    }
+
+
+}
+
+.table-chi-tiet-phieu {
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.sua-phieu-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 4px;
+}

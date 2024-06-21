@@ -1,3 +1,4 @@
+@import "variable";
 .heading-1 {
   font-style: normal;
   font-weight: 700;
@@ -38,7 +39,7 @@
 .supertitle {
   font-style: normal;
   font-weight: 400;
-  font-size: 14px;
+  font-size: $default-font-size;
   line-height: 120%;
   /* identical to box height, or 17px */
 
@@ -63,7 +64,7 @@
 .body-normal-1 {
   font-style: normal;
   font-weight: 400;
-  font-size: 14px;
+  font-size: $default-font-size;
   line-height: 145%;
 }
 
@@ -84,7 +85,7 @@
 .body-bold-1 {
   font-style: normal;
   font-weight: 700;
-  font-size: 14px;
+  font-size: $default-font-size;
   line-height: 145%;
 }
 

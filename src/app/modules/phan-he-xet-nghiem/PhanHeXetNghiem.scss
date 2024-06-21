@@ -1,0 +1,18 @@
+@import "../styles/variable";
+
+.title-dialog-color {
+    color: $color-teal-navy-blue
+}
+.h-calc-vh-150px {
+    height: calc(100vh - 150px);
+}
+
+.tab-xet-nghiem {
+    .table-xet-nghiem {
+        height: calc(100% - 220px) !important;
+    }
+}
+
+.table-lay-mau-benh-pham {
+    height: calc(100% - 181px) !important;
+}

@@ -28,24 +28,23 @@ const ListInput = ({ ...props }) => {
             md={md ? md : null}
             sm={sm ? sm : null}
             sx={sx ? sx : null}
-            className={`py-2 px-4 ${props?.className ? props?.className : ""}`}
+            className={`py-1 px-4 ${props?.className ? props?.className : ""}`}
         >
             <Row>
-                <Form.Group className={`
-                    ${checkLayout(layout) ? "d-flex align-items-center" : ""}
-                `}>
+                <Form.Group className={`${checkLayout(layout) ? "d-flex align-items-center" : "p-0"}`}>
                     <Col
                         xl={widthLable ? widthLable : null}
                         lg={widthLable ? widthLable : null}
                         md={widthLable ? widthLable : null}
                         sm={widthLable ? widthLable : null}
                         sx={widthLable ? widthLable : null}
+                        className="p-0"
                     >
-                        <FormLabel className={`${checkLayout(layout) ? "mb-0" : ""}`}>
+                        <FormLabel className={`${checkLayout(layout) ? "mb-0" : "m-0"}`}>
                             <span>{props?.itemData?.name} </span>
                         </FormLabel>
                     </Col>
-                    <Col className="d-flex align-items-center">
+                    <Col className="d-flex align-items-center p-0">
                         {listInput?.length > 0 && listInput?.map((item: iChildren, index: number) => {
                             return (
                                 <>

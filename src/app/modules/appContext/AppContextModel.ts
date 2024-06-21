@@ -10,7 +10,7 @@ export interface ItemBreakCrumb {
 }
 
 export interface tab {
-    eventKey: string;
+    eventKey?: string;
     title: string;
     component: React.ReactNode;
 }

@@ -49,7 +49,7 @@
 	tfoot,
 	tbody {
 		tr:last-child {
-			border-bottom: 0 !important;
+			border-bottom: 0;
 
 			th, td {
 				border-bottom: 0 !important;
@@ -96,7 +96,7 @@
 	&.table-row-dashed {
 		tr {
 			border-bottom-width: 1px;
-			border-bottom-style: dashed;
+			border-bottom-style: solid;
 			border-bottom-color: var(--kt-border-color);
 		}
 

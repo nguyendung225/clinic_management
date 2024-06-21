@@ -1,0 +1,247 @@
+@import "../../../modules/styles/_variable.scss";
+
+.tabs {
+  .nav-link {
+    background-color: #ffffff;
+    border: none;
+    color: #aaaaba;
+    padding: 3px 8px !important;
+    min-width: 100px;
+    text-align: center;
+    font-size: $default-font-size;
+    &.active {
+      background: white;
+      color: $color-text-cyan !important;
+      font-weight: 700;
+      position: relative;
+
+      i {
+          color: #ececec;
+
+          &:hover {
+              color: #AAAABA;
+          }
+      }
+       .label {
+          span {
+              font-size: $default-font-size;
+              position: relative;
+              &::after {
+              content: "";
+              position: absolute;
+              width: 100%;
+              height: 2px;
+              top: 26px;
+              background: var(--color-primary);
+              left: 50%;
+              transform: translate(-50%, -50%);
+          }
+          }
+          
+       }   
+  }
+  }
+}
+.bg-cyan {
+  background-color: #E9F1F0;
+}
+.thanh-toan-loc {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  .dropdown-toggle {
+    &:after {
+      display: none;
+    }
+  }
+  .dropdown-menu.show {
+    z-index: 1001;
+    width: 330px;
+    top: 20px;
+    left: auto;
+  }
+}
+
+.table-box-shadow {
+  box-shadow: 1px 1px 8px #eeeded;
+}
+
+.hide-scroll {
+  overflow: auto;
+  overflow: -moz-scrollbars-none;
+  -ms-overflow-style: none;
+}
+
+.table::-webkit-scrollbar {
+  width: 2 !important;
+  display: none;
+}
+.custom-checkbox {
+  height: 1.25rem;
+  width: 1.25rem;
+  border-radius: 0.25em !important;
+  margin-top: 2px;
+}
+.check-box-grey {
+  border: 1px solid #A9A9A9;
+}
+#form-thanh-toan {
+  .label-form {
+    font-size: 1.05rem;
+    font-weight: 500;
+  }
+}
+.info-patient {
+  background-color: #FBF1F1;
+  padding: 16px !important;
+}
+.custom-select {
+  -webkit-box-align: center;
+  align-items: center;
+  cursor: default;
+  display: flex;
+  flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  min-height: 26px;
+  position: relative;
+  transition: all 100ms ease 0s;
+  border-color: rgb(169, 169, 169);
+  border-radius: 0.475rem;
+  border-style: solid;
+  border-width: 1px;
+  box-shadow: none;
+  box-sizing: border-box;
+  background: rgb(255, 255, 255);
+  height: 26px;
+  padding: 0px 8px;
+  outline: 0px !important;
+}
+.mt-7px {
+  margin-top: 7px;
+}
+.mt-22 {
+  margin-top: 22px;
+}
+.h {
+  &-26 {
+    height: 26px;
+  }
+  &-72 {
+    height: 72px;
+  }
+  &-240 {
+    max-height: 240px;
+  }
+  &-268 {
+    height: 232px!important;
+  }
+}
+.w {
+  &-35 {
+    width: 35px;
+  }
+  &-48 {
+    width: 48px;
+  }
+  &-74 {
+    width: 74px;
+  }
+  &-85 {
+    width: 85px;
+  }
+  &-135 {
+    width: 135px;
+  }
+  &-145 {
+    width: 145px;
+  }
+}
+.min-w-106px{
+  min-width: 106px;
+}
+.fw-500 {
+  font-weight: 500;
+}
+.fw-600 {
+  font-weight: 600;
+}
+.text-thanh-toan{
+  width: 100%;
+  font-weight: 600;
+  color: #006D75;
+    &>span{
+      &+div{
+        &>div{
+          &>div:first-child{
+              color: #006D75;
+          }
+        }
+      }
+    }
+}
+
+.h-fit {
+  height: fit-content !important;
+}
+
+.w-340px {
+  width: 340px !important;
+  top: 35px;
+  right: 10px;
+}
+
+.h-form-thanh-toan {
+  height: calc(100vh - 176px);
+}
+.h-bang-ds-bn {
+  height: calc(100vh - 195px);
+}
+.h-264px {
+  height: 264px;
+}
+
+.h-thanh-toan-dich-vu {
+  height: calc(100% - 257px);
+}
+.h-30 {
+  height: 30%;
+}
+.tab-dich-vu {
+  background-color: white !important;
+  .tab-content {
+      height: calc(100% - 30px);
+  }
+  .tab {
+    height: 100%;
+  }
+  .customs-tabs {
+    padding-left: 0 !important;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .w-input {
+    width: 200px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .w-input {
+    width: 150px;
+  }
+}
+.accordion-button::after {
+  margin-left: 0 !important;
+  order: -1 !important;
+}
+.table-dich-vu {
+  height: 100%;
+}
+.h-calc-20px {
+  height: calc(100% - 20px);
+}
+
+.h-table-chi-tiet-dich-vu {
+  height: calc(100vh - 358px);
+}

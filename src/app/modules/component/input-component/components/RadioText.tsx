@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { Col, Form } from "react-bootstrap";
 import { iChildren } from "../models/inputModel";
 
@@ -23,6 +23,10 @@ const RadioText = ({ ...props }) => {
         }
     }
 
+    useEffect(() => {
+        setFormDataRadio(props?.itemData?.children);
+    }, [props?.itemData])
+
     return (
         <Col sm={12} className={`p-4 ${props?.className ? props?.className : ""}`}>
             {formDataRadio?.length > 0 &&
@@ -35,6 +39,7 @@ const RadioText = ({ ...props }) => {
                                     {...props}
                                     className={`customs-form-check__radio spaces m-5`}
                                     type={"radio"}
+                                    id={itemRadio?.name ?? ""}
                                     label={itemRadio?.name ?? ""}
                                     name={props.itemData?.name ?? ""}
                                     checked={indexItem === index}
@@ -47,8 +52,10 @@ const RadioText = ({ ...props }) => {
                         <Form.Control
                             className="mt-2"
                             as='textarea'
+                            name={indexItem !== undefined ? formDataRadio[indexItem]?.name || "" : ""}
                             value={indexItem !== undefined ? formDataRadio[indexItem]?.value || "" : ""}
-                            disabled={indexItem !== undefined ? false : true}
+                            readOnly={props?.readOnlyText ? props?.readOnlyText : false}
+                            disabled={props?.disabledText ? props?.disabledText : indexItem !== undefined ? false : true}
                             onChange={handleChangeInput}
                         />
                     </div>

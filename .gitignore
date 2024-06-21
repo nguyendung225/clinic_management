@@ -4,6 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
+/.history
 
 # testing
 /coverage
@@ -31,3 +32,4 @@ yarn.lock
 *.njsproj
 *.sln
 *.sw?
+db.json

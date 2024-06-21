@@ -1,72 +1,135 @@
+//@ts-nocheck
 import "../../../../../app/modules/styles/index.scss"
 import { MenuItem } from './MenuItem';
 import { MenuInnerWithSub } from './MenuInnerWithSub';
-import { useContext } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { AppContext } from '../../../../../app/modules/appContext/AppContext';
 import { MenuTab } from './MenuTab';
 import { localStorageItem } from '../../../../../app/modules/utils/LocalStorage';
+import { useLocation } from "react-router-dom";
+import { checkIsActive } from "../../../../helpers";
 export function MenuInner() {
   const { DSMenu, setEventKey } = useContext(AppContext);
+  const [childrenTo, setChildrenTo] = useState<string | undefined>();
+  const [isParentActive, setIsParentActive] = useState<boolean>(false);
+  const { pathname } = useLocation();
 
-  const handleChange = (id: string | undefined, key: string | undefined) => {
+  const handleChange = (id: string | undefined, key: string | undefined, childrenTo: string | undefined) => {
     let data = localStorageItem.get(key) ? localStorageItem.get(key) : [];
     if (!data.includes(id)) {
       data.push(id);
       data.sort((a: string, b: string) => a > b ? 1 : -1);
       localStorageItem.set(key, data)
     }
+    setChildrenTo(childrenTo);
     setEventKey(id)
   }
 
-  const handleRedirect = () => {
-    const redirect_uri = `${process.env.REACT_APP_SSO_AUTHORIZE_ENDPOINT}?response_type=${process.env.REACT_APP_SSO_RESPONSE_TYPE}&scope=${process.env.REACT_APP_SSO_SCOPE}&redirect_uri=${process.env.REACT_APP_SSO_REDIRECT_URI_SHELL}&client_id=${process.env.REACT_APP_SSO_CLIENT_ID_SHELL}`;
-    window.location.href = redirect_uri;
-  }
-
-  return (
-    <div className='d-flex align-items-center gap-1'>
-      <MenuInnerWithSub
-        title=''
-        to='/dasboard'
-        fontIcon='bi-list ms-lg-2'
-        menuPlacement='bottom-start'
-        menuTrigger='click'
-        freeSize
-      >
-        <div className='d-flex justify-content-between'>
-          <div onClick={handleRedirect}>
-            <MenuTab title='' fontIcon='bi-grid-3x3-gap-fill ms-lg-2' to='/dasboard' />
-          </div>
-          <MenuItem title='' fontIcon='bi bi-clipboard-plus' to='/phan-he-tiep-nhan' />
-          <MenuItem title='' fontIcon="bi bi-hospital" to='/ds-tiep-don' />
-          <MenuItem title='' fontIcon="bi bi-hospital-fill" to='/phan-he-noi-tru/tiep-don' />
-          <MenuItem title='' fontIcon='fa-solid fa-vials' to='/test' />
-          <MenuItem title='' fontIcon='bi bi-journal-richtext' to='/cdha-tdcn' />
-          <MenuItem title='' fontIcon='bi bi-scissors' to='/phau-thuat-thu-thuat' />
-          <MenuItem title='' fontIcon='bi bi-credit-card' to='/fee-and-insurance' />
-        </div>
-      </MenuInnerWithSub>
-
-      {DSMenu.length > 0 && DSMenu.map((menu, index) => {
-        return (
-          (menu?.children && menu?.children.length > 0) ?
-            <MenuInnerWithSub
-              title={menu.title}
-              to={menu?.to}
-              menuPlacement='bottom-start'
-              menuTrigger={`{default:'click', lg: 'hover'}`}
-              freeSize
-            >
-              {menu?.children?.map(item =>
-                <div onClick={() => handleChange(item?.id, item?.key)} >
-                  <MenuTab title={item.title} fontIcon={item?.fontIcon} />
-                </div>
-              )}
-            </MenuInnerWithSub>
-            : <MenuItem key={index} title={menu?.title} to={`${menu?.to}`} fontIcon={menu?.fontIcon} />
-        )
-      })
+  useEffect(() => {
+    if (childrenTo) {
+      if (checkIsActive(pathname, childrenTo)) {
+        setIsParentActive(true);
+      } else {
+        setIsParentActive(false);
       }
-    </div>
-  );
+    }
+  }, [pathname, childrenTo])
+
+  const containerRef = useRef(null);
+  const [dragStart, setDragStart] = useState(0);
+  const [scrollStart, setScrollStart] = useState(0);
+
+  const handleMouseDown = (e:any) => {
+    setDragStart(e.clientX);
+    setScrollStart(containerRef?.current.scrollLeft);
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp);
+  };
+
+  const handleMouseMove = (e:any) => {
+    const dragDelta = e.clientX - dragStart;
+    containerRef.current.scrollLeft = scrollStart - dragDelta;
+  };
+  const scrollToLeft = () => {
+    containerRef.current.scrollLeft -= 200;
+  };
+
+  const scrollToRight = () => {
+    containerRef.current.scrollLeft += 200;
+  };
+  
+
+  const handleMouseUp = () => {
+    document.removeEventListener('mousemove', handleMouseMove);
+    document.removeEventListener('mouseup', handleMouseUp);
+  };
+
+    return (
+        <div className="d-flex align-items-center">
+            <div className="d-flex align-items-center">
+                <MenuInnerWithSub
+                    title=''
+                    to='/dashboard'
+                    icon='./media/icons/menu.svg'
+                    menuPlacement='bottom-start'
+                    menuTrigger='click'
+                    freeSize
+                >
+                </MenuInnerWithSub>
+                <i className="bi bi-chevron-bar-left fs-2 cursor-pointer" onClick={scrollToLeft}></i>
+                <div className='header-menu-container' ref={containerRef}
+                    onMouseDown={handleMouseDown}>
+                    {/* <MenuItem
+                        to='/hen-kham'
+                        title={"Đặt lịch hẹn"}
+                    /> */}
+                    <MenuItem
+                        to='/phan-he-tiep-nhan'
+                        title={"Tiếp nhận và Viện phí"}
+                    />
+                    <MenuItem
+                        to='/kham-benh'
+                        title={"Khám bệnh"}
+                    />
+                    <MenuItem
+                        to='/test'
+                        title={"Xét nghiệm"}
+                    />
+                    <MenuItem
+                        to='/cdha-tdcn'
+                        title={"CDHA-TDCN"}
+                    />
+                    <MenuItem
+                        to='/dieu-tri'
+                        title={"Điều trị"}
+                    />
+                    <MenuItem
+                        to='/hanh-chinh'
+                        title={"Hành chính"}
+                    />
+                    {/* <MenuItem
+                        to='/quan-tri-he-thong'
+                        title={"Quản trị hệ thống"}
+                    /> */}
+                    <MenuItem
+                        to='/kho-duoc'
+                        title={"Kho dược"}
+                    />
+                    <MenuItem
+                        to='/kho-vat-tu'
+                        title={"Kho vật tư"}
+                    />
+                    <MenuItem
+                        to='/nha-thuoc-thu-ngan'
+                        title={"Nhà thuốc & Thu ngân"}
+                    />
+                    <MenuItem
+                        to='/chuyen-khoa'
+                        title={"Chuyên khoa"}
+                    />
+                </div>
+            </div>
+            <i className="bi bi-chevron-bar-right fs-2 cursor-pointer" onClick={scrollToRight}></i>
+        </div>
+    );
 }

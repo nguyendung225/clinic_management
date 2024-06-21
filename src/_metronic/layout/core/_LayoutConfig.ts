@@ -23,7 +23,7 @@ export const DefaultConfig: ILayout = {
       display: true,
       default: {
         container: 'fluid',
-        containerClass: 'd-flex align-items-stretch justify-content-between container-xxl',
+        // containerClass: 'd-flex align-items-stretch justify-content-between container-xxl',
         fixed: {
           desktop: true,
           mobile: false,
@@ -105,7 +105,7 @@ export const DefaultConfig: ILayout = {
       componentName: 'footer',
       display: true,
       container: 'fluid',
-      containerClass: 'd-flex flex-column flex-md-row flex-md-stack py-3 container-xxl',
+      containerClass: 'd-flex flex-column flex-md-row flex-md-stack p-3 container-xxl h-40px',
       fixed: {
         desktop: false,
         mobile: false,

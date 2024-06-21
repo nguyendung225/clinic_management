@@ -11,6 +11,7 @@
 
 // Tabs
 .nav-tabs {
+	padding: 5px;
 	--#{$prefix}nav-tabs-border-color: var(--kt-nav-tabs-border-color);
 	--#{$prefix}nav-tabs-link-hover-border-color: var(--kt-nav-tabs-link-hover-border-color);
 	--#{$prefix}nav-tabs-link-active-color: var(--kt-nav-tabs-link-active-color);

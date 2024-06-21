@@ -15,14 +15,14 @@ const Textarea = ({ ...props }) => {
             md={md ? md : null}
             sm={sm ? sm : null}
             sx={sx ? sx : null}
-            className={`py-2 ${props?.className ? props?.className : ""}`}
+            className={`py-1 ${props?.className ? props?.className : ""}`}
         >
             <Form.Group>
-                <FormLabel>{props?.itemData?.name}</FormLabel>
+                <FormLabel className="m-0">{props?.itemData?.name}</FormLabel>
                 <Form.Control
                     {...props}
                     as="textarea"
-                    rows={3}
+                    rows={2}
                     value={props?.itemData?.value ?? ""}
                     name={props?.itemData?.name ?? ""}
                     onChange={handleChangeInput}

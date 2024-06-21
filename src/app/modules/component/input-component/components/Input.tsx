@@ -17,7 +17,7 @@ const Input = ({ ...props }) => {
             md={md ? md : null}
             sm={sm ? sm : null}
             sx={sx ? sx : null}
-            className={`py-2 px-4 ${props?.className ? props?.className : ""}`}
+            className={`py-1 px-4 ${props?.className ? props?.className : ""}`}
         >
             <Row>
                 <Form.Group className={`
@@ -31,7 +31,7 @@ const Input = ({ ...props }) => {
                         sm={widthLable ? widthLable : null}
                         sx={widthLable ? widthLable : null}
                     >
-                        <FormLabel className={`${checkLayout(layout) ? "mb-0" : ""}`}>
+                        <FormLabel className={"m-0"}>
                             <span>{props?.itemData?.name ?? ""} </span>
                             {
                                 props?.itemData?.dataType === INPUT_TYPE.NUMBER && <span> ({props?.itemData?.units}): </span>

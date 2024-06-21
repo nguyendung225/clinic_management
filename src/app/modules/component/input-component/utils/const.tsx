@@ -1,3 +1,4 @@
+import CheckboxText from "../components/CheckboxText";
 import Input from "../components/Input";
 import ListInput from "../components/ListInput";
 import RadioText from "../components/RadioText";
@@ -9,9 +10,11 @@ export const TYPE = {
     textarea: "textarea",
     select: "select",
     checkbox: "checkbox",
+    checkboxText: "checkboxText",
     radio: "radio",
     radioText: "complex",
-    listInput: "listInput"
+    listInput: "listInput",
+    number: "number",
 }
 
 export enum INPUT_TYPE { 
@@ -68,7 +71,13 @@ const LIST_INPUT = {
     component: <ListInput />
 };
 
-const INPUT_LIST = [INPUT, TEXTAREA, SELECT, RADIO_TEXT, RADIO, CHECKBOX, LIST_INPUT]
+const CHECKBOX_TEXT = {
+    key: TYPE.checkboxText,
+    data: null,
+    component: <CheckboxText />
+};
+
+const INPUT_LIST = [INPUT, TEXTAREA, SELECT, RADIO_TEXT, RADIO, CHECKBOX, LIST_INPUT, CHECKBOX_TEXT]
 const componentMapping = new Map(INPUT_LIST.map(item => [item.key, item]))
 
 export { componentMapping }

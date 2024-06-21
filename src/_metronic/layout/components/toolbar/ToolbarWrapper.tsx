@@ -17,7 +17,6 @@ const ToolbarWrapper = () => {
   return (
     <div
       id='kt_app_toolbar'
-      className='spaces mt-20'
       // className={clsx('app-toolbar', classes.toolbar.join(' '), config?.app?.toolbar?.class)}
     >
       <div

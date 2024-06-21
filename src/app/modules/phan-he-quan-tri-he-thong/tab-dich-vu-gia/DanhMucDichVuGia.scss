@@ -1,0 +1,46 @@
+@import "../../styles/variable";
+.over-flow {
+    height: 650px;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    ::-webkit-scrollbar {
+        width: 0;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 0;
+}
+
+.services-table {
+
+    .services-table-header {
+        border: 1px solid #ddd !important;
+        background-color: #68a3ce;
+        color: white;
+        text-align: center;
+
+        .services-table-header-list {
+
+            .services-table-header-item {
+                &:first-child {
+                    width: 10%;
+                }
+
+                width: 22%;
+            }
+        }
+    }
+}
+
+.data-empty {
+    font-size: $default-font-size;
+    font-weight: 600;
+}
+
+.table-search {
+    border: 1px solid #ddd !important;
+    text-align: center;
+    background-color: white;
+}

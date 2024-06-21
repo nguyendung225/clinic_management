@@ -1,0 +1,19 @@
+.kho-vat-tu-container {
+
+    .kho-vat-tu-menu {
+        background: white;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 10px;
+    }
+
+    .kho-vat-tu-content {
+        gap: 10px;
+        display: flex;
+
+        .row-tree {
+            height: 26px;
+        }
+
+    }
+}

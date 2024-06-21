@@ -1,4 +1,4 @@
-# clinical-information-web
+# hrm-web
 
 
 
@@ -15,14 +15,14 @@ Already a pro? Just edit this README.md and make it your own. Want to make it ea
 
 ```
 cd existing_repo
-git remote add origin https://gitlab.oceantech.com.vn/oct-ecosytem/his/clinical-information/clinical-information-web.git
+git remote add origin https://gitlab.oceantech.com.vn/oct-ecosytem/hrm/hrm-web.git
 git branch -M main
 git push -uf origin main
 ```
 
 ## Integrate with your tools
 
-- [ ] [Set up project integrations](https://gitlab.oceantech.com.vn/oct-ecosytem/his/clinical-information/clinical-information-web/-/settings/integrations)
+- [ ] [Set up project integrations](https://gitlab.oceantech.com.vn/oct-ecosytem/hrm/hrm-web/-/settings/integrations)
 
 ## Collaborate with your team
 

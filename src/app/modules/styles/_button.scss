@@ -41,6 +41,7 @@ border: 1px solid #CFCFCF !important;
 .btn-green {
   background: var(--color-linear-green) !important;
   color: $color-white !important;
+  font-size: 12px;
 
   &:hover,
   &:active,
@@ -51,20 +52,14 @@ border: 1px solid #CFCFCF !important;
     background-color: var(--kt-primary-active);
     opacity: 0.8;
   }
-  
-  &:disabled {
-    background: $color-disabled-bg !important;
-    color: $color-disabled-text !important;
-    border: 1px solid $color-disabled-text !important;
-    pointer-events: none !important;
-  }
 }
 
 .btn-navy {
-  background: var(--color-linear-navy) !important;
+  background: var(--color-linear-green) !important;
   color: $color-white !important;
-  padding: 8px !important;
+  padding: 4px 8px !important;
   border: 1px solid $color-teal-navy-blue !important;
+  font-size: 12px;
 
   &.btn-small{
     padding: 4px !important;
@@ -74,18 +69,11 @@ border: 1px solid #CFCFCF !important;
   &:hover,
   &:active,
   &:focus {
-    --kt-primary-active: var(--color-linear-navy);
+    --kt-primary-active: var(--color-linear-green);
     color: var(--kt-primary-inverse);
     border-color: var(--kt-primary-active);
     background-color: var(--kt-primary-active);
     opacity: 0.8;
-  }
-
-  &:disabled {
-    background: $color-disabled-bg !important;
-    color: $color-disabled-text !important;
-    border: 1px solid $color-disabled-text !important;
-    pointer-events: none !important;
   }
 
   &.white {
@@ -94,16 +82,70 @@ border: 1px solid #CFCFCF !important;
     border: 1px solid $color-teal-navy-blue !important;
 
     &:hover {
-      background: var(--color-linear-navy) !important;
+      background: var(--color-linear-green) !important;
       color: $color-white !important;
     }
   }
+  &:disabled {
+    background: $color-disabled-bg !important;
+    color: $color-disabled-text !important;
+    border: 1px solid $color-disabled-text !important;
+    pointer-events: none !important;
+  }
+}
+
+.btn-navy-outlined {
+  background: $color-white !important;
+  color: #2789af !important;
+  border: 1px solid #2789af !important;
+  padding: 4px 8px !important;
+  font-size: 12px;
+
+
+  &:hover,
+  &:active,
+  &:focus {
+    --kt-primary-active: var(--color-linear-green);
+    color: $color-hover !important;
+    border: none;
+    background: $color-bg-hover !important;
+  }
+
+  &.white {
+    background: white !important;
+    color: $color-teal-navy-blue !important;
+    border: 1px solid $color-teal-navy-blue !important;
+
+    &:hover {
+      background: var(--color-linear-green) !important;
+      color: $color-white !important;
+      padding: 4px 8px !important;
+    }
+  }
+  &:disabled {
+    background: $color-disabled-bg !important;
+    color: $color-disabled-text !important;
+    border: 1px solid $color-disabled-text !important;
+    pointer-events: none !important;
+  }
+}
+
+.btn-white {
+  background-color: $color-white;
+  color: $color-dark-blur-1;
+  border: 1px solid $color-dark-blur-2;
+}
+
+.btn-primary {
+  padding: 4.5px 15px !important;
 }
 
 .btn-secondary {
   background: $color-dark-blur-1 !important;
   color: $color-white !important;
-  padding: 8px 10px !important;
+  padding: 4px 8px !important;
+  border: 1px solid $color-dark-blur-1 !important;
+  font-size: 12px;
 
   &:hover,
   &:active,
@@ -121,33 +163,10 @@ border: 1px solid #CFCFCF !important;
     border: 1px solid $color-teal-navy-blue !important;
 
     &:hover {
-      background: var(--color-linear-navy) !important;
+      background: var(--color-linear-green) !important;
       color: $color-white !important;
       padding: 6px 10px !important;
     }
-  }
-  
-  &:disabled {
-    background: $color-disabled-bg !important;
-    color: $color-disabled-text !important;
-    border: 1px solid $color-disabled-text !important;
-    pointer-events: none !important;
-  }
-}
-
-.btn-navy-outlined {
-  background: $color-white !important;
-  color: #2789af !important;
-  border: 1px solid #2789af !important;
-  padding: 8px 10px !important;
-
-  &:hover,
-  &:active,
-  &:focus {
-    --kt-primary-active: var(--color-linear-navy);
-    color: $color-hover !important;
-    border: none;
-    background: $color-bg-hover !important;
   }
 
   &:disabled {
@@ -156,22 +175,4 @@ border: 1px solid #CFCFCF !important;
     border: 1px solid $color-disabled-text !important;
     pointer-events: none !important;
   }
-
-  &.white {
-    background: white !important;
-    color: $color-teal-navy-blue !important;
-    border: 1px solid $color-teal-navy-blue !important;
-
-    &:hover {
-      background: var(--color-linear-navy) !important;
-      color: $color-white !important;
-      padding: 6px 10px !important;
-    }
-  }
-}
-
-.btn-white {
-  background-color: $color-white;
-  color: $color-dark-blur-1;
-  border: 1px solid $color-dark-blur-2;
 }

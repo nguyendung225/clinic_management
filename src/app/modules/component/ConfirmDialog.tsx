@@ -11,10 +11,11 @@ interface Props {
   yes?: string
   cancel?: string
   close?: string
+  className?: string
 }
 
 const ConfirmDialog: FC<Props> = (props) => {
-  const { show, onCloseClick, onYesClick, onCancelClick, title, message, yes, cancel, close } = props
+  const { show, onCloseClick, onYesClick, onCancelClick, title, message, yes, cancel, close, className } = props
 
   return (
     <Modal
@@ -22,15 +23,15 @@ const ConfirmDialog: FC<Props> = (props) => {
       onHide={onCloseClick}
       centered
       animation
-      className='background__modal'
+      className={`background__modal dialog-background ${className}`}
     >
-      <Modal.Header className='bg-pri p-4'>
+      <Modal.Header className="header-modal" closeButton>
         <Modal.Title className='text-white text-uppercase'>{title}</Modal.Title>
       </Modal.Header>
       <Modal.Body className='p-4'>
         <h5 className='m-0'>{message}</h5>
       </Modal.Body>
-      <Modal.Footer className='d-flex justify-content-end p-4 pt-0  border-top-0'>
+      <Modal.Footer className='d-flex justify-content-end p-2 border-top'>
         {cancel && (
           <Button
             className="spaces btn-secondary px-16"
@@ -39,17 +40,17 @@ const ConfirmDialog: FC<Props> = (props) => {
             {cancel}
           </Button>
         )}
+        {yes && (
+          <Button className="btn-fill min-w-50px btn btn-primary" onClick={onYesClick}>
+            {yes}
+          </Button>
+        )}
         {close && (
           <Button
-            className="btn-secondary"
+            className="btn-outline min-w-80px"
             onClick={onCloseClick}
           >
             {close}
-          </Button>
-        )}
-        {yes && (
-          <Button className="btn-navy" onClick={onYesClick}>
-            {yes}
           </Button>
         )}
       </Modal.Footer>

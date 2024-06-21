@@ -31,13 +31,13 @@ const MasterLayout = () => {
             <HeaderWrapper />
             <div className='app-wrapper flex-column flex-row-fluid' id='kt_app_wrapper'>
               <div className='app-main flex-column flex-row-fluid' id='kt_app_main'>
-                <div className='d-flex flex-column flex-column-fluid container-xxl p-0'>
+                <div className='d-flex flex-column flex-column-fluid p-0'>
                   <ToolbarWrapper />
                   <Content>
                     <Outlet />
                   </Content>
                 </div>
-                <FooterWrapper />
+                {/* <FooterWrapper /> */}
               </div>
             </div>
           </div>

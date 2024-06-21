@@ -3,6 +3,7 @@ import { Autocomplete } from './Autocomplete';
 import { AutoCompleteProps } from "../models/autocomplete";
 import { CODE } from "../utils/Constant";
 import { toast } from "react-toastify";
+import clsx from "clsx";
 
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -19,7 +20,7 @@ const AutocompleteField: FC<AutocompleteFieldProps> = (props) => {
         <>
             <Autocomplete
                 {...props}
-                className={`${className} ${errors && touched ? "is-invalid" : ""}`}
+                className={clsx(className, (errors && touched) && "ac-is-invalid")}
                 isDisabled={disabled}
             />
             {touched && errors && (

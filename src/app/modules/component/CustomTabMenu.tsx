@@ -3,21 +3,29 @@ import { AppContext } from "../appContext/AppContext";
 import { Tab, Tabs } from "react-bootstrap";
 import { tab } from "../appContext/AppContextModel";
 import { localStorageItem } from "../utils/LocalStorage";
+import { PhanHeTiepNhanContext } from "../phan-he-tiep-nhan-thanh-toan/PhanHeTiepNhan";
+import { KEY_DS_TAB_TIEP_NHAN } from "../utils/Constant";
 
-type TabMenuProps = {
+export type TabMenuProps = {
     danhsachTabs: tab[];
-    keyDanhSachTabs: string;
-    setIsDataTab: (value: boolean) => void;
-    getCurrentTab?: (value: string) => void;
+    keyDanhSachTabs?: string;
+    setIsDataTab?: (value: boolean) => void;
+    isCloseTab?: boolean;
+    listDisabledTab?: string[];
+    className?: string;
+    onTabChange?: (activeTab: string | null) => void;
+    activeTab?: string | null;
+    childrenTab?: boolean | null;
+    classNameTabContent?: string;
 }
 
 export const CustomTabMenu: FC<TabMenuProps> = (props) => {
-    const { danhsachTabs, keyDanhSachTabs, setIsDataTab, getCurrentTab, } = props;
+    const { danhsachTabs, keyDanhSachTabs, setIsDataTab, isCloseTab, listDisabledTab, childrenTab, classNameTabContent } = props;
     let data = localStorageItem.get(keyDanhSachTabs) || [];
-    const { eventKey, setEventKey } = useContext(AppContext);
+    const { eventKey, setEventKey, currentTab, setCurrentTab, setCurrentTabChildren, currentTabChildren } = useContext(AppContext);
 
-    const [activeTab, setActiveTab] = useState<string>(data[0] || "0");
-    const [activeTabNow, setActiveTabNow] = useState<string>(data[0] || "0");
+    const [activeTab, setActiveTab] = useState<string | undefined>(data[0] || "0");
+    const [activeTabNow, setActiveTabNow] = useState<string | undefined>(data[0] || "0");
     const [tabs, setTabs] = useState<tab[]>([]);
 
     useEffect(() => {
@@ -30,35 +38,21 @@ export const CustomTabMenu: FC<TabMenuProps> = (props) => {
     }, []);
 
     useEffect(() => {
-        if (tabs.length > 0 && !eventKey) {
+        setActiveTab((childrenTab ? currentTabChildren : currentTab) || "");
+        saveActive((childrenTab ? currentTabChildren : currentTab) || "");
+    }, [currentTab, currentTabChildren]);
+
+    useEffect(() => {
+        if (tabs.length > 0) {
             handleActive(activeTabNow)
         }
     }, [tabs.length])
 
     useEffect(() => {
-        menuTab();
-    }, [eventKey])
+        setTabs(danhsachTabs);
+    }, [])
 
-
-    const menuTab = () => {
-        let data = localStorageItem.get(keyDanhSachTabs) || [];
-        let danhSachTab: Array<tab> = [];
-
-        if (data.length > 0) {
-            setIsDataTab(true);
-            data.forEach((id: string) => {
-                let tab = danhsachTabs.find(tab => tab?.eventKey === id) as tab
-                danhSachTab.push(tab);
-                danhSachTab.sort((a, b) => a?.eventKey > b?.eventKey ? 1 : -1);
-            });
-        }
-        setTabs(danhSachTab);
-
-        if (eventKey) {
-            handleActive(eventKey)
-        }
-    }
-    const saveActive = (eventKey: string) => {
+    const saveActive = (eventKey: string | undefined) => {
         let data = localStorageItem.get(keyDanhSachTabs) || [];
         const index = data.indexOf(eventKey);
         if (index !== -1) {
@@ -67,49 +61,33 @@ export const CustomTabMenu: FC<TabMenuProps> = (props) => {
             localStorageItem.set(keyDanhSachTabs, data);
         }
     };
-
-    const handleActive = (eventKey: string) => {
+   
+    const handleActive = (eventKey: string | undefined) => {
         setActiveTab(eventKey);
         saveActive(eventKey);
-        getCurrentTab?.(eventKey);
+        childrenTab ? setCurrentTabChildren(eventKey) : setCurrentTab?.(eventKey);
     }
-
+    
     const handleTabSelect: (eventKey: string | null) => void = (eventKey) => {
         if (eventKey) {
-            handleActive(eventKey)
+            handleActive(eventKey);
         }
-    };
-
-    const handleTabDelete = (eventKey: string) => {
-        let data = localStorageItem.get(keyDanhSachTabs) || [];
-        const index = tabs.findIndex((tab) => tab.eventKey === eventKey);
-        const updatedTabs = tabs.filter((tab) => tab.eventKey !== eventKey);
-        const updateIdTabs = data.filter((id: string) => id !== eventKey);
-
-        if (updatedTabs.length > 0) {
-            setActiveTabNow(activeTab !== eventKey ? activeTab : (index > 0 ? tabs[index - 1].eventKey : tabs[index + 1].eventKey))
-        } else {
-            setIsDataTab(false)
-        }
-
-        setEventKey("");
-        setTabs(updatedTabs);
-        localStorageItem.set(keyDanhSachTabs, updateIdTabs);
     };
 
     return (
-        <Tabs className="customs-tabs" activeKey={activeTab} onSelect={handleTabSelect}>
+        <Tabs className={`customs-tabs ${props?.className}`} activeKey={activeTab} onSelect={handleTabSelect}>
             {tabs.map((item, index) => {
+                let isDisabled = listDisabledTab?.some((tabItem: string) => index === +tabItem);
                 return (
-                    <Tab className="tab"
-                        eventKey={item?.eventKey}
+                    <Tab className={`tab ${classNameTabContent}`}
+                        eventKey={index}
                         key={index}
                         title={
-                            <div className="lable">
+                            <div className={`${isCloseTab ? "spaces pr-10" : ""} label ${isDisabled ? "disabled-tab" : ""}`}>
                                 <span>{item?.title}</span>
-                                <i className="fa-solid fa-xmark" onClick={() => handleTabDelete(item?.eventKey)}></i>
                             </div>
                         }
+                        disabled={isDisabled}
                     >
                         {item.component}
                     </Tab>

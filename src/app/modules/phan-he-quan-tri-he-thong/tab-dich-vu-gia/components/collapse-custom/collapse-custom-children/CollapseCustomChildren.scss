@@ -1,0 +1,55 @@
+.collapse-custom-children {
+    width: 100%;
+    height: 35px;
+    background-color: #f1f1f1 !important;
+    margin-bottom: 1px;
+    cursor: pointer;
+
+    .collapse-icon-children {
+        position: absolute;
+        left: 10px;
+
+        i {
+            font-size: 15px;
+        }
+    }
+}
+
+.table-collapse-children {
+    .table-collapse-body-children {
+        text-align: center;
+
+        .table-collapse-list-children {
+            .table-collapse-item-children {
+                border: 1px solid #ddd !important;
+
+                &:first-child {
+                    width: 10%;
+                    border-left: none !important;
+                }
+
+                &:last-child {
+                    border-right: none !important;
+                }
+
+                &:nth-child(2) {
+                    text-align: left;
+                }
+
+                padding: 10px;
+                width: 22%;
+            }
+        }
+    }
+}
+
+.collapse-header-children {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.collapse-body-children {
+    overflow-y: auto;
+    height: 420px;
+}

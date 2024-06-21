@@ -14,11 +14,11 @@ export function HeaderWrapper() {
 
   return (
     <>
-      <div id='kt_app_header' className='app-header flex-column'>
+      <div id='kt_app_header' className='app-header flex-column form-border spaces h-48'>
         <div
           id='kt_app_header_container'
           className={clsx(
-            'app-container flex-lg-grow-1 container-xxl',
+            'app-container flex-lg-grow-1 flex',
             classes.headerContainer.join(' '),
             config.app?.header?.default?.containerClass
           )}
@@ -73,7 +73,7 @@ export function HeaderWrapper() {
   
           <div
             id='kt_app_header_wrapper'
-            className='d-flex align-items-stretch justify-content-between flex-lg-grow-1'
+            className='d-flex align-items-stretch justify-content-between flex-lg-grow-1 z-index-1060'
           >
             {config.app.header.default?.content === 'menu' &&
               config.app.header.default.menu?.display && (

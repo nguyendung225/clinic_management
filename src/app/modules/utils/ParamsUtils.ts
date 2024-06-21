@@ -32,3 +32,8 @@ export const urlParamsConfig = (url: string, searchObject: object) => {
 
   return url;
 }
+
+export const paramsConfig = (searchObject: object) => {
+  let config = { params: searchObject }
+  return config
+}

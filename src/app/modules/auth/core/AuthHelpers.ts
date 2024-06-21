@@ -111,7 +111,7 @@ const handleError = (error: AxiosError<ResponseModel>): Promise<AxiosError<Respo
       case RESPONSE_STATUS_CODE.CONFLICT:
       case RESPONSE_STATUS_CODE.INTERNAL_SERVER_ERROR:
       case RESPONSE_STATUS_CODE.BAD_GATEWAY:
-        toast.error(response.data.message)
+        // toast.error(response.data.message)
         break
       default:
         break

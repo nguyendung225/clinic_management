@@ -1,7 +1,6 @@
-import {FC, useRef, useEffect} from 'react'
-import {useLocation} from 'react-router'
 import clsx from 'clsx'
-import {checkIsActive, KTSVG, WithChildren} from '../../../../helpers'
+import { FC, useEffect, useRef } from 'react'
+import { KTSVG, WithChildren } from '../../../../helpers'
 
 type Props = {
   to: string
@@ -13,7 +12,8 @@ type Props = {
   hasArrow?: boolean
   hasBullet?: boolean
   isMega?: boolean
-  freeSize?: boolean
+  freeSize?: boolean;
+  isParentActive?: boolean;
 }
 
 const MenuInnerWithSub: FC<Props & WithChildren> = ({
@@ -27,10 +27,10 @@ const MenuInnerWithSub: FC<Props & WithChildren> = ({
   hasArrow = false,
   hasBullet = false,
   isMega = false,
-  freeSize = false
+  freeSize = false,
+  isParentActive
 }) => {
-  const menuItemRef = useRef<HTMLDivElement>(null)
-  const {pathname} = useLocation()
+  const menuItemRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (menuItemRef.current && menuTrigger && menuPlacement) {
@@ -42,8 +42,8 @@ const MenuInnerWithSub: FC<Props & WithChildren> = ({
   return (
     <div ref={menuItemRef} className='menu-item menu-lg-down-accordion me-lg-1'>
       <span
-        className={clsx('menu-link py-3', {
-          active: checkIsActive(pathname, to),
+        className={clsx('menu-link py-4', {
+          'active menu-here': isParentActive,
         })}
       >
         {hasBullet && (
@@ -60,7 +60,7 @@ const MenuInnerWithSub: FC<Props & WithChildren> = ({
 
         {fontIcon && (
           <span className='menu-icon'>
-            <i className={clsx('bi fs-2', fontIcon)}></i>
+            <i className={clsx('bi fs-1', fontIcon)}></i>
           </span>
         )}
 
@@ -81,4 +81,5 @@ const MenuInnerWithSub: FC<Props & WithChildren> = ({
   )
 }
 
-export {MenuInnerWithSub}
+export { MenuInnerWithSub }
+

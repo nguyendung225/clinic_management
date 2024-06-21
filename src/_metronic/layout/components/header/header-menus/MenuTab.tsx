@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import clsx from 'clsx'
 import { KTSVG } from '../../../../helpers'
+import { Link } from 'react-router-dom'
 
 type Props = {
   to?: string
@@ -17,6 +18,7 @@ const MenuTab: FC<Props> = ({ to, title, icon, fontIcon, hasArrow = false, hasBu
     <div className='menu-item me-lg-1'>
       <li className={clsx('menu-link py-3')}
       >
+        <Link to={to || '/'} className='d-flex'>
         {hasBullet && (
           <span className='menu-bullet'>
             <span className='bullet bullet-dot'></span>
@@ -38,6 +40,7 @@ const MenuTab: FC<Props> = ({ to, title, icon, fontIcon, hasArrow = false, hasBu
         <span className='menu-title'>{title}</span>
 
         {hasArrow && <span className='menu-arrow'></span>}
+        </Link>
       </li>
     </div>
   )
