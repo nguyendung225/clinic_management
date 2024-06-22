@@ -31,6 +31,7 @@ const PrivateRoutes = () => {
     <Routes>
       <Route index element={<Navigate to="/home" />} />
       <Route path="/*" element={<HomePage />} />
+      <Route path="home" element={<HomePage />} />
       <Route element={<MasterLayout />}>
         {/* Redirect to Dashboard after success login/registartion */}
         <Route path="auth/*" element={<Navigate to="/phan-he-tiep-nhan" />} />
