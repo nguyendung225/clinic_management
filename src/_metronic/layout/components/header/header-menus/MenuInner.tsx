@@ -67,15 +67,10 @@ export function MenuInner() {
     return (
         <div className="d-flex align-items-center">
             <div className="d-flex align-items-center">
-                <MenuInnerWithSub
-                    title=''
-                    to='/dashboard'
-                    icon='./media/icons/menu.svg'
-                    menuPlacement='bottom-start'
-                    menuTrigger='click'
-                    freeSize
-                >
-                </MenuInnerWithSub>
+                <MenuItem
+                  to='/home'
+                  icon='./media/icons/menu.svg'
+                />
                 <i className="bi bi-chevron-bar-left fs-2 cursor-pointer" onClick={scrollToLeft}></i>
                 <div className='header-menu-container' ref={containerRef}
                     onMouseDown={handleMouseDown}>
