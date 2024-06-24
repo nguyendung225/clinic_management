@@ -318,3 +318,38 @@
     width: 100vw;
     transform: scale(0.7);
 }
+
+.status {
+    &-1 {
+        &-color {
+            color: #dc3545 !important;
+        };
+        &-bg {
+            background-color: #dc3545;
+        }
+    }
+    &-2 {
+        &-color {
+            color: #ff9c07 !important;
+        };
+        &-bg {
+            background-color: #ff9c07;
+        }
+    }
+    &-3 {
+        &-color {
+            color: #17a2b8 !important;
+        };
+        &-bg {
+            background-color: #17a2b8;
+        }
+    }
+    &-4 {
+        &-color {
+            color: #28a745 !important;
+        };
+        &-bg {
+            background-color: #28a745;
+        }
+    }
+}
