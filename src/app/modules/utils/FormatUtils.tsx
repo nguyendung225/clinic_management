@@ -1,11 +1,11 @@
-import { benhNhan, benhNhanCase, benhNhanBhyt } from '../phan-he-tiep-nhan-thanh-toan/models/PhanHeTiepNhanModel';
+import { benhNhan } from '../phan-he-tiep-nhan-thanh-toan/models/PhanHeTiepNhanModel';
 import moment from "moment";
 import { GIOI_TINH, initialValuesTiepNhan } from "../phan-he-tiep-nhan-thanh-toan/constants/PhanHeTiepNhan";
 import { NUMBER_EXCEPT_THIS_SYMBOLS, TRANG_THAI, TRANG_THAI_KHAM_BENH } from "./Constant";
-import { object } from 'yup';
 import { trangThaiBenhNhan } from '../phan-he-kham-benh/constants/BenhNhanConst';
 import { Col, Form, FormCheck, OverlayTrigger, Row, Tooltip } from 'react-bootstrap';
 import CustomTextarea from '../component/custom-textarea/CustomTextarea';
+import { trangThaiBenhNhanDatLich } from '../dat-lich-hen/constants/datLichHenConstants';
 
 export const convertNumberPrice = (value: any) => {
   let number = Number(value ? value : 0)
@@ -329,6 +329,38 @@ export const formatTrangThaiBenhNhan = (trangThai: number | undefined) => {
 
     default:
         return trangThai;
+  }
+};
+
+export const formatTrangThaiBenhNhanDatLich = ( trangThai: number | undefined ) => {
+  switch (trangThai) {
+    case trangThaiBenhNhanDatLich.chuaDen.code:
+      return (
+        <div className="text-center">
+          <i className="bi bi-circle-fill pe-2 text-status-blue"></i>&nbsp;
+        </div>
+      );
+    case trangThaiBenhNhanDatLich.daTiepNhan.code:
+      return (
+        <div className="text-center">
+          <i className="bi bi-circle-fill pe-2 text-status-yellow"></i>&nbsp;
+        </div>
+      );
+    case trangThaiBenhNhanDatLich.daGoiNhacLich.code:
+      return (
+        <div className="text-center">
+          <i className="bi bi-circle-fill pe-2 text-status-orange"></i>&nbsp;
+        </div>
+      );
+    case trangThaiBenhNhanDatLich.koDenHuyLich.code:
+      return (
+        <div className="text-center">
+          <i className="bi bi-circle-fill pe-2 text-status-red"></i>&nbsp;
+        </div>
+      );
+
+    default:
+      return trangThai;
   }
 };
 

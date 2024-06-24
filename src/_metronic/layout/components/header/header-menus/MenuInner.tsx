@@ -74,10 +74,10 @@ export function MenuInner() {
                 <i className="bi bi-chevron-bar-left fs-2 cursor-pointer" onClick={scrollToLeft}></i>
                 <div className='header-menu-container' ref={containerRef}
                     onMouseDown={handleMouseDown}>
-                    {/* <MenuItem
-                        to='/hen-kham'
+                    <MenuItem
+                        to='/dat-lich-hen'
                         title={"Đặt lịch hẹn"}
-                    /> */}
+                    />
                     <MenuItem
                         to='/phan-he-tiep-nhan'
                         title={"Tiếp nhận và Viện phí"}

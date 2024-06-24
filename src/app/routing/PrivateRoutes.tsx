@@ -23,6 +23,7 @@ import PhanHeChuyenKhoa from "../modules/phan-he-chuyen-khoa/PhanHeChuyenKhoa";
 import PhanHeKhoVatTu from "../modules/phan-he-kho-vat-tu/PhanHeKhoVatTu";
 import PhanHeHanhChinh from "../modules/phan-he-hanh-chinh/PhanHeHanhChinh";
 import PhanHeDieuTri from "../modules/phan-he-dieu-tri/PhanHeDieuTri";
+import DatLichHen from "../modules/dat-lich-hen/DatLichHen";
 const PrivateRoutes = () => {
   const WizardsPage = lazy(() => import("../modules/wizards/WizardsPage"));
   const AccountPage = lazy(() => import("../modules/accounts/AccountPage"));
@@ -57,6 +58,7 @@ const PrivateRoutes = () => {
         <Route path="chuyen-khoa" element={<PhanHeChuyenKhoa />} />
         <Route path="hanh-chinh" element={<PhanHeHanhChinh />} />
         <Route path="dieu-tri" element={<PhanHeDieuTri />} />
+        <Route path="dat-lich-hen" element={<DatLichHen />} />
         {/* Lazy Modules */}
         <Route path="crafted/pages/profile/*" element={<SuspensedView></SuspensedView>} />
         <Route path="crafted/pages/profile/*" element={<SuspensedView></SuspensedView>} />
