@@ -39,14 +39,14 @@ export const danhSachMenu = [
 ];
 
 export const danhSachTabTiepDon = [
-    {
-        eventKey: "0",
-        title: "Bệnh nhân",
-        component: <BenhNhan />
-    },
+    // {
+    //     eventKey: "0",
+    //     title: "Bệnh nhân",
+    //     component: <BenhNhan />
+    // },
     {
         eventKey: "1",
-        title: "Khám bệnh",
+        title: "Khám bệnh, hỏi bệnh",
         // component: <ThongTinKhamBenh />
         component: <TabKhamBenh />
     },

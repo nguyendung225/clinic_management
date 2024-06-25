@@ -1,9 +1,6 @@
 import { useFormikContext } from "formik";
 import { FC, useContext, useEffect, useState } from "react";
-import { Button, Dropdown, FormCheck, Row } from "react-bootstrap";
-import AutocompleteV2 from "../../../component/AutocompleteObjectV2";
-import { IconButtonSave } from "../../../component/IconSvg";
-import LabelRequired from "../../../component/LabelRequired";
+import { Button, Dropdown, Row } from "react-bootstrap";
 import TextField from "../../../component/TextField";
 import { DICH_VU_CAN_LAM_SANG, constTypeBenhKemTheo } from "../../constants/KhamBenh";
 import { PhanHeTiepDonContext } from "../../contexts/PhanHeTiepDonContext";
@@ -52,472 +49,145 @@ export const PhieuKhamBenh: FC<Props> = ({ hideFooter }) => {
   }, [ketQuaCLS]);
 
   return (
-    <div className="modelKhamBenh">
+    <div className="modelKhamBenh spaces h-calc-vh-364">
       <div className={`thongTinKhamBenh ${hideFooter ? "ps-4" : "ps-0"}`}>
         <Row>
-          <Row className="m-8 spaces pe-0 align-items-center">
-            <FormCheck
-              className="ms-3"
-              type="checkbox"
-              label="Bệnh nhân cấp sổ khám bệnh mới"
-              name="benhNhanCapSoKhamBenhMoi"
-              onChange={(e) => setFieldValue("benhNhanCapSoKhamBenhMoi", e.target.checked)}
-            />
+          <Row className="spaces ml-8">
+            <h4 className="text-title fw-bold fs-5 mb-0">I. Lý do vào viện</h4>
           </Row>
           <Row className="m-8 spaces pe-0 align-items-center">
             <TextField
-              label="Lý do khám"
-              labelClassName="pe-2 min-w-140 spaces w-100 text-start mb-1 mt-2  d-flex flex-column align-items-start"
+              as="textarea"
+              rows={3}
               name="lyDoKham"
               value={values?.lyDoKham || ""}
               // onChange={handleChangeKhamBenh}
               readOnlyText={benhNhanInfo?.isView}
-              disabled={!benhNhanInfo?.isKhamBenh}
+              // disabled={!benhNhanInfo?.isKhamBenh}
             />
           </Row>
-          <Row className="m-8 spaces pe-0 align-items-center">
-            <FormCheck
-              className="ms-3 spaces left-125"
-              type="checkbox"
-              label="Dị ứng"
-              name="diUng"
-              onChange={(e) => setFieldValue("diUng", e.target.checked)}
-            />
+          <Row className="spaces ml-8">
+            <h4 className="text-title fw-bold fs-5 mb-0">II. Hỏi bệnh</h4>
+          </Row>
+          <Row className="spaces ml-10 mt-5">
+            <h4 className="fw-bold fs-6 mb-0">1. Quá trình bệnh lý</h4>
           </Row>
           <Row className="m-8 spaces pe-0 align-items-center">
             <TextField
-              label="Tiền sử dị ứng"
-              labelClassName="pe-2 min-w-140 spaces w-100 text-start mb-1 mt-2  d-flex flex-column align-items-start h-50"
-              name="tienSuDiUng"
-              as="textarea"
-              rows={2}
-              value={values?.tienSuDiUng || ""}
-              // onChange={handleChangeKhamBenh}
-              readOnlyText={benhNhanInfo?.isView}
-              disabled={!benhNhanInfo?.isKhamBenh || !values.diUng}
-            />
-          </Row>
-          <Row className="m-8 spaces pe-0 align-items-center">
-            <TextField
-              label="Quá trình bệnh lý"
-              labelClassName="pe-2 min-w-140 spaces w-100 text-start mb-1 mt-2  d-flex flex-column align-items-start h-50"
               name="quaTrinhBenhLy"
               as="textarea"
               rows={2}
               value={values?.quaTrinhBenhLy || ""}
               // onChange={handleChangeKhamBenh}
               readOnlyText={benhNhanInfo?.isView}
-              disabled={!benhNhanInfo?.isKhamBenh}
+              // disabled={!benhNhanInfo?.isKhamBenh}
             />
           </Row>
-          <Row className="m-8 spaces pe-0 align-items-center">
-            <div className="d-flex gap-3">
-              <TextField
-                labelClassName="pe-2 min-w-140 spaces w-100 text-start mb-1 mt-2"
-                className="w-100 h-50"
-                name="trieuChung"
-                label="Triệu chứng"
-                as="textarea"
-                rows={2}
-                value={values?.trieuChung || ""}
-                // onChange={handleChangeKhamBenh}
-                readOnlyText={benhNhanInfo?.isView}
-                disabled={!benhNhanInfo?.isKhamBenh}
-              />
-              <Button className="bg-white spaces p-0 min-w-103" disabled={!benhNhanInfo?.isKhamBenh}>
-                <u
-                  className="text-pri fw-bold fs-13px pe-0 text-end"
-                  onClick={() => {
-                    setOpenModal({ trieuChung: true });
-                  }}
-                >
-                  Triệu chứng
-                </u>
-              </Button>
-            </div>
+          <Row className="spaces ml-10 mt-5">
+            <h4 className="fw-bold fs-6 mb-0">2. Tiền sử bệnh</h4>
+          </Row>
+          <Row className="spaces ml-10 mt-10">
+            <p className="fs-6 mb-0">&#8226; Bản thân (Phát triển thể lực từ nhỏ đến lớn, những bệnh đã mắc, phương pháp ĐT, tiêm phòng, ăn uống, sinh hóa, vv...)</p>
           </Row>
           <Row className="m-8 spaces pe-0 align-items-center">
             <TextField
-              label="Tiền sử bản thân"
-              labelClassName="pe-2 min-w-140 spaces w-100 text-start mb-1 mt-2  d-flex flex-column align-items-start h-50"
               name="tienSuBanThan"
               as="textarea"
               rows={2}
               value={values?.tienSuBanThan || ""}
               // onChange={handleChangeKhamBenh}
               readOnlyText={benhNhanInfo?.isView}
-              disabled={!benhNhanInfo?.isKhamBenh}
+              // disabled={!benhNhanInfo?.isKhamBenh}
             />
+          </Row>
+          <Row className="spaces ml-10 mt-10">
+            <p className="fs-6 mb-0">&#8226; Gia đình (Những người trong gia đình: Bệnh đã mắc, đời sống, tinh thần, vật chất, vv...)</p>
           </Row>
           <Row className="m-8 spaces pe-0 align-items-center">
             <TextField
-              label="Tiền sử gia đình"
-              labelClassName="pe-2 min-w-140 spaces w-100 text-start mb-1 mt-2  d-flex flex-column align-items-start h-50"
               name="tienSuGiaDinh"
               as="textarea"
               rows={2}
               value={values?.tienSuGiaDinh || ""}
               // onChange={handleChangeKhamBenh}
               readOnlyText={benhNhanInfo?.isView}
-              disabled={!benhNhanInfo?.isKhamBenh}
+              // disabled={!benhNhanInfo?.isKhamBenh}
+            />
+          </Row>
+
+          <Row className="spaces ml-8">
+            <h4 className="text-title fw-bold fs-5 mb-0">III. Khám bệnh</h4>
+          </Row>
+          <Row className="spaces ml-10 mt-5">
+            <h4 className="fw-bold fs-6 mb-0">1. Toàn thân (Ý thức, da niêm mạc, hệ thống hạch, tuyến giáp, vị trí, kích thước, số lượng, di động, vv...)</h4>
+          </Row>
+          <Row className="m-8 spaces pe-0 align-items-center">
+            <TextField
+              as="textarea"
+              rows={2}
+              name="khamBenh"
+              value={values?.khamBenh || ""}
+              // onChange={handleChangeKhamBenh}
+              readOnlyText={benhNhanInfo?.isView}
+              // disabled={!benhNhanInfo?.isKhamBenh}
             />
           </Row>
           <Row className="mt-2 m-8 spaces pe-0 align-items-center">
             <SinhHieu sinhHieu={sinhHieu} setSinhHieu={setSinhHieu} />
           </Row>
-          <Row className="m-8 spaces pe-0 align-items-center">
-            <TextField
-              label="Khám bệnh"
-              labelClassName="pe-2 min-w-140 spaces w-100 text-start mb-1 mt-2  d-flex flex-column align-items-start"
-              name="khamBenh"
-              value={values?.khamBenh || ""}
-              // onChange={handleChangeKhamBenh}
-              readOnlyText={benhNhanInfo?.isView}
-              disabled={!benhNhanInfo?.isKhamBenh}
-            />
+          <Row className="spaces ml-10 mt-5">
+            <h4 className="fw-bold fs-6 mb-0">2. Các bộ phận</h4>
           </Row>
           <Row className="m-8 spaces pe-0 align-items-center">
             <TextField
-              label="Khám các bộ phận"
-              labelClassName="pe-2 min-w-140 spaces w-100 text-start mb-1 mt-2 align-items-start"
               name="khamBoPhan"
               as="textarea"
               rows={2}
               value={values?.khamBoPhan || ""}
               // onChange={handleChangeKhamBenh}
               readOnlyText={benhNhanInfo?.isView}
-              disabled={!benhNhanInfo?.isKhamBenh}
+              // disabled={!benhNhanInfo?.isKhamBenh}
             />
           </Row>
-          <Row className="my-2 pe-0 w-100">
-            <div className="d-flex ps-8">
-              <LabelRequired label="Chẩn đoán ban đầu" className="ms-0 min-w-140 spaces " />
-              <div className="w-100">
-                <AutocompleteV2
-                  name="chanDoanBanDau"
-                  options={[{ code: "viemGanB", name: "Viêm gan B" }]}
-                  value={values?.chanDoanBanDau}
-                  onChange={(selectedOption) => {
-                    setFieldValue("chanDoanBanDau", selectedOption);
-                  }}
-                  getOptionLabel={(option) => (option?.name ? `${option?.code} - ${option?.name}` : "")}
-                  className="autocomplete-custom spaces width-100 "
-                  isDisabled={!benhNhanInfo?.isKhamBenh}
-                />
-              </div>
-            </div>
-          </Row>
-          <Row className="m-8 spaces pe-0 align-items-center">
-            <div className="d-flex">
-              <u className="text-primary cursor-pointer">
-                <LabelRequired
-                  label="Cập nhật chẩn đoán từ phiếu chỉ định"
-                  className="ms-0 max-w-140 min-w-140 spaces "
-                />
-              </u>
-              <TextField
-                labelClassName="pe-2 min-w-140 spaces ms-0"
-                className="w-100 d-flex flex-column align-items-start h-50"
-                name="benhKemTheo"
-                as="textarea"
-                rows={2}
-                value={values?.benhKemTheo || ""}
-                // onChange={handleChangeKhamBenh}
-                readOnlyText={benhNhanInfo?.isView}
-                disabled={!benhNhanInfo?.isKhamBenh}
-              />
-              <Button
-                className="bg-white spaces min-w-103 p-0"
-                onClick={() => {
-                  setOpenModal({ benhKemTheo: true });
-                }}
-                disabled={!benhNhanInfo?.isKhamBenh}
-              >
-                <u className="fw-bold text-pri fs-13px">Bệnh kèm theo</u>
-              </Button>
-            </div>
-          </Row>
-          <Row className="m-8 spaces pe-0 align-items-center">
+
+          <div className="spaces ml-10 mt-5 mb-n2 d-flex flex-row justify-content-between ps-6">
+            <h4 className="fw-bold fs-6">3. Tóm tắt kết quả cận lâm sàng</h4>
+
+            <Button
+              className="bg-white"
+              onClick={() => {
+                benhNhanInfo?.isKhamBenh && setOpenModalChonKetQuaDichVu(true);
+                setTenDichVuCLS(DICH_VU_CAN_LAM_SANG.KET_QUA_CAN_LAM_SANG.code);
+              }}
+              disabled={!benhNhanInfo?.isKhamBenh}
+            >
+              <u className="fw-bold text-pri fs-13px">Chọn dịch vụ</u>
+            </Button>
+          </div>
+          <Row className="m-8 spaces pe-0 align-items-center position-relative">
             <TextField
-              label="Hướng xử lý"
-              labelClassName="pe-2 min-w-140 spaces w-100 text-start mb-1 mt-2 h-50"
-              name="huongXuLy"
+              className="flex-auto h-50"
+              name="ketQuaCanLamSang"
               as="textarea"
               rows={2}
-              value={values?.huongXuLy || ""}
+              value={values?.ketQuaCanLamSang || ""}
               // onChange={handleChangeKhamBenh}
               readOnlyText={benhNhanInfo?.isView}
-              disabled={!benhNhanInfo?.isKhamBenh}
+              // disabled={!benhNhanInfo?.isKhamBenh}
             />
           </Row>
-          <Row className="m-8 spaces pe-0 align-items-center position-relative">
-            <div className="d-flex">
-              <TextField
-                label="Tóm tắt kết quả cận lâm sàng"
-                labelClassName="pe-2 min-w-140 max-w-140 spaces ms-0"
-                className="flex-auto h-50"
-                name="ketQuaCanLamSang"
-                as="textarea"
-                rows={2}
-                value={values?.ketQuaCanLamSang || ""}
-                // onChange={handleChangeKhamBenh}
-                readOnlyText={benhNhanInfo?.isView}
-                disabled={!benhNhanInfo?.isKhamBenh}
-              />
-              <Button
-                className="bg-white"
-                onClick={() => {
-                  benhNhanInfo?.isKhamBenh && setOpenModalChonKetQuaDichVu(true);
-                  setTenDichVuCLS(DICH_VU_CAN_LAM_SANG.KET_QUA_CAN_LAM_SANG.code);
-                }}
-                disabled={!benhNhanInfo?.isKhamBenh}
-              >
-                <u className="text-primary cursor-pointer pe-0 text-end">
-                  <LabelRequired label="Chọn dịch vụ" className="ms-0 min-w-140 " />
-                </u>
-              </Button>
-            </div>
-          </Row>
         </Row>
-
-        <div>
-          <Row className="ps-7">
-            <h5 className="mt-10 mb-n1 spaces fs-14px text-pri">Kết quả lâm sàng có giá trị chẩn đoán</h5>
-          </Row>
-          <Row className="mt-n1">
-            <Row className="m-8 spaces pe-0 align-items-center d-flex flex-nowrap align-items-end">
-              <div className="spaces flex-auto pe-0">
-                <TextField
-                  label="Xét nghiệm máu"
-                  labelClassName="pe-2 min-w-140 spaces w-100 text-start mb-1 mt-1"
-                  className="d-flex flex-column align-items-start"
-                  name="xetNghiemMau"
-                  value={values?.xetNghiemMau || ""}
-                  // onChange={handleChangeKhamBenh}
-                  readOnly={true}
-                  disabled={!benhNhanInfo?.isKhamBenh}
-                />
-              </div>
-              <div className="spaces h-48 d-flex align-items-end flex-1">
-                <Button
-                  className="btn-fill"
-                  onClick={() => {
-                    setOpenModalChonKetQuaDichVu(true);
-                    setTenDichVuCLS(DICH_VU_CAN_LAM_SANG.XET_NGHIEM_MAU.code);
-                  }}
-                  disabled={!benhNhanInfo?.isKhamBenh}
-                >
-                  Chọn
-                </Button>
-              </div>
-            </Row>
-            <Row className="m-8 spaces pe-0 align-items-center d-flex flex-nowrap align-items-end">
-              <div className="spaces flex-auto pe-0">
-                <TextField
-                  label="Xét nghiệm nước tiểu"
-                  labelClassName="pe-2 min-w-140 spaces w-100 text-start mb-1 mt-2"
-                  className="d-flex flex-column align-items-start"
-                  name="xetNghiemNuocTieu"
-                  value={values?.xetNghiemNuocTieu || ""}
-                  // onChange={handleChangeKhamBenh}
-                  readOnly={true}
-                  disabled={!benhNhanInfo?.isKhamBenh}
-                />
-              </div>
-              <div className="spaces h-48 d-flex align-items-end flex-1">
-                <Button
-                  className="btn-fill"
-                  onClick={() => {
-                    setOpenModalChonKetQuaDichVu(true);
-                    setTenDichVuCLS(DICH_VU_CAN_LAM_SANG.XET_NGHIEM_NUOC_TIEU.code);
-                  }}
-                  disabled={!benhNhanInfo?.isKhamBenh}
-                >
-                  Chọn
-                </Button>
-              </div>
-            </Row>
-            <Row className="m-8 spaces pe-0 align-items-center d-flex flex-nowrap align-items-end">
-              <div className="spaces flex-auto pe-0">
-                <TextField
-                  label="X-Quang"
-                  labelClassName="pe-2 min-w-140 spaces w-100 text-start mb-1 mt-2"
-                  className="d-flex flex-column align-items-start"
-                  name="xquang"
-                  value={values?.xquang || ""}
-                  // onChange={handleChangeKhamBenh}
-                  readOnly={true}
-                  disabled={!benhNhanInfo?.isKhamBenh}
-                />
-              </div>
-              <div className="spaces h-48 d-flex align-items-end flex-1">
-                <Button
-                  className="btn-fill"
-                  onClick={() => {
-                    setOpenModalChonKetQuaDichVu(true);
-                    setTenDichVuCLS(DICH_VU_CAN_LAM_SANG.X_QUANG.code);
-                  }}
-                  disabled={!benhNhanInfo?.isKhamBenh}
-                >
-                  Chọn
-                </Button>
-              </div>
-            </Row>
-            <Row className="m-8 spaces pe-0 align-items-center d-flex flex-nowrap align-items-end">
-              <div className="spaces flex-auto pe-0">
-                <TextField
-                  label="Siêu âm"
-                  labelClassName="pe-2 min-w-140 spaces w-100 text-start mb-1 mt-2"
-                  className="d-flex flex-column align-items-start"
-                  name="sieuAm"
-                  value={values?.sieuAm || ""}
-                  // onChange={handleChangeKhamBenh}
-                  readOnly={true}
-                  disabled={!benhNhanInfo?.isKhamBenh}
-                />
-              </div>
-              <div className="spaces h-48 d-flex align-items-end flex-1">
-                <Button
-                  className="btn-fill"
-                  onClick={() => {
-                    setOpenModalChonKetQuaDichVu(true);
-                    setTenDichVuCLS(DICH_VU_CAN_LAM_SANG.SIEU_AM.code);
-                  }}
-                  disabled={!benhNhanInfo?.isKhamBenh}
-                >
-                  Chọn
-                </Button>
-              </div>
-            </Row>
-            <Row className="m-8 spaces pe-0 align-items-center d-flex flex-nowrap align-items-end">
-              <div className="spaces flex-auto pe-0">
-                <TextField
-                  label="Nội soi - TDCN"
-                  labelClassName="pe-2 min-w-140 spaces w-100 text-start mb-1 mt-2"
-                  className="d-flex flex-column align-items-start"
-                  name="noiSoiTDCN"
-                  value={values?.noiSoiTDCN || ""}
-                  // onChange={handleChangeKhamBenh}
-                  readOnly={true}
-                  disabled={!benhNhanInfo?.isKhamBenh}
-                />
-              </div>
-              <div className="spaces h-48 d-flex align-items-end flex-1">
-                <Button
-                  className="btn-fill"
-                  onClick={() => {
-                    setOpenModalChonKetQuaDichVu(true);
-                    setTenDichVuCLS(DICH_VU_CAN_LAM_SANG.NOI_SOI_TDCN.code);
-                  }}
-                  disabled={!benhNhanInfo?.isKhamBenh}
-                >
-                  Chọn
-                </Button>
-              </div>
-            </Row>
-            <Row className="m-8 spaces pe-0 align-items-center d-flex flex-nowrap align-items-end">
-              <div className="spaces flex-auto pe-0">
-                <TextField
-                  label="Giải phẫu bệnh"
-                  labelClassName="pe-2 min-w-140 spaces w-100 text-start mb-1 mt-2"
-                  className="d-flex flex-column align-items-start"
-                  name="giaiPhauBenh"
-                  value={values?.giaiPhauBenh || ""}
-                  // onChange={handleChangeKhamBenh}
-                  readOnly={true}
-                  disabled={!benhNhanInfo?.isKhamBenh}
-                />
-              </div>
-              <div className="spaces h-48 d-flex align-items-end flex-1">
-                <Button
-                  className="btn-fill"
-                  onClick={() => {
-                    setOpenModalChonKetQuaDichVu(true);
-                    setTenDichVuCLS(DICH_VU_CAN_LAM_SANG.GIAI_PHAU_BENH.code);
-                  }}
-                  disabled={!benhNhanInfo?.isKhamBenh}
-                >
-                  Chọn
-                </Button>
-              </div>
-            </Row>
-            <Row className="m-8 spaces pe-0 align-items-center d-flex flex-nowrap align-items-end">
-              <div className="spaces flex-auto pe-0">
-                <TextField
-                  label="Xét nghiệm tế bào"
-                  labelClassName="pe-2 min-w-140 spaces w-100 text-start mb-1 mt-2"
-                  className="d-flex flex-column align-items-start"
-                  name="xetNghiemTeBao"
-                  value={values?.xetNghiemTeBao || ""}
-                  // onChange={handleChangeKhamBenh}
-                  readOnly={true}
-                  disabled={!benhNhanInfo?.isKhamBenh}
-                />
-              </div>
-              <div className="spaces h-48 d-flex align-items-end flex-1">
-                <Button
-                  className="btn-fill"
-                  onClick={() => {
-                    setOpenModalChonKetQuaDichVu(true);
-                    setTenDichVuCLS(DICH_VU_CAN_LAM_SANG.XET_NGHIEM_TE_BAO.code);
-                  }}
-                  disabled={!benhNhanInfo?.isKhamBenh}
-                >
-                  Chọn
-                </Button>
-              </div>
-            </Row>
-            <Row className="m-8 spaces pe-0 align-items-center d-flex flex-nowrap align-items-end">
-              <div className="spaces flex-auto pe-0">
-                <TextField
-                  label="Xét nghiệm khác"
-                  labelClassName="pe-2 min-w-140 spaces w-100 text-start mb-1 mt-2"
-                  className="d-flex flex-column align-items-start"
-                  name="xetNghiemKhac"
-                  value={values?.xetNghiemKhac || ""}
-                  // onChange={handleChangeKhamBenh}
-                  readOnly={true}
-                  disabled={!benhNhanInfo?.isKhamBenh}
-                />
-              </div>
-              <div className="spaces h-48 d-flex align-items-end flex-1">
-                <Button
-                  className="btn-fill"
-                  onClick={() => {
-                    setOpenModalChonKetQuaDichVu(true);
-                    setTenDichVuCLS(DICH_VU_CAN_LAM_SANG.XET_NGHIEM_KHAC.code);
-                  }}
-                  disabled={!benhNhanInfo?.isKhamBenh}
-                >
-                  Chọn
-                </Button>
-              </div>
-            </Row>
-          </Row>
-        </div>
       </div>
       {!hideFooter && (
         <div className="flex flex-end gap-4 pt-3 pb-2 btn-luu">
-          {/* <Button className="btn-fill mr-5">
-            <span
-              onClick={() => {
-                setBenhNhanInfo({ isKhamBenh: true });
-              }}
-            >
-              Bắt đầu khám
-            </span>
-          </Button> */}
-          <Button className="btn-fill">
-            <i className="bi bi-check2"></i>
+          <Button className="btn-fill spaces min-w-150px">
             Đợt khám gần nhất
           </Button>
-          <Button className="btn-fill" onClick={() => setOpenModalTuyChonBaoCao(true)}>
-            <i className="bi bi-printer"></i>
+          <Button className="btn-fill spaces min-w-100px" onClick={() => setOpenModalTuyChonBaoCao(true)}>
             Tờ điều trị
           </Button>
           <Dropdown className="dropdown-btn menu-icon  ">
-            <Dropdown.Toggle className="btn-fill">
-              <i className="bi bi-tag rotate-90 spaces mt-6"></i>
+            <Dropdown.Toggle className="btn-fill spaces min-w-130px">
               Mẫu khám bệnh
             </Dropdown.Toggle>
             <Dropdown.Menu>
@@ -548,12 +218,11 @@ export const PhieuKhamBenh: FC<Props> = ({ hideFooter }) => {
             </Dropdown.Menu>
           </Dropdown>
           <Button
-            className="btn-fill"
+            className="btn-fill spaces min-w-80px"
             type="submit"
             disabled={benhNhanInfo?.trangThai === trangThaiBenhNhan.ketThucKham.code || !benhNhanInfo?.isKhamBenh}
             // onClick={() => handleSubmit()}
           >
-            <IconButtonSave />
             <span>Lưu</span>
           </Button>
         </div>
