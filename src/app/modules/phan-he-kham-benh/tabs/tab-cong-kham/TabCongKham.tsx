@@ -105,43 +105,44 @@ export const TabCongKham = () => {
         toast.success(MESSAGE.SUCCESS.XOA_PHIEU)
     }
     return (
-        <Row className="spaces h-calc-vh-85">
+        <Row className="spaces h-calc-vh-364">
             <div>
-                <div className="px-2 py-1 bg-white mb-4">
-                    <Row className="spaces h-25">
-                        <Col xs={4} className="d-flex align-items-center">
-                            <LabelRequired label="Mã phiếu:" className="min-w-65px mb-2" />
-                            <CustomTextarea readOnly />
+                <div className="pt-4 bg-white">
+                    <Row className="mx-0">
+                        <Col xs={4} className="d-flex align-items-center mb-3">
+                            <LabelRequired label="Mã phiếu" className="min-w-100px" />
+                            {/* <CustomTextarea readOnly /> */}
+                            <span className="fw-light">BN2202400001</span>
                         </Col>
-                        <Col xs={4} className="d-flex align-items-center text-lable-input">
-                            <LabelRequired label="Ngày y lệnh:" className="min-w-80px mb-2" />
-                            <CustomTextarea readOnly />
+                        <Col xs={4} className="d-flex align-items-center text-lable-input mb-3">
+                            <LabelRequired label="Ngày y lệnh" className="min-w-100px" />
+                            {/* <CustomTextarea readOnly /> */}
+                            <span className="fw-light">25-06-2024</span>
                         </Col>
-                        <Col xs={4} className="d-flex align-items-center text-lable-input">
-                            <LabelRequired label="Người chỉ định:" className="min-w-100px mb-2" />
-                            <CustomTextarea readOnly />
+                        <Col xs={4} className="d-flex align-items-center text-lable-input mb-3">
+                            <LabelRequired label="Người chỉ định" className="min-w-100px" />
+                            {/* <CustomTextarea readOnly /> */}
+                            <span className="fw-light">Nguyễn Văn A</span>
                         </Col>
-                    </Row>
-
-                    <Row className="spaces h-25">
-                        <Col xs={4} className="d-flex align-items-center text-lable-input">
-                            <LabelRequired label="Nơi chỉ định:" className="min-w-100px mb-2" />
-                            <CustomTextarea readOnly />
+                        <Col xs={4} className="d-flex align-items-center text-lable-input mb-3">
+                            <LabelRequired label="Nơi chỉ định" className="min-w-100px" />
+                            {/* <CustomTextarea readOnly /> */}
+                            <span className="fw-light">Bệnh viện đa khoa Hòe Nhai</span>
                         </Col>
-                        <Col xs={4} className="d-flex align-items-center text-lable-input">
-                            <LabelRequired label="Trạng thái:" className="min-w-80px mb-2" />
-                            <CustomTextarea readOnly />
+                        <Col xs={4} className="d-flex align-items-center text-lable-input mb-3">
+                            <LabelRequired label="Trạng thái" className="min-w-100px" />
+                            {/* <CustomTextarea readOnly /> */}
+                            <span className="fw-light">Dịch vụ</span>
                         </Col>
-                        <Col xs={4} className="d-flex align-items-center text-lable-input">
-                            <LabelRequired label="Nơi thực hiện:" className="min-w-100px mb-2" />
-                            <CustomTextarea readOnly />
+                        <Col xs={4} className="d-flex align-items-center text-lable-input mb-3">
+                            <LabelRequired label="Nơi thực hiện" className="min-w-100px" />
+                            {/* <CustomTextarea readOnly /> */}
+                            <span className="fw-light">Bệnh viện đa khoa Hòe Nhai</span>
                         </Col>
-                    </Row>
-
-                    <Row className="spaces h-25">
-                        <Col xs={12} className="d-flex align-items-center text-lable-input">
-                            <LabelRequired label="Chẩn đoán:" className="min-w-80px mb-2" />
-                            <CustomTextarea readOnly />
+                        <Col xs={12} className="d-flex align-items-center text-lable-input mb-3">
+                            <LabelRequired label="Chẩn đoán" className="min-w-100px" />
+                            {/* <CustomTextarea readOnly /> */}
+                            <span className="fw-light">...</span>
                         </Col>
                     </Row>
                 </div>
@@ -178,13 +179,13 @@ export const TabCongKham = () => {
                         )}
                     </div>
                 </div>
-                <div className="d-flex gap-3 p-2 justify-content-center bg-white">
+                <div className="d-flex justify-content-end gap-3 py-4 me-4 bg-white position-sticky bottom-0">
                     <Button className="btn-fill mr-5" onClick={() => handleOpenPhieuIn(CODE_CONTEXT_TAB_XET_NGHIEM.PHIEU_CHI_DINH)}>
-                        In phiếu chỉ định
+                        Phiếu chỉ định
                     </Button>
-                    <Button className="btn-fill mr-5" onClick={() => handleOpenPhieuIn(CODE_CONTEXT_TAB_XET_NGHIEM.PHIEU_KHAM_BENH)}>
+                    {/* <Button className="btn-fill mr-5" onClick={() => handleOpenPhieuIn(CODE_CONTEXT_TAB_XET_NGHIEM.PHIEU_KHAM_BENH)}>
                         In phiếu khám bệnh
-                    </Button>
+                    </Button> */}
                     <Button className="btn-fill mr-5" onClick={handleSuaPhieu}>
                         Sửa phiếu
                     </Button>

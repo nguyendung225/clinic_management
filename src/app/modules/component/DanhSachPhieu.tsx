@@ -40,8 +40,8 @@ const DanhSachPhieu = ({ dsPhieu, listColorPhieu, handleSelectRowData, handleCon
   const renderPhieu = () => {
     return danhSachPhieu?.length > 0 ? danhSachPhieu?.map((item: any, index: number) => {
       return (
-        <div className={`spaces W-100 h-54 cursor-pointer`} onClick={() => handleClickPhieu(index, item)} onContextMenu={(e) => handleCustomContextMenu(e, item)}>
-          <div className={`border spaces h-50 rounded-1 d-flex flex-column justify-content-center align-items-center phieu py-4 px-8 ${index === currentIndex ? "is-active" : ""}`}>
+        <div className={`cursor-pointer`} onClick={() => handleClickPhieu(index, item)} onContextMenu={(e) => handleCustomContextMenu(e, item)}>
+          <div className={`border spaces W-100  min-h-29 rounded-1 d-flex flex-column justify-content-center align-items-center phieu py-4 px-8 ${index === currentIndex ? "is-active" : ""}`}>
             <div className="text fw-semibold">{item?.date || ""}</div>
             {title && <div className="text">{item?.[title] || ""}</div>}
           </div>
@@ -52,7 +52,7 @@ const DanhSachPhieu = ({ dsPhieu, listColorPhieu, handleSelectRowData, handleCon
           </div>
         </div>
       )
-    }) : <div className="spaces h-54"></div>
+    }) : <div className="spaces min-h-29"></div>
   }
 
   return (
