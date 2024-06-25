@@ -7,7 +7,7 @@ import { TableCustomCell } from '../../../component/table/components/TableCustom
 import { TableCustomHeader } from '../../../component/table/components/TableCustomHeader';
 import { CODE, SELECTION_MODE } from '../../../utils/Constant';
 import { formatTrangThaiBenhNhan } from '../../../utils/FormatUtils';
-import { HINH_THUC, LOAI_DOI_TUONG_CONST, UU_TIEN, trangThaiBenhNhan } from '../../constants/BenhNhanConst';
+import { LOAI_DOI_TUONG_CONST, UU_TIEN, trangThaiBenhNhan } from '../../constants/BenhNhanConst';
 import { INITIALVALUES } from '../../constants/KhamBenh';
 import { IBenhNhan } from '../../models/DSBenhNhanKhamBenhModels';
 import { getKhamBenh } from '../../services/KhamBenhService';
@@ -126,25 +126,11 @@ const TableDsBenhNhanKhamBenh = (props: any) => {
                     <span className='px-1 fs-13px'> - </span>
                     <span>{props?.data[props?.row?.index]?.loaiDoiTuong===LOAI_DOI_TUONG_CONST.dichVu.code?"Dịch vụ":"BHYT"}</span>
                     <span className='px-1 fs-13px'> - </span>
-                    <span>{props?.data[props?.row?.index]?.loaiTiepNhan===HINH_THUC.benhMoi.code?"Bệnh mới":"Tái khám"}</span>
+                    <span>{props?.data[props?.row?.index]?.gioiTinh}</span>
                 </div>
             </div>
         )
     },
-    {
-      Header: (props) => (
-          <TableCustomHeader<IBenhNhan>
-              tableProps={props}
-              title={"Tuổi"}
-              className="text-center text-light min-w-30px "
-          />
-      ),
-      id: "Tuổi",
-      Cell: ({ ...props }) => <TableCustomCell className="text-center " 
-      // data={String((page - 1) * rowsPerPage + props?.row?.index + 1)} 
-      data={props?.data[props?.row?.index]?.age}
-      />,
-  },
 ];
 
 const handleDoubleClick = (row: any) => {
@@ -152,7 +138,7 @@ const handleDoubleClick = (row: any) => {
   setBenhNhanInfo({...row?.original, isKhamBenh: benhNhanInfo?.isKhamBenh})
 }
   return (
-    <div className='spaces h-calc-vh-425'>
+    <div className='spaces h-calc-vh-510'>
       <div className='h-100'>
         <TableCustom<IBenhNhan>
           data={fakeListBN || benhNhanList}
@@ -164,35 +150,29 @@ const handleDoubleClick = (row: any) => {
           minHeight={300}
         />
       </div>
-      <div className="d-flex justify-content-center spaces py-16 px-24 position-absolute bottom-15">
-        <div className="spaces w-100">
-          <Row className="d-flex px-2 pt-4 spaces min-h-100">
-            <Col xs={6} xxl={4} className="min-w-90px text-start fs-9 h-22 spaces">
-              <i className="bi bi-circle-fill text-status-blue"></i>&nbsp;
-              <span>{trangThaiBenhNhan.choKham.name}</span>
-            </Col>
-            <Col xs={6} xxl={4} className="min-w-120px text-start fs-9 h-22 spaces">
-              <i className="bi bi-circle-fill text-status-ocean"></i>&nbsp;
-              <span>{trangThaiBenhNhan.khamBenhKetHop.name}</span>
-            </Col>
-            <Col xs={6} xxl={4} className="min-w-90px text-start fs-9 h-22 spaces">
-              <i className="bi bi-circle-fill text-status-green"></i>&nbsp;
-              <span>{trangThaiBenhNhan.ketThucKham.name}</span>
-            </Col>
-            <Col xs={6} xxl={4} className="min-w-90px text-start fs-9 h-22 spaces">
-              <i className="bi bi-circle-fill text-status-yellow"></i>&nbsp;
-              <span>{trangThaiBenhNhan.daCoKQCLS.name}</span>
-            </Col>
-            <Col xs={6} xxl={4} className="min-w-120px text-start fs-9 h-22 spaces">
-              <i className="bi bi-circle-fill text-status-orange"></i>&nbsp;
-              <span>{trangThaiBenhNhan.dangKham.name}</span>
-            </Col>
-            <Col xs={6} xxl={4} className="min-w-90px text-start">
-              <i className="bi bi-circle-fill  text-status-purple"></i>&nbsp;
-              <span>{trangThaiBenhNhan.choKQCLS.name}</span>
-            </Col>
-          </Row>
-        </div>
+      <div className="d-flex justify-content-center spaces py-16 position-absolute bottom-15 w-100">
+        <Row className="d-flex pt-4 spaces w-100 min-h-100">
+          <Col xs={6}>
+            <div className="status-1-bg text-center text-white rounded py-2">
+              <span className='fs-4'>{`${trangThaiBenhNhan.dangKham.name}: 3`}</span>
+            </div>
+          </Col>
+          <Col xs={6}>
+            <div className="status-2-bg text-center rounded py-2">
+              <span className='fs-4'>{`${trangThaiBenhNhan.choKQ.name}: 2`}</span>
+            </div>
+          </Col>
+          <Col xs={6}>
+            <div className="status-3-bg text-center text-white rounded py-2">
+              <span className='fs-4'>{`${trangThaiBenhNhan.daCoKQ.name}: 4`}</span>
+            </div>
+          </Col>
+          <Col xs={6}>
+            <div className="status-4-bg text-center text-white rounded py-2">
+              <span className='fs-4'>{`${trangThaiBenhNhan.ketThucKham.name}: 1`}</span>
+            </div>
+          </Col>
+        </Row>
       </div>
       {openModalThongTinKhamBenh && <ModalThongTinKhamBenh handleClose={()=>setOpenModalThongTinKhamBenh(false)}/>}
     </div>

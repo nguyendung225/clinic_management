@@ -289,47 +289,11 @@ export const validateNgay = (ngay: number, thang: number, nam: number) => {
 };
 
 export const formatTrangThaiBenhNhan = (trangThai: number | undefined) => {
-  switch (trangThai) {
-    case trangThaiBenhNhan.choKham.code:
-      return (
-        <div className="text-center">
-          <i className="bi bi-circle-fill text-status-blue"></i>&nbsp;
-        </div>
-      );
-    case trangThaiBenhNhan.khamBenhKetHop.code:
-      return (
-        <div className="text-center">
-          <i className="bi bi-circle-fill text-status-ocean"></i>&nbsp;
-        </div>
-      );
-    case trangThaiBenhNhan.ketThucKham.code:
-      return (
-        <div className="text-center">
-          <i className="bi bi-circle-fill text-status-green"></i>&nbsp;
-        </div>
-      );
-    case trangThaiBenhNhan.daCoKQCLS.code:
-      return (
-        <div className="text-center">
-          <i className="bi bi-circle-fill text-status-yellow"></i>&nbsp;
-        </div>
-      );
-    case trangThaiBenhNhan.dangKham.code:
-      return (
-        <div className="text-center">
-          <i className="bi bi-circle-fill text-status-orange"></i>&nbsp;
-        </div>
-      );
-    case trangThaiBenhNhan.choKQCLS.code:
-      return (
-        <div className="text-center">
-          <i className="bi bi-circle-fill text-status-purple"></i>&nbsp;
-        </div>
-      );
-
-    default:
-        return trangThai;
-  }
+  return (
+    <div className="text-center">
+      <i className={`bi bi-circle-fill status-${trangThai}-color`}></i>&nbsp;
+    </div>
+  );
 };
 
 export const renderItemKhamBoPhan = (Data: any) => (

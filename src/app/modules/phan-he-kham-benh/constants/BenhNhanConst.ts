@@ -18,12 +18,10 @@ export const UU_TIEN = {
 };
 
 export const trangThaiBenhNhan = {
-  choKham: { code: 1, name: "Chờ khám" },
-  khamBenhKetHop: { code: 2, name: "Khám bệnh kết hợp" },
-  ketThucKham: { code: 3, name: "Kết thúc khám" },
-  daCoKQCLS: { code: 4, name: "Đã có KQCLS" },
-  dangKham: { code: 5, name: "Đang khám" },
-  choKQCLS: { code: 6, name: "Chờ KQCLS" },
+  dangKham: { code: 1, name: "Đang khám" },
+  choKQ: { code: 2, name: "Chờ kết quả" },
+  daCoKQ: { code: 3, name: "Đã có KQ" },
+  ketThucKham: { code: 4, name: "Kết thúc khám" },
 };
 
 export const KEY_TAB_BENH_NHAN = {

@@ -15,6 +15,7 @@ import InputSearch from "../component/InputSearch";
 import { ILichSuModel } from "../phan-he-xet-nghiem/models/DanhSachBenhNhanModels";
 import { columnsLichSuKham } from "../phan-he-xet-nghiem/const/constants";
 import { TableCustom } from "../component/table/table-custom/TableCustom";
+import ThongTinBenhNhan from "./components/ThongTinBenhNhan";
 interface Props {
   isLichSuKham?: boolean;
   childrenTab?: boolean;
@@ -99,7 +100,8 @@ export const PhanHeKhamBenh: FC<Props> = (props) => {
                 <DSBenhNhanKhamBenh/>
               )}
             </div>
-            <div className="h-calc-vh-35 pl-0 ml-pt-0_6 spaces border width-72 ">
+            <div className="pl-0 ml-pt-0_6 spaces border width-72 ">
+              <ThongTinBenhNhan />
               <div className="p-0">
                 <CustomTabMenu
                   danhsachTabs={danhSachTabTiepDon}

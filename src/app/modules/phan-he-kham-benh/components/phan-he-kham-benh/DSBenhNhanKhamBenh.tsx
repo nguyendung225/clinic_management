@@ -1,5 +1,4 @@
 import { ChangeEvent, useContext, useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { AppContext } from "../../../appContext/AppContext";
 import { KEY_LOCALSTORAGE } from "../../../auth/core/_consts";
@@ -11,16 +10,16 @@ import {
 import { localStorageItem } from "../../../utils/LocalStorage";
 import { PhanHeTiepDonContext } from "../../contexts/PhanHeTiepDonContext";
 import BenhAnNgoaiTru from "../../modals/modal-benh-an-ngoai-tru/BenhAnNgoaiTru";
-import ChiDinhDichVuModal from "../../modals/modal-chi-dinh-dich-vu/ModalChiDinhDichVu";
 import ChuyenPhongKhamModal from "../../modals/modal-chuyen-phong-kham/ChuyenPhongKhamModal";
 import BienBanHoiChanModal from "../../modals/modal-hoi-chan/BienBanHoiChanModal";
 import PageKeThuoc from "../../modals/modal-ke-thuoc/PageKeThuoc";
 import ModalKeVatTu from "../../modals/modal-ke-vat-tu/ModalKeVatTu";
 import { IBenhNhan } from "../../models/DSBenhNhanKhamBenhModels";
 import { getDSKhamBenh } from "../../services/PhanHeTiepDonServer";
-import InfoPatient from "../InfoPatient";
 import TableDsBenhNhanKhamBenh from "./TableDsBenhNhanKhamBenh";
 import PageChiDinhDichVu from "../../modals/modal-chi-dinh-dich-vu/PageChiDinhDichVu";
+import ThongTinChiPhi from "../ThongTinChiPhi";
+import { Autocomplete } from "../../../component/Autocomplete";
 
 export const DSBenhNhanKhamBenh = () => {
   const [shouldOpenThuocModal, setShouldOpenThuocModal] =
@@ -103,45 +102,43 @@ export const DSBenhNhanKhamBenh = () => {
   
   return (
     <div className="bangDSBenhNhan p-0 position-relative">
-      <div className=" justify-content-start pl-4 spaces my-9 d-flex gap-4">
-      {benhNhanInfo?.isKhamBenh ? (
-          <Button
-            className="btn-fill  btn-kham-benh min-w-80 spaces"
-            onClick={() => {
-              handleOpenChiDinhDichVu();
-            }}
-          >
-            Chỉ định DV
-          </Button>
-        ) : (
-          <Button
-            className="btn-outline mr-5"
-            onClick={() => {
-              setBenhNhanInfo({...benhNhanInfo, isKhamBenh: true });
-            }}
-          >
-            <i className="bi bi-play-fill"></i>
-            <span>Bắt đầu khám</span>
-          </Button>
-        )}
-        <Button className="btn-fill  btn-kham-benh min-w-80 spaces" onClick={() => setOpenCapNhatMauChiDinhDialog(true)}>
-          <span>Kê thuốc</span>
-        </Button>
-        {benhNhanInfo?.isKhamBenh && <Button className="btn-fill  btn-kham-benh min-w-80 spaces" onClick={() => setOpenCapNhatMauChiDinhVatTuDialog(true)}>
-          <span>Kê vật tư</span>
-        </Button>}
-        
-        <Button className="btn-fill  btn-kham-benh min-w-80 spaces">
-          <span>Báo cáo</span>
-        </Button>
+      <div className="d-flex mt-3 px-3 justify-content-between">
+        <h4 className="text-title fw-bold fs-4">Thông tin chi phí - Nguyễn Văn Quang Huy</h4>
+        <div className="cursor-pointer mt-1">
+          <i className="bi bi-list text-title fs-1"></i>
+        </div>
       </div>
-      <InfoPatient infoBenhNhan={infoBenhNhan}/>
-      <div className="d-flex mt-3 px-3">
+      <ThongTinChiPhi/>
+      <div className="mt-3 px-3">
+        <h4 className="text-title fw-bold fs-4 mb-0">Danh sách bệnh nhân</h4>
+      </div>
+
+      <div className="d-flex mt-3 px-3 justify-content-between align-items-center mb-3">
+        <h4 className="fw-bold fs-4 spaces W-80 mb-0">Sắp xếp</h4>
+        <div className="d-flex align-items-center flex-grow-1">
+          <Autocomplete
+            options={[]}
+            value={null}
+            name="sort_1"
+            className="Autocomplete-custom-tiep-nhan radius spaces w-100 h-25 pe-2"
+            placeholder="Chọn hình thức"
+          />
+          <Autocomplete
+            options={[]}
+            value={null}
+            name="sort_2"
+            className="Autocomplete-custom-tiep-nhan radius spaces w-100 h-25"
+            placeholder="Tăng dần"
+          />
+        </div>
+      </div>
+      <div className="d-flex px-3">
         <div className="flex-auto">
             <InputSearch
               placeholder="Tìm kiếm bệnh nhân"
               value=""
               handleChange={handleChange}
+              className="py-5"
             />
         </div>
       </div>
@@ -149,22 +146,6 @@ export const DSBenhNhanKhamBenh = () => {
         <div className="pt-3 flex-1">
           <TableDsBenhNhanKhamBenh setInfoBenhNhan={setInfoBenhNhan}/>
         </div>
-        {/* <div className="scroll-x">
-          <TablePagination
-            className="border-0 spaces px-4"
-            page={page}
-            setPage={setPage}
-            handlePagesChange={handlePagesChange}
-            handleRowsPerPageChange={handleRowsPerPageChange}
-            rowsForPage={rowsForPage}
-            rowsPerPage={rowsPerPage}
-            setRowsPerPage={setRowsPerPage}
-            totalPages={totalPages}
-            totalElements={totalElements}
-            hasFirst={false}
-            hasLast={false}
-          />
-        </div> */}
       </div>
 
       {shouldOpenBenhAnNgoaiTruDialog && (
