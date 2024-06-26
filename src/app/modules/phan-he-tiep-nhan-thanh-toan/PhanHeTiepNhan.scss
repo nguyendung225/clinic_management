@@ -268,7 +268,15 @@
 #kt_table_users {
   tr {
     &:hover {
-      background-color: var(--color-header-table) !important;
+      background-color: #E6F7FF !important;
+    }
+
+    th {
+      background-color: #CFD4DA !important;
+
+      &:hover {
+        background-color: #CFD4DA !important;
+      }
     }
   }
 }
