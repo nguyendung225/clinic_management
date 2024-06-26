@@ -3,7 +3,7 @@ import { TableCustom } from "../../component/table/table-custom/TableCustom";
 import { benhNhan, danhSachLichHen } from "../models/datLichHenModels";
 import { benhNhanData } from "../models/datLichHenModels";
 import { fakeDataDsHenKham } from "../constants/fakeData";
-import { LichHenColumn } from "../columns/LichHenColumn";
+import { LichHenColumns } from "../columns/LichHenColumns";
 import TextField from "../../component/TextField";
 import {
   BO_LOC,
@@ -94,7 +94,7 @@ export const DanhSachLichHenTable: FC<IDSLichHen> = (props) => {
               hasToolbar={false}
               maxHeight={450}
               data={fakeDataDsHenKham || benhNhanData?.data}
-              columns={LichHenColumn}
+              columns={LichHenColumns}
               handleSearchByPage={updatePageData}
               handleChangeValueInput={handleChange}
               verticalScroll={true}
