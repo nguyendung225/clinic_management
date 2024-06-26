@@ -1,5 +1,5 @@
 import moment from "moment";
-import { danhSachChoKham, danhSachHenKham } from "../models/datLichHenModels";
+import { danhSachChoKham, danhSachLichHen } from "../models/datLichHenModels";
 
 export const LIST_TUYEN_KCB = [
   {
@@ -78,7 +78,7 @@ export const LIST_WARD = [
 ];
 
 
-export const fakeDataDsHenKham: danhSachHenKham[] = [
+export const fakeDataDsHenKham: danhSachLichHen[] = [
   {
     id: "1",
     mpt: "MPT001",
