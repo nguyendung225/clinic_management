@@ -8,7 +8,7 @@ const DsDichVuColumn: ReadonlyArray<Column<any>> = [
     Header: (props) => (
       <TableCustomHeader<any>
         tableProps={props}
-        title={"Mã dịch vụ"}
+        title={"Mã DV"}
         className="text-center  text-light min-w-100px fs-8"
       />
     ),
@@ -73,7 +73,7 @@ const DsDichVuColumn: ReadonlyArray<Column<any>> = [
     Header: (props) => (
       <TableCustomHeader<any>
         tableProps={props}
-        title={"Giá DV"}
+        title={"Giá dịch vụ"}
         className="text-center  text-light min-w-80px fs-8"
       />
     ),
@@ -139,21 +139,8 @@ const DsDichVuChiDinhColumn: ReadonlyArray<Column<any>> = [
     Header: (props) => (
       <TableCustomHeader<any>
         tableProps={props}
-        title={"Mã dịch vụ"}
-        className="text-center  text-light min-w-100px fs-8"
-      />
-    ),
-    id: "Mã dịch vụ",
-    Cell: ({ ...props }) => (
-      <TableCustomCell className="text-center " data={props?.data[props?.row?.index].maDichVu} />
-    ),
-  },
-  {
-    Header: (props) => (
-      <TableCustomHeader<any>
-        tableProps={props}
         title={"Tên dịch vụ"}
-        className="text-center  text-light min-w-200px fs-8"
+        className="text-center  text-light min-w-250px fs-8"
       />
     ),
     id: "Tên dịch vụ",
@@ -161,6 +148,19 @@ const DsDichVuChiDinhColumn: ReadonlyArray<Column<any>> = [
       let data = props?.data[props?.row?.index].tenDichVu;
       return <TableCustomCell className="" data={data} />;
     },
+  },
+  {
+    Header: (props) => (
+      <TableCustomHeader<any>
+        tableProps={props}
+        title={"Mã DV"}
+        className="text-center  text-light min-w-100px fs-8"
+      />
+    ),
+    id: "Mã dịch vụ",
+    Cell: ({ ...props }) => (
+      <TableCustomCell className="text-center " data={props?.data[props?.row?.index].maDichVu} />
+    ),
   },
   {
     Header: (props) => (
