@@ -13,13 +13,13 @@ const InfoPatientRight: FunctionComponent<InfoPatientRightProps> = ({ benhNhanIn
         <div>
           <div className="text-break fw-500 p-1 text-end">
             <span className="text-uppercase fw-600 fs-7">
-              {benhNhanInfo?.hoTen}&nbsp;|&nbsp;{benhNhanInfo?.maBn}&nbsp;|&nbsp;{benhNhanInfo?.age}
+              {benhNhanInfo?.hoTen}&nbsp;|&nbsp;{benhNhanInfo?.maBn}&nbsp;|&nbsp;Tuổi: {benhNhanInfo?.age}
               &nbsp;|&nbsp;{benhNhanInfo?.gioiTinh}
             </span>
             <div className="text-truncate fs-7">
-              Đối tượng: {benhNhanInfo?.loaiDoiTuong === LOAI_DOI_TUONG_CONST.bhyt.code ? "BHYT" : "Dịch vụ"}
+              {benhNhanInfo?.loaiDoiTuong === LOAI_DOI_TUONG_CONST.bhyt.code ? "BHYT" : "Dịch vụ"}&nbsp;|&nbsp;{benhNhanInfo?.diaChi}
             </div>
-            <div className="text-truncate fs-7">Địa chỉ: {benhNhanInfo?.diaChi}</div>
+            {/* <div className="text-truncate fs-7">Địa chỉ: {benhNhanInfo?.diaChi}</div> */}
           </div>
         </div>
       ) : (
