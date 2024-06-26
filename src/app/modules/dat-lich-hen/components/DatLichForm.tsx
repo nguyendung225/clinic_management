@@ -58,7 +58,7 @@ const FormDatLich = () => {
 
   return (
     <div className="d-flex">
-      <div className="spaces width-70 border-end border-4 bg-white p-10 position-relative">
+      <div className="spaces width-72 border-end border-4 bg-white p-10 position-relative">
         <Row>
           <Col xs={12} sm={6} lg={4} xl={3} className="mb-2">
             <div className="position-relative text-info">
@@ -120,11 +120,11 @@ const FormDatLich = () => {
           <Col xs={12} sm={6} md={4} className="d-flex mb-2">
             <LabelRequired label="Đối tượng" className="min-w-85px" />
             <AutocompleteObjectV2
-              options={GIOI_TINH}
+              options={[]}
               value={values?.gioiTinh}
               name="gioiTinh"
               onChange={(selectedOption) =>
-                setFieldValue(selectedOption, "gioiTinh")
+                setFieldValue(selectedOption, "gioiTinh") 
               }
               touched={touched?.gioiTinh}
               errors={errors?.gioiTinh}
@@ -339,7 +339,7 @@ const FormDatLich = () => {
           <Col xs={12} sm={6} md={4} className="d-flex mb-2">
             <LabelRequired label="ĐK khám" className="min-w-85px" />
             <AutocompleteObjectV2
-              options={GIOI_TINH}
+              options={[]}
               value={values?.gioiTinh}
               name="gioiTinh"
               onChange={(selectedOption) =>
@@ -357,7 +357,7 @@ const FormDatLich = () => {
           <Col xs={12} sm={6} md={4} className="d-flex mb-2">
             <LabelRequired label="Lý do khám" className="min-w-85px" />
             <AutocompleteObjectV2
-              options={GIOI_TINH}
+              options={[]}
               value={values?.gioiTinh}
               name="gioiTinh"
               onChange={(selectedOption) =>
@@ -374,7 +374,7 @@ const FormDatLich = () => {
           <Col xs={12} sm={6} className="d-flex mb-2">
             <LabelRequired label="Dịch vụ" className="min-w-85px" />
             <AutocompleteObjectV2
-              options={GIOI_TINH}
+              options={[]}
               value={values?.dichVu}
               name="dichVu"
               onChange={(selectedOption) =>
@@ -396,7 +396,7 @@ const FormDatLich = () => {
         </Row>
       </div>
 
-      <div className="spaces width-30 p-10 bg-white">
+      <div className="spaces width-28 p-10 pb-14 bg-white">
         <div className="d-flex">
           <FormCheck
             type="checkbox"
@@ -418,7 +418,7 @@ const FormDatLich = () => {
           />
         </div>
 
-        <div className="spaces width-100 d-flex mb-2">
+        <div className="spaces width-100 d-flex mb-5">
           <LabelRequired label="Số BHYT" className="min-w-80px" />
           <div className="spaces ms-0 d-flex">
             <div className="spaces width-25">
@@ -459,7 +459,7 @@ const FormDatLich = () => {
           </div>
         </div>
 
-        <div className="spaces width-100 d-flex mb-2">
+        <div className="spaces width-100 d-flex mb-5">
           <LabelRequired label="KCB BD" className="min-w-80px" />
           <div className="d-flex spaces w-100">
             <div className="spaces width-25">
@@ -482,7 +482,7 @@ const FormDatLich = () => {
           </div>
         </div>
 
-        <div className="spaces width-100 d-flex align-items-center mb-2">
+        <div className="spaces width-100 d-flex align-items-center mb-5 h-27">
           <LabelRequired label="Hạn thẻ" className="min-w-80px" />
 
           <div className="spaces d-flex">
@@ -514,7 +514,7 @@ const FormDatLich = () => {
               />
             </div>
           </div>
-          <i className="bi bi-arrow-right"></i>
+          &nbsp; &nbsp; &nbsp;  &nbsp; 
           <div className="spaces d-flex">
             <div className="spaces width-25">
               <TextField
@@ -562,7 +562,7 @@ const FormDatLich = () => {
             className="autocomplete-custom-tiep-nhan radius spaces width-100 h-25"
             isDisabled={!isBHYT}
           />
-          <div className="spaces width-40 position-relative ml-10">
+          <div className="spaces width-60 position-relative ml-10">
             <TextField
               className="text-center pr-30"
               label="Mức hưởng"
@@ -580,7 +580,7 @@ const FormDatLich = () => {
           </div>
         </div>
 
-        <div className="spaces d-flex">
+        <div className="spaces d-flex my-10">
           <FormCheck
             type="checkbox"
             label="Giấy chứng nhận không cùng chi trả trong năm"
@@ -592,7 +592,7 @@ const FormDatLich = () => {
           />
         </div>
 
-        <div className="spaces d-flex">
+        <div className="spaces d-flex mb-5">
           <LabelRequired
             label="Ngày miễn cùng chi trả"
             className=" min-w-200px"

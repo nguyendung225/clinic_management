@@ -8,7 +8,7 @@ import { PhanHeCDHAVaTDCN } from "../modules/phan-he-cdha-va-tdcn/PhanHeCDHAVaTD
 import PhanHeDatLichHen from "../modules/phan-he-dat-lich-hen/PhanHeDatLichHen";
 import PhanHeKhamBenh from "../modules/phan-he-kham-benh/PhanHeKhamBenh";
 import PhanHeKhoDuoc from "../modules/phan-he-kho-duoc/PhanHeKhoDuoc";
-import TiepDon from "../modules/phan-he-noi-tru/components/tiep-don/TiepDon";
+import TiepDonNoiTru from "../modules/phan-he-noi-tru/components/tiep-don/TiepDon";
 import PhanHePhauThuatThuThuat from "../modules/phan-he-phau-thuat-thu-thuat/PhanHePhauThuatThuThuat";
 import PhanHeQuanTriHeThong from "../modules/phan-he-quan-tri-he-thong/PhanheQuanTriHeThong";
 import { PhanHeVienPhiBaoHiem } from "../modules/phan-he-tiep-nhan-thanh-toan/tab-thanh-toan/ThanhToan";
@@ -47,9 +47,9 @@ const PrivateRoutes = () => {
         <Route path="cdha-tdcn" element={<PhanHeCDHAVaTDCN />} />
         <Route path="kham-benh" element={<PhanHeKhamBenh />} />
         <Route path="/test" element={<PhanHeXetNghiem />} />
-        <Route path="phan-he-noi-tru/tiep-don" element={<TiepDon />} />
-        <Route path="phan-he-noi-tru/quan-ly-phong-benh" element={<TiepDon />} />
-        <Route path="phan-he-noi-tru/quan-ly-giuong-benh" element={<TiepDon />} />
+        <Route path="phan-he-noi-tru/tiep-don" element={<TiepDonNoiTru />} />
+        <Route path="phan-he-noi-tru/quan-ly-phong-benh" element={<TiepDonNoiTru />} />
+        <Route path="phan-he-noi-tru/quan-ly-giuong-benh" element={<TiepDonNoiTru />} />
         <Route path="quan-tri-he-thong" element={<PhanHeQuanTriHeThong />} />
         <Route path="kho-duoc" element={<PhanHeKhoDuoc />} />
         <Route path="kho-vat-tu" element={<PhanHeKhoVatTu />} />
@@ -59,6 +59,7 @@ const PrivateRoutes = () => {
         <Route path="hanh-chinh" element={<PhanHeHanhChinh />} />
         <Route path="dieu-tri" element={<PhanHeDieuTri />} />
         <Route path="dat-lich-hen" element={<DatLichHen />} />
+
         {/* Lazy Modules */}
         <Route path="crafted/pages/profile/*" element={<SuspensedView></SuspensedView>} />
         <Route path="crafted/pages/profile/*" element={<SuspensedView></SuspensedView>} />

@@ -1,14 +1,4 @@
-// export interface bangLichSuKham {
-//     lan: string;
-//     ngay: string;
-//     // dichVus: string
-//     xuLy: string;
-//     bacSi: string;
-//     khoa: string;
-//     phong: string;
-//     chuanDoan: string;
-//   }
-export interface danhSachHenKham {
+export interface danhSachLichHen {
   id?: string;
   mpt?: string;
   vienPhi?: string;
@@ -184,7 +174,6 @@ export interface benhNhan {
     khongGiuTheBHYT?: boolean;
   };
 
-  //
   luc?: string;
   dkKham?: string;
   dichVu?: {

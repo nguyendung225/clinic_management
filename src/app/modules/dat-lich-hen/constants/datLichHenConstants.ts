@@ -218,6 +218,11 @@ export const initialValuesTiepNhan: benhNhan = {
 };
 
 export const SAP_XEP_THEO = [
+  { id: 1, name: "Ngày đặt lịch" },
+  { id: 2, name: "Ngày hẹn khám" },
+];
+
+export const BO_LOC = [
   { id: 1, name: "Trạng thái" },
   { id: 2, name: "Thời gian" },
 ];

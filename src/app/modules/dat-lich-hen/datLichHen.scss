@@ -1,4 +1,6 @@
 .datLichContainer {
+    height: 90vh;
+    overflow-y: auto;
 
     .search-icon,
     .muc-huong {
@@ -19,11 +21,26 @@
         color: #1A5E83 !important;
     }
 
-    .h-ds-lich-hen-table {
-        height: calc(100% - 298px) !important;
+    .btn-createNew,
+    .btn-save {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #FF9700 !important;
+        color: white !important;
+        font-weight: 400;
+        border-radius: 4px;
+        padding: 4px 8px !important;
+        line-height: 21px;
+        width: 195px;
+        text-align: center;
+
+        &:hover {
+            background-color: #17a2b8 !important;
+        }
     }
 
-
-
-    
+    .btn-save {
+        background-color: #00A94E !important;
+    }
 }
