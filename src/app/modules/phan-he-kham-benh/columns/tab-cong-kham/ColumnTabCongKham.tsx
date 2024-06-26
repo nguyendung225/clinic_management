@@ -61,7 +61,7 @@ const congKhamColumn: ReadonlyArray<Column<any>> = [
         ),
         id: 'Số lượng',
         Cell: ({ ...props }) => (
-            <TableCustomCell className='min-w-150px text-center ' data={props.data[props.row.index]?.soLuong} />
+            <TableCustomCell className='min-w-50px text-center ' data={props.data[props.row.index]?.soLuong} />
         ),
     },
     {
