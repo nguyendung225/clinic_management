@@ -95,12 +95,14 @@ const PageKeThuoc: FC<Props> = (props) => {
                       </Dropdown.Menu>
                     </Dropdown>
                     <Button className="btn-fill" onClick={() => setOpenModalDonThuocCu(true)}>
+                      <i className="bi bi-caret-down-fill"></i>
                       Đơn thuốc cũ
                     </Button>
-                      <Button className="btn-fill" onClick={()=>toast.warning("Không tìm thấy cấu hình phác đồ cho các mã bệnh : V16")}>
-                          Sử dụng phác đồ
-                      </Button>
-                    <Button className="btn-fill">Kê vật tư</Button>
+                    <Button className="btn-fill" onClick={() => toast.warning("Không tìm thấy cấu hình phác đồ cho các mã bệnh : V16")}>
+                      <i className="bi bi-caret-down-fill"></i>
+                      Sử dụng phác đồ
+                    </Button>
+                    <Button className="btn-fill spaces min-w-76">Kê vật tư</Button>
                   </div>
                 </div>
                 {benhNhanInfo?.hoTen && <InfoPatientRight benhNhanInfo={benhNhanInfo} />}
@@ -108,9 +110,8 @@ const PageKeThuoc: FC<Props> = (props) => {
               <Modal.Body className="py-6 px-0 spaces overflow-hidden spaces h-calc-vh-154">
                 <div className="bg-white radius-2 spaces py-10 px-10">
                   <Row>
-                    <Col xs={3}>
+                    <Col xs={2}>
                       <TextField
-                        className="spaces mr-5"
                         inputClassName="w-100"
                         label="Ngày y lệnh"
                         name="ngayYLenh"
@@ -118,22 +119,26 @@ const PageKeThuoc: FC<Props> = (props) => {
                         labelClassName="ms-0 min-w-95px"
                       />
                     </Col>
-                    <Col xs={6} className="d-flex">
-                      <LabelRequired label="Chẩn đoán" className="min-w-95px" />
-                      <AutocompleteV2
-                        options={OptionBenhKemTheo}
+                    <Col xs={3} className="d-flex ps-4 pe-0">
+                      <LabelRequired label="Chẩn đoán" className="min-w-90px" />
+                      <TextField
+                        className="spaces w-100"
+                        inputClassName="w-100"
                         name="chanDoan"
-                        isClearable={false}
-                        getOptionLabel={(option) => `${option.code} - ${option.name}`}
-                        className="autocomplete-custom-tiep-nhan radius spaces h-26"
+                        labelClassName="ms-0 min-w-95px"
                       />
                     </Col>
-                    <Col xs={3}>
-                      <FormCheck label="Thu tiền" name="thuTien" />
+                    <Col xs={7} className="ps-0">
+                      <TextField
+                        // className="spaces w-100"
+                        inputClassName="w-100"
+                        name="chanDoan"
+                        labelClassName="ms-0 min-w-95px"
+                      />
                     </Col>
                   </Row>
                   <Row className="spaces mt-4">
-                    <Col xs={9} className="d-flex">
+                    <Col xs={6} className="d-flex">
                       <u className="text-pri" onClick={() => setOpenModalBenhKemTheo(true)}>
                         <LabelRequired label="Bệnh kèm theo" className="min-w-95px text-pri" />
                       </u>
@@ -144,7 +149,7 @@ const PageKeThuoc: FC<Props> = (props) => {
                         labelClassName="ms-0 min-w-145px"
                       />
                     </Col>
-                    <Col xs={3}>
+                    <Col xs={6}>
                       <TextField
                         className="spaces w-100"
                         inputClassName="w-100"
@@ -184,7 +189,7 @@ const PageKeThuoc: FC<Props> = (props) => {
                     </Col>
                   </Row>
                   <Row className="spaces mt-4">
-                    <div className="spaces width-12">
+                    <Col xs={3}>
                       <TextField
                         className="spaces w-100"
                         inputClassName="w-100"
@@ -192,63 +197,18 @@ const PageKeThuoc: FC<Props> = (props) => {
                         name="dotDung"
                         labelClassName="ms-0 min-w-95px"
                       />
-                    </div>
-                    <div className="spaces width-19">
-                      <TextField
-                        className="spaces w-100"
-                        inputClassName="w-100"
-                        label="Từ ngày"
-                        name="tuNgay"
-                        type="date"
-                        labelClassName="ms-0 spaces min-w-85"
-                      />
-                    </div>
-                    <div className="spaces width-19">
-                      <TextField
-                        className="spaces w-100"
-                        inputClassName="w-100"
-                        label="Đến ngày"
-                        name="denNgay"
-                        type="date"
-                        labelClassName="ms-0 spaces min-w-85"
-                      />
-                    </div>
-                    <div className="spaces width-12">
-                      <TextField
-                        className="spaces w-100"
-                        inputClassName="w-100"
-                        label="Số ngày"
-                        name="soNgay"
-                        labelClassName="ms-0 spaces min-w-85"
-                      />
-                    </div>
-                    <div className="spaces width-19">
+                    </Col>
+                    <Col xs={3}>
                       <TextField
                         className="spaces w-100"
                         inputClassName="w-100"
                         label="Ngày tái khám"
                         name="ngayTaiKham"
                         type="date"
-                        labelClassName="ms-0 spaces min-w-85"
+                        labelClassName="ms-0 spaces min-w-95"
                       />
-                    </div>
-                    <div className="spaces width-19">
-                      <TextField
-                        className="spaces w-100"
-                        inputClassName="w-100"
-                        label="Sau ngày"
-                        name="sauNgay"
-                        type="date"
-                        labelClassName="ms-0 spaces min-w-85"
-                      />
-                    </div>
+                    </Col>
                   </Row>
-                  <div className="spaces mt-4">
-                    <span className="fw-500">Kê tự động cho các ngày</span>{" "}
-                    <span>
-                      <u className="text-pri fw-500">(Chưa chọn ngày kê tự động)</u>
-                    </span>
-                  </div>
                 </div>
                 <div className="bg-white radius-2 spaces py-10 px-10 mt-6">
                   <Row className="spaces mt-4">
@@ -370,50 +330,46 @@ const PageKeThuoc: FC<Props> = (props) => {
                   <TableCustom<ThuocInfo> data={DataDanhSachThuoc} columns={ThuocColumns} maxHeight={300}/>
                 </div>
               </Modal.Body>
-              <Modal.Footer className="d-flex justify-content-between position-relative tien-don spaces pl-130">
+              <Modal.Footer className="d-flex justify-content-between position-relative tien-don spaces pl-130 bottom-10 pt-4">
                 <div className="bg-light position-absolute left-0 spaces W-120 h-62 p-0 m-0 text-center d-flex align-items-center justify-content-center flex-column">
-                  <div className="fw-bold">Tiền đơn</div>
+                  <div className="fw-bold mt-2">Tiền đơn</div>
                   <div className="text-danger fw-bold text-center">0</div>
                 </div>
                     <div className="d-flex mb-4px ">
                       <div>
-                        <div className="spaces d-flex width-50 align-items-center">
-                          <LabelRequired label="Tổng chi phí" className="ms-0 min-w-125px" />
-                          <span className="text-danger me-3 fw-500">0</span>
+                        <div className="spaces d-flex width-50 align-items-center mb-10">
+                          <LabelRequired label="Tiền dịch vụ" className="ms-0 min-w-175px" />
+                          <span className="text-danger me-5 fw-500">0</span>
                         </div>
                         <div className="spaces d-flex width-50 align-items-center">
-                          <LabelRequired label="Tạm ứng" className="ms-0 min-w-125px" />
-                          <span className="text-pri me-3 fw-500">0</span>
-                        </div>
-                      </div>
-                      <div>
-                        <div className="spaces d-flex width-50 align-items-center">
-                          <LabelRequired label="BHYT" className="ms-0 min-w-125px" />
-                          <span className="text-pri me-3 fw-500">0</span>
-                        </div>
-                        <div className="spaces d-flex width-50 align-items-center">
-                          <LabelRequired label="Đã thu" className="ms-0 min-w-125px" />
-                          <span className="text-pri me-3 fw-500">0</span>
+                          <LabelRequired label="Tiền thuốc & vật tư" className="ms-0 min-w-175px" />
+                          <span className="text-pri me-5 fw-500">0</span>
                         </div>
                       </div>
                       <div>
-                        <div className="spaces d-flex width-50 align-items-center">
-                          <LabelRequired label="Nguồn khác" className="ms-0 min-w-125px" />
-                          <span className="text-pri me-3 fw-500">0</span>
+                        <div className="spaces d-flex width-50 align-items-center mb-10">
+                          <LabelRequired label="Đã thu" className="ms-0 min-w-175px" />
+                          <span className="text-pri me-5 fw-500">0</span>
                         </div>
                         <div className="spaces d-flex width-50 align-items-center">
-                          <LabelRequired label="Miễn giảm" className="ms-0 min-w-125px" />
-                          <span className="text-pri me-3 fw-500">0</span>
+                          <LabelRequired label="Tổng chi phí" className="ms-0 min-w-175px text-danger" />
+                          <span className="text-danger me-5 fw-500">0</span>
                         </div>
                       </div>
                       <div>
-                        <div className="spaces d-flex width-50 align-items-center">
-                          <LabelRequired label="Bệnh nhân" className="ms-0 min-w-125px" />
-                          <span className="text-pri me-3 fw-500">0</span>
+                        <div className="spaces d-flex width-50 align-items-center mb-10">
+                          <LabelRequired label="Giảm dịch vụ" className="ms-0 min-w-175px" />
+                          <span className="text-pri me-5 fw-500">0</span>
                         </div>
                         <div className="spaces d-flex width-50 align-items-center">
-                          <LabelRequired label="Còn nợ" className="ms-0 min-w-125px" />
-                          <span className="text-warning me-3 fw-500">0</span>
+                          <LabelRequired label="Giảm phiếu thu" className="ms-0 min-w-175px" />
+                          <span className="text-pri me-5 fw-500">0</span>
+                        </div>
+                      </div>
+                      <div>
+                    <div className="spaces d-flex flex-column align-items-center  mt-2">
+                          <LabelRequired label="Số tiền còn phải thanh toán" className="ms-0 text-pri fw-bold" />
+                          <span className="text-danger me-5 fw-500 text-center">0</span>
                         </div>
                       </div>
                     </div>
@@ -421,14 +377,14 @@ const PageKeThuoc: FC<Props> = (props) => {
                   {/* <Button className="btn-fill mr-5" onClick={() => setOpenDanhSachMauDialog(true)}>
                     Đơn thuốc mẫu/Đơn thuốc cũ
                   </Button> */}
-                  <Button className="btn-fill">
+                  <Button className="btn-fill min-w-130px">
                     <IconDoubleCheck /> Cấp toa cho về
                   </Button>
-                  <Button className="btn-outline">
+                  <Button className="btn-outline min-w-100px">
                     <i className="bi bi-printer" /> In
                   </Button>
-                  <Button className="btn-fill">
-                    <IconButtonSave /> Lưu
+                  <Button className="btn-fill min-w-100px">
+                    <IconButtonSave /> Lưu lại
                   </Button>
                   {/* <Button className="btn-fill mr-5" onClick={() => setOpenLuuMauThuocMoiDialog(true)}>
                     Lưu mẫu chỉ định mới

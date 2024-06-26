@@ -240,30 +240,26 @@ const DsBenhNhan = (props: any) => {
                             />
                         </Col>
                         <Col xs={12}>
-                            <Row className="px-2">
-                                <Col xs={6} className="min-w-90px text-start">
-                                    <i className="bi bi-circle-fill text-status-blue"></i>&nbsp;
-                                    <span>{trangThaiBenhNhan.choKham.name}</span>
+                            <Row className="d-flex pt-4 spaces w-100 min-h-100">
+                                <Col xs={6}>
+                                    <div className="status-1-bg text-center text-white rounded py-2">
+                                        <span className='fs-4'>{`${trangThaiBenhNhan.dangKham.name}: 3`}</span>
+                                    </div>
                                 </Col>
-                                <Col xs={6} className="min-w-120px text-start">
-                                    <i className="bi bi-circle-fill text-status-ocean"></i>&nbsp;
-                                    <span>{trangThaiBenhNhan.khamBenhKetHop.name}</span>
+                                <Col xs={6}>
+                                    <div className="status-2-bg text-center rounded py-2">
+                                        <span className='fs-4'>{`${trangThaiBenhNhan.choKQ.name}: 2`}</span>
+                                    </div>
                                 </Col>
-                                <Col xs={6} className="min-w-90px text-start">
-                                    <i className="bi bi-circle-fill text-status-green"></i>&nbsp;
-                                    <span>{trangThaiBenhNhan.ketThucKham.name}</span>
+                                <Col xs={6}>
+                                    <div className="status-3-bg text-center text-white rounded py-2">
+                                        <span className='fs-4'>{`${trangThaiBenhNhan.daCoKQ.name}: 4`}</span>
+                                    </div>
                                 </Col>
-                                <Col xs={6} className="min-w-90px text-start">
-                                    <i className="bi bi-circle-fill text-status-yellow"></i>&nbsp;
-                                    <span>{trangThaiBenhNhan.daCoKQCLS.name}</span>
-                                </Col>
-                                <Col xs={6} className="min-w-120px text-start">
-                                    <i className="bi bi-circle-fill text-status-orange"></i>&nbsp;
-                                    <span>{trangThaiBenhNhan.dangKham.name}</span>
-                                </Col>
-                                <Col xs={4} className="min-w-90px text-start">
-                                    <i className="bi bi-circle-fill  text-status-purple"></i>&nbsp;
-                                    <span>{trangThaiBenhNhan.choKQCLS.name}</span>
+                                <Col xs={6}>
+                                    <div className="status-4-bg text-center text-white rounded py-2">
+                                        <span className='fs-4'>{`${trangThaiBenhNhan.ketThucKham.name}: 1`}</span>
+                                    </div>
                                 </Col>
                             </Row>
                         </Col>

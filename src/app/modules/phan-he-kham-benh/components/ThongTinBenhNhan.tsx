@@ -1,8 +1,10 @@
-import { FunctionComponent, useContext } from "react";
+import { FunctionComponent, useContext, useState } from "react";
 import { HINH_THUC, LOAI_DOI_TUONG_CONST, UU_TIEN } from "../constants/BenhNhanConst";
 import { IBenhNhan } from "../models/DSBenhNhanKhamBenhModels";
 import { Button, Col, Row } from "react-bootstrap";
 import { PhanHeTiepDonContext } from "../contexts/PhanHeTiepDonContext";
+import PageKeThuoc from "../modals/modal-ke-thuoc/PageKeThuoc";
+import PageChiDinhDichVu from "../modals/modal-chi-dinh-dich-vu/PageChiDinhDichVu";
 
 interface ThongTinBenhNhanProps {
 }
@@ -10,6 +12,8 @@ interface ThongTinBenhNhanProps {
 const ThongTinBenhNhan: FunctionComponent<ThongTinBenhNhanProps> = () => {
 
     const { benhNhanInfo, setBenhNhanInfo } = useContext(PhanHeTiepDonContext);
+    const [openCapNhatMauChiDinhDialog, setOpenCapNhatMauChiDinhDialog] = useState<boolean>(false);
+    const [shouldOpenChiDinhDichVuModal, setShouldOpenChiDinhDichVuModal] = useState<boolean>(false);
 
     return (
         <div className="bg-white mb-2">
@@ -20,14 +24,12 @@ const ThongTinBenhNhan: FunctionComponent<ThongTinBenhNhanProps> = () => {
                         <>
                             <Button
                                 className="btn-fill btn-kham-benh min-w-120 spaces mx-3"
-                            // onClick={() => {
-                            //     handleOpenChiDinhDichVu();
-                            // }}
+                                onClick={() => setShouldOpenChiDinhDichVuModal(true)}
                             >
                                 Chỉ định DV
                             </Button>
                             <Button className="btn-fill btn-kham-benh min-w-120 spaces mx-3"
-                            // onClick={() => setOpenCapNhatMauChiDinhDialog(true)}
+                                onClick={() => setOpenCapNhatMauChiDinhDialog(true)}
                             >
                                 <span>Kê thuốc</span>
                             </Button>
@@ -172,6 +174,17 @@ const ThongTinBenhNhan: FunctionComponent<ThongTinBenhNhanProps> = () => {
                     </Col>
                 </Row>
             </div>
+            {openCapNhatMauChiDinhDialog && (<PageKeThuoc
+                open={openCapNhatMauChiDinhDialog}
+                handleClose={() => { setOpenCapNhatMauChiDinhDialog(false) }}
+            />
+            )}
+                    
+            {shouldOpenChiDinhDichVuModal && (
+                <PageChiDinhDichVu
+                    handleClose={() => { setShouldOpenChiDinhDichVuModal(false) }}
+                />
+            )}
         </div>
     );
 }

@@ -20,21 +20,21 @@ export const ThuocColumns: ReadonlyArray<Column<ThuocInfo>> = [
             <TableCustomHeader<ThuocInfo>
                 tableProps={props}
                 title={"Tên thuốc"}
-                className="text-center text-light min-w-150px"
+                className="text-center text-light min-w-250px"
             />
         ),
         id: "Tên thuốc",
-        Cell: ({ ...props }) => <TableCustomCell className="text-center" data={props?.data[props.row.index]?.tenThuoc} />,
+        Cell: ({ ...props }) => <TableCustomCell className="text-start" data={props?.data[props.row.index]?.tenThuoc} />,
     },{
         Header: (props) => (
             <TableCustomHeader<ThuocInfo>
                 tableProps={props}
                 title={"Hoạt chất"}
-                className="text-center text-light min-w-150px"
+                className="text-center text-light min-w-250px"
             />
         ),
         id: "Hoạt chất",
-        Cell: ({ ...props }) => <TableCustomCell className="text-center" data={props?.data[props.row.index]?.hoatChat} />,
+        Cell: ({ ...props }) => <TableCustomCell className="text-start" data={props?.data[props.row.index]?.hoatChat} />,
     },
     {
         Header: (props) => (
@@ -85,18 +85,18 @@ export const ThuocColumns: ReadonlyArray<Column<ThuocInfo>> = [
             <TableCustomHeader<ThuocInfo>
                 tableProps={props}
                 title={"Hướng dẫn sử dụng"}
-                className="text-center text-light min-w-200px"
+                className="text-center text-light min-w-250px"
             />
         ),
         id: "Hướng dẫn sử dụng",
-        Cell: ({ ...props }) => <TableCustomCell className="text-center" data={props?.data[props.row.index]?.huongDanSuDungThuoc} />,
+        Cell: ({ ...props }) => <TableCustomCell className="text-start" data={props?.data[props.row.index]?.huongDanSuDungThuoc} />,
     },
     {
         Header: (props) => (
             <TableCustomHeader<ThuocInfo>
                 tableProps={props}
                 title={"Đơn giá"}
-                className="text-center text-light min-w-80px"
+                className="text-center text-light min-w-150px"
             />
         ),
         id: "Đơn giá",
@@ -107,22 +107,11 @@ export const ThuocColumns: ReadonlyArray<Column<ThuocInfo>> = [
             <TableCustomHeader<ThuocInfo>
                 tableProps={props}
                 title={"Thành tiền"}
-                className="text-center text-light min-w-100px"
+                className="text-center text-light min-w-150px"
             />
         ),
         id: "THANHTIEN",
         Cell: ({ ...props }) => <TableCustomCell className="text-end" data={props?.data[props.row.index]?.thanhTien} />,
-    },
-    {
-        Header: (props) => (
-            <TableCustomHeader<ThuocInfo>
-                tableProps={props}
-                title={"Ghi chú"}
-                className="text-center text-light min-w-150px"
-            />
-        ),
-        id: "Ghi chú",
-        Cell: ({ ...props }) => <TableCustomCell className="text-center" data={props?.data[props.row.index]?.ghiChu} />,
     },
 ]
 
